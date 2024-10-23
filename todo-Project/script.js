@@ -61,7 +61,7 @@ todoCreateButton.addEventListener("click", () => {
     });
 
     const completeTick = document.querySelectorAll("#completed");
-    completeTick.forEach((checkbox, index) => {
+    completeTick.forEach((checkbox) => {
       checkbox.addEventListener('click', (e) => {
         const todoText = e.target.parentElement.querySelector(".todo_text");
         todoText.classList.toggle("completed");
