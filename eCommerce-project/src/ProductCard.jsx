@@ -1,7 +1,7 @@
 import {Card} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 
-function ProductCard(){
+function ProductCard(props){
     return(
         <Card>
             <div className="h-80 bg-card rounded-lg p-4 relative">
