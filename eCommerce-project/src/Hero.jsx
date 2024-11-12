@@ -7,8 +7,7 @@ function Hero(){
                 <div className = "flex flex-col justify-center px-16 gap-4">
                     <span className="inline-block rounded-full px-2 py-1 text-xs bg-[#febc26]">WEEKLY DISCOUNT</span>
                     <h1 className="text-[3.75rem] font-semibold leading-none">Premium Product Online Shop</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius quos
-                        suscipit est autem quia? Voluptatem?
+                    <p>Your Future of Shopping. Explore, Compare, and Buy the Latest Electronics
                     </p>
                     <Button className="w-fit" asChild>
                         <a href="/shop" className="px-4 py-2 text-white font-medium bg-black rounded-md">Shop Now</a>
