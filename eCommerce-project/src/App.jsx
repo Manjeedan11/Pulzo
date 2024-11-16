@@ -1,6 +1,6 @@
 import NavBar from "./NavBar"
 import Hero from "./Hero"
-import ProductCard from "./ProductCard";
+import Products from "./Products";
 
 function App() {
   const name = "Manjeedan";
@@ -10,7 +10,7 @@ function App() {
     <>
     <NavBar name={name} cartCount={cartCount}/>
     <Hero/>
-    <ProductCard/>
+    <Products/>
     </>
   )
 }
