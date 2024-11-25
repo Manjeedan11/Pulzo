@@ -1,16 +1,10 @@
 import express from 'express';
-import {getProducts, createProduct, getProductById, deleteProductById, updateProductById} from './applications/product.js'
+import { productRouter } from './routes/product';
 
 const app = express();
-//Dynamic routing import
-
 app.use(express.json());
-//Dynamic routing called
-app.get('/products', getProducts);
-app.post('/products', createProduct);
-app.get('/products/:id', getProductById);
-app.delete('/products/:id', deleteProductById);
-app.put('/products/:id', updateProductById);
+
+app.use('/products', productRouter)
 
 
 app.listen(8000, () => {
