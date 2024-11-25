@@ -2,9 +2,10 @@
   "name": "ecommerce-backend",
   "version": "1.0.0",
   "description": "Backend setup for an eCommerce MERN stack project\"",
-  "main": "app.js",
+  "main": "src/app.js",
+  "type": "module", 
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
