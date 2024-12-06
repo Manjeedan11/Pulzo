@@ -1,3 +1,5 @@
+import NotFoundError from '../domain/errors/not-found-error.js';
+
 const products = [
     {
         categoryId: "1",
@@ -56,47 +58,70 @@ const products = [
 ];
 
 export const getProducts = (req, res) => {
-    return res.status(200).json(products).send();
+    try{
+        return res.status(200).json(products).send();
+    } catch(e){
+      next(error);
+    } 
+    
 }
 
 export const createProduct = (req, res) => {
-    products.push(req.body);
-    return res.status(200).send("Product added successfully");
+    try {
+        products.push(req.body);
+        return res.status(200).send("Product added successfully");
+    } catch(error){
+       next(error);
+    }
+    
 }
 
 export const getProductById = (req,res) => {
-    const id = req.params.id;
-    const product = products.find((pro) => {
-        pro.id === id;
-    })
+    try {
+        const id = req.params.id;
+        const product = products.find((pro) => {pro.id === id;})
+        if(!product){
+            throw new NotFoundError("Product not found");
+        }
+        return res.status(200).json(product).send();
 
-    return res.status(200).json(product).send();
+    } catch (error){
+        next(error);
+    }
+
 }
 
 export const deleteProductById = (req, res) => {
-    const id = req.params.id;
-    const productIndex = products.findIndex((pro) => pro.id === id); 
-
-    if (index !== -1) {
+    try {
+        const id = req.params.id;
+        const productIndex = products.findIndex((pro) => pro.id === id); 
+        if (index !== -1) {
+            throw new NotFoundError("Product not found")
+        }
         products.splice(index, 1);
+        return res.status(200).send(`Product info at ${productIndex} deleted successfully`);
+    } catch(error){
+        next(error)
     }
 
-    return res.status(200).send(`Product info at ${productIndex} deleted successfully`);
 };
-
-//TODO: Gotta change the logic of updating the info for all the fields 
+ 
 export const updateProductById = (req,res) => {
+   try {
     const id = req.params.id;
     const productIndex = products.findIndex((pro) => pro.id === id)
 
-    const details = req.body
-
     if(productIndex !== -1){
-        productIndex.name = req.body.name;
-        productIndex.price = req.body.price;
-        productIndex.description = req.body.description;
-        productIndex.image = req.body.image;
+        throw new NotFoundError("Product not found")
     }
 
+    productIndex.name = req.body.name;
+    productIndex.price = req.body.price;
+    productIndex.description = req.body.description;
+    productIndex.image = req.body.image;
+
     return res.status(200).send(`Product info at ${productIndex} updated successfully`);
+   } catch(error){
+      next(error);
+   }
 }
