@@ -2,6 +2,7 @@ import ProductCards from "./ProductCards";
 import { Separator } from "@/components/ui/separator";
 import Tab from "./Tab";
 import { useState } from "react";
+import SortButton from "./SortButton";
 
 function Products() {
   const products = [

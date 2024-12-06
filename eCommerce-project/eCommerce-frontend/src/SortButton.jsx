@@ -11,5 +11,5 @@ function SortButton(props) {
     );
   }
   
-  export default SortButton;
+export default SortButton;
   
