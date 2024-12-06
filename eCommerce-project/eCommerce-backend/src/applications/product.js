@@ -1,4 +1,4 @@
-import NotFoundError from '../domain/errors/not-found-error.js';
+import NotFoundError from "../domain/errors/not-found-error.js";
 
 const products = [
     {
@@ -57,16 +57,16 @@ const products = [
       },
 ];
 
-export const getProducts = (req, res) => {
+export const getProducts = (req, res, next) => {
     try{
         return res.status(200).json(products).send();
-    } catch(e){
+    } catch(error){
       next(error);
     } 
     
 }
 
-export const createProduct = (req, res) => {
+export const createProduct = (req, res, next) => {
     try {
         products.push(req.body);
         return res.status(200).send("Product added successfully");
@@ -76,10 +76,10 @@ export const createProduct = (req, res) => {
     
 }
 
-export const getProductById = (req,res) => {
+export const getProductById = (req, res, next) => {
     try {
         const id = req.params.id;
-        const product = products.find((pro) => {pro.id === id;})
+        const product = products.find((pro) => pro.id === id)
         if(!product){
             throw new NotFoundError("Product not found");
         }
@@ -91,7 +91,7 @@ export const getProductById = (req,res) => {
 
 }
 
-export const deleteProductById = (req, res) => {
+export const deleteProductById = (req, res, next) => {
     try {
         const id = req.params.id;
         const productIndex = products.findIndex((pro) => pro.id === id); 
@@ -106,7 +106,7 @@ export const deleteProductById = (req, res) => {
 
 };
  
-export const updateProductById = (req,res) => {
+export const updateProductById = (req, res, next) => {
    try {
     const id = req.params.id;
     const productIndex = products.findIndex((pro) => pro.id === id)
