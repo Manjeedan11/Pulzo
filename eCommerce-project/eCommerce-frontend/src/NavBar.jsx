@@ -1,8 +1,8 @@
 import { ShoppingCart } from "lucide-react";
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
+import { Link } from "react-router";
 
 function NavBar(props) {
-  
   return (
     <nav className="flex items-center justify-between py-8 px-8">
       <div className="flex gap-x-16">
@@ -23,21 +23,21 @@ function NavBar(props) {
               Cart
             </div>
           </a>
-        <div className="font-mono">
-          {props.name ? (
-            <p>Hi, {props.name}</p>
-          ) : (
-            <div className="flex gap-4">
-              <a href="/">Sign In</a>
-              <a href="/">Sign Up</a>
-            </div>
-          )}
         </div>
-      </div>
+        {!props.name && (
+          <div className="flex items-center gap-4">
+            <Link to="/sign-in" className=" text-primary ">
+              Sign In
+            </Link>
+            <Link to="/sign-up" className=" text-primary ">
+              Sign Up
+            </Link>
+          </div>
+        )}
+        {props.name && <p>Hi, {props.name}</p>}
       </div>
     </nav>
   );
-
 }
 
 export default NavBar;
