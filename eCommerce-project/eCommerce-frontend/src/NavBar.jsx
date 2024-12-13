@@ -1,6 +1,6 @@
 import { ShoppingCart } from "lucide-react";
 import propTypes from "prop-types";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 function NavBar(props) {
   return (
@@ -24,7 +24,9 @@ function NavBar(props) {
             </div>
           </a>
         </div>
-        {!props.name && (
+        {props.name ? (
+          <p>Hi, {props.name}</p>
+        ) : (
           <div className="flex items-center gap-4">
             <Link to="/sign-in" className=" text-primary ">
               Sign In
@@ -34,7 +36,6 @@ function NavBar(props) {
             </Link>
           </div>
         )}
-        {props.name && <p>Hi, {props.name}</p>}
       </div>
     </nav>
   );

@@ -1,19 +1,17 @@
-"use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
-export default function SignUpPage() {
+function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-    console.log("Sign up with:", email, password);
-    // Add your sign-up logic here
+    console.log("Sign in with:", email, password);
+    // Add your sign-in logic here
   };
 
   return (
@@ -22,13 +20,13 @@ export default function SignUpPage() {
         <div className="bg-white rounded-lg shadow-lg p-8 space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Create your account
+              Sign in to StoreFRONT
             </h1>
             <p className="text-sm text-muted-foreground">
-              Sign up to get started with StoreFRONT
+              Welcome back! Please sign in to continue
             </p>
           </div>
-          <form onSubmit={handleSignUp} className="space-y-4">
+          <form onSubmit={handleSignIn} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -52,7 +50,7 @@ export default function SignUpPage() {
               />
             </div>
             <Button type="submit" className="w-full">
-              Sign Up
+              Sign In
             </Button>
           </form>
           <div className="relative">
@@ -68,7 +66,7 @@ export default function SignUpPage() {
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => console.log("Sign up with Google")}
+            onClick={() => console.log("Sign in with Google")}
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path
@@ -91,12 +89,12 @@ export default function SignUpPage() {
             Continue with Google
           </Button>
           <div className="text-center text-sm">
-            Already have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
-              href="/sign-in"
+              to="/sign-up"
               className="font-medium text-primary hover:underline"
             >
-              Sign in
+              Sign up
             </Link>
           </div>
           <div className="text-center text-xs text-muted-foreground">
@@ -107,3 +105,5 @@ export default function SignUpPage() {
     </div>
   );
 }
+
+export default SignInPage;

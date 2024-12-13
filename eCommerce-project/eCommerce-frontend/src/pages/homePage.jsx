@@ -2,7 +2,7 @@ import NavBar from "@/NavBar";
 import Hero from "@/Hero";
 import Products from "@/Products";
 
-function homePage() {
+function HomePage() {
   const name = "Manjeedan";
   const cartCount = 0;
 
@@ -15,4 +15,4 @@ function homePage() {
   );
 }
 
-
+export default HomePage;
