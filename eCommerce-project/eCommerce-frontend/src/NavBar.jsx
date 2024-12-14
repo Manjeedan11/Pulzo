@@ -7,7 +7,7 @@ function NavBar(props) {
     <nav className="flex items-center justify-between py-8 px-8">
       <div className="flex gap-x-16">
         <a className="font-semibold text-3xl" href="/">
-          Mebius
+          Pulzo
         </a>
         <div className="flex items-center gap-4">
           <a href="/">Home</a>
