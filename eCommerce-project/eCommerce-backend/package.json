@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend setup for an eCommerce MERN stack project\"",
   "main": "src/app.js",
-  "type": "module", 
+  "type": "module",
   "scripts": {
     "dev": "nodemon src/app.js"
   },
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.1",
+    "mongoose": "^8.9.0",
     "nodemon": "^3.1.7"
   }
 }
