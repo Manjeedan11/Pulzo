@@ -79,7 +79,7 @@ export const createProduct = async (req, res, next) => {
 export const getProductById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate("categoryId");
     if (!product) {
       throw new NotFoundError("Product not found");
     }
