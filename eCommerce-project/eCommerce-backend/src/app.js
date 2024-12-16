@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/products", productRouter);
+app.use("/api/categories", categoriesRouter);
 app.use(globalErrorHandlingMiddleware);
-//app.use('/api/categories', categoriesRouter);
 
 connectDB();
 app.listen(8000, () => {
