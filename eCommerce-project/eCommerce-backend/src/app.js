@@ -1,6 +1,6 @@
 import express from "express";
 import { productRouter } from "./api/product.js";
-import { categoriesRouter } from "./api/categories.js";
+import { categoriesRouter } from "./api/category.js";
 import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
 import { connectDB } from "./infrastructure/db.js";
 
