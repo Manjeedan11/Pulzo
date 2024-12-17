@@ -1,6 +1,7 @@
 import express from "express";
 import { productRouter } from "./api/product.js";
 import { categoriesRouter } from "./api/category.js";
+import { userRouter } from "./api/user.js";
 import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
 import { connectDB } from "./infrastructure/db.js";
 
@@ -9,6 +10,7 @@ app.use(express.json());
 
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoriesRouter);
+app.use("/api/users", userRouter);
 app.use(globalErrorHandlingMiddleware);
 
 connectDB();
