@@ -1,4 +1,5 @@
 import express from "express";
+import "dotenv/config";
 import { productRouter } from "./api/product.js";
 import { categoriesRouter } from "./api/category.js";
 import { userRouter } from "./api/user.js";
