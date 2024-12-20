@@ -112,7 +112,7 @@ function Products() {
   };
 
   return (
-    <section className="px-8 py-8">
+    <section className="py-8 px-4 xl:px-16">
       <h2 className="text-4xl font-bold">Our Top Products</h2>
       <Separator className="mt-2" />
       <div className="mt-4 flex items-center gap-4">
