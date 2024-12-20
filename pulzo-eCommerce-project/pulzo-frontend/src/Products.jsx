@@ -2,7 +2,7 @@ import ProductCards from "./ProductCards";
 import { Separator } from "@/components/ui/separator";
 import Tab from "./Tab";
 import { useState } from "react";
-import SortButton from "./SortButton";
+import SortDropDown from "./SortDropDown";
 
 function Products() {
   const products = [
@@ -125,8 +125,8 @@ function Products() {
             onTabClick={handleTabClick}
           />
         ))}
+        <SortDropDown onSort={handleSort} />
       </div>
-      <SortButton onSort={handleSort} />
       <ProductCards products={sortedProducts} />
     </section>
   );
