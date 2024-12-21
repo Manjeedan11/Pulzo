@@ -111,6 +111,21 @@ function Products() {
     setSortOrder(order);
   };
 
+  try {
+    const getProducts = async () => {
+      const res = await fetch("http://localhost:8000/api/products", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      //console.log(data);
+    };
+  } catch (error) {
+    console.log(error);
+  }
+
   return (
     <section className="py-8 px-4 xl:px-16">
       <h2 className="text-4xl font-bold">Our Top Products</h2>
