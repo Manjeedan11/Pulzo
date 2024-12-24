@@ -82,6 +82,10 @@ function Products() {
           <Skeleton className="h-80" />
           <Skeleton className="h-80" />
           <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
+          <Skeleton className="h-80" />
         </div>
       </section>
     );
