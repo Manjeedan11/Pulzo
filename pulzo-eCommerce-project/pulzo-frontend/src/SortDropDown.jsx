@@ -4,7 +4,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Filter } from "lucide-react";
+import { Filter, ArrowUpNarrowWide, ArrowDownNarrowWide } from "lucide-react";
 
 function SortDropDown(props) {
   return (
@@ -16,9 +16,11 @@ function SortDropDown(props) {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={() => props.onSort("ASC")}>
+            <ArrowUpNarrowWide />
             Price : low to high
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => props.onSort("DESC")}>
+            <ArrowDownNarrowWide />
             Price : high to low
           </DropdownMenuItem>
         </DropdownMenuContent>
