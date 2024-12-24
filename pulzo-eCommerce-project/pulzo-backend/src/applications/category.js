@@ -4,8 +4,9 @@ import Category from "../infrastructure/schemas/Category.js";
 const categories = [
   { id: "1", name: "Headphones" },
   { id: "2", name: "Earbuds" },
-  { id: "3", name: "Smart Speakers" },
-  { id: "4", name: "Smartwatches" },
+  { id: "3", name: "Speakers" },
+  { id: "4", name: "Mobile Phones" },
+  { id: "5", name: "Smart watches" },
 ];
 
 export const getCategories = async (req, res, next) => {
