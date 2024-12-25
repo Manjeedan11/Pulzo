@@ -78,7 +78,7 @@ const products = [
 
 export const getProducts = async (req, res, next) => {
   try {
-    const data = await Product.find();
+    const data = await Product.find().populate("categoryId");
     return res.status(200).json(data);
   } catch (error) {
     next(error);

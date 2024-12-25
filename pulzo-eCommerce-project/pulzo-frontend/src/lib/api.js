@@ -13,6 +13,21 @@ export const getProducts = async () => {
   }
 };
 
+export const getCategories = async () => {
+  try {
+    const res = await fetch("http://localhost:8000/api/categories", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error("Error while loading categories");
+  }
+};
+
 const products = [
   {
     categoryId: "1",
@@ -86,4 +101,13 @@ const products = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
   },
+];
+
+const categories = [
+  { _id: "ALL", name: "ALL" },
+  { _id: "1", name: "Headphones" },
+  { _id: "2", name: "Earbuds" },
+  { _id: "3", name: "Speakers" },
+  { _id: "4", name: "Mobile Phones" },
+  { _id: "5", name: "Smart Watches" },
 ];

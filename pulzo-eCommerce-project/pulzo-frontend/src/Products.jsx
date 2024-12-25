@@ -3,7 +3,7 @@ import { Separator } from "@/components/ui/separator";
 import Tab from "./Tab";
 import { useEffect, useState } from "react";
 import SortDropDown from "./SortDropDown";
-import { getProducts } from "./lib/api";
+import { getProducts, getCategories } from "./lib/api";
 import { Skeleton } from "./components/ui/skeleton";
 
 function Products() {
@@ -14,14 +14,7 @@ function Products() {
     message: "",
   });
 
-  const categories = [
-    { _id: "ALL", name: "ALL" },
-    { _id: "1", name: "Headphones" },
-    { _id: "2", name: "Earbuds" },
-    { _id: "3", name: "Speakers" },
-    { _id: "4", name: "Mobile Phones" },
-    { _id: "5", name: "Smart Watches" },
-  ];
+  const [categories, setCategories] = useState([]);
 
   const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
   const [sortOrder, setSortOrder] = useState("ASC");
@@ -29,7 +22,9 @@ function Products() {
   const filteredProducts =
     selectedCategoryId === "ALL"
       ? products
-      : products.filter((product) => product.categoryId === selectedCategoryId);
+      : products.filter(
+          (product) => product.categoryId._id === selectedCategoryId
+        );
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     const priceA = parseFloat(a.price);
@@ -53,11 +48,24 @@ function Products() {
       } catch (error) {
         setProductsError({ isError: true, message: error.message });
       } finally {
-        setIsProductsLoading(true);
+        setIsProductsLoading(false);
       }
     };
 
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getCategories();
+        setCategories(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
   if (isProductsLoading) {
