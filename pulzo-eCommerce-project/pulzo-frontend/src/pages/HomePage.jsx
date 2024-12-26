@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function HomePage() {
   const name = "Manjeedan";
-  const [cart, setCart] = useState([]);
+  const cartCount = 0;
 
   return (
     <div>
