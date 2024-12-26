@@ -7,13 +7,11 @@ function HomePage() {
   const name = "Manjeedan";
   const [cart, setCart] = useState([]);
 
-  const handleAddToCart = (product) => {};
-
   return (
     <div>
       <NavBar name={name} cartCount={cartCount} />
       <Hero />
-      <Products handleAddToCart={handleAddToCart} />
+      <Products />
     </div>
   );
 }
