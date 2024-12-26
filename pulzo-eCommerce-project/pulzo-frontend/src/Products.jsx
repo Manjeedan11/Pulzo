@@ -6,7 +6,7 @@ import SortDropDown from "./SortDropDown";
 import { getProducts, getCategories } from "./lib/api";
 import { Skeleton } from "./components/ui/skeleton";
 
-function Products() {
+function Products(props) {
   const [products, setProducts] = useState([]);
   const [isProductsLoading, setIsProductsLoading] = useState(true);
   const [productsError, setProductsError] = useState({
@@ -137,7 +137,10 @@ function Products() {
         ))}
         <SortDropDown onSort={handleSort} />
       </div>
-      <ProductCards products={sortedProducts} />
+      <ProductCards
+        handleAddToCart={props.handleAddToCart}
+        products={sortedProducts}
+      />
     </section>
   );
 }
