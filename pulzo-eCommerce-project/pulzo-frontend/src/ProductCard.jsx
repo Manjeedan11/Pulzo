@@ -17,9 +17,15 @@ function ProductCard(props) {
   };
 
   const toggleFavorite = (e) => {
-    setIsFavorite((prev) => !prev);
+    setIsFavorite(!isFavorite);
 
-    props.handleFavorites({});
+    props.handleFavorites({
+      _id: props.id,
+      name: props.name,
+      price: props.price,
+      image: props.image,
+      description: props.description,
+    });
   };
 
   return (

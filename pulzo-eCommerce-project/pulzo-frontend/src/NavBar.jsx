@@ -3,8 +3,6 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function NavBar(props) {
-  const wishlistCount = 0;
-
   return (
     <nav className="flex items-center justify-between py-8 px-8 xl:px-16">
       <div className="flex gap-x-16">
