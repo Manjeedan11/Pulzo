@@ -17,7 +17,6 @@ function HomePage() {
             : cartItem;
         })
       );
-      return;
     }
     setCart([...cart, { product: product, quantity: 1 }]);
   };

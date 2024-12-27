@@ -4,15 +4,32 @@ import { Heart } from "lucide-react";
 import { useState } from "react";
 
 function ProductCard(props) {
-  const handleClick = () => {
-    console.log("Add to Cart {test:ok}");
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleClick = (e) => {
+    props.handleAddToCart({
+      _id: props.id,
+      name: props.name,
+      price: props.price,
+      image: props.image,
+      description: props.description,
+    });
+  };
+
+  const toggleFavorite = (e) => {
+    setIsFavorite((prev) => !prev);
   };
 
   return (
     <Card className="border-none ">
       <div className="bg-gray-50 rounded-lg p-4 flex justify-center items-center relative">
         <img src={props.image} className="w-full h-full object-cover" />
-        <Heart className="absolute top-4 right-4 cursor-pointer z-10 text-red-500" />
+        <div
+          className="absolute top-4 right-4 cursor-pointer z-10 text-red-500"
+          onClick={toggleFavorite}
+        >
+          <Heart fill={isFavorite ? "red" : "none"} className="w-6 h-6" />
+        </div>
       </div>
       <div className="flex items-center justify-between">
         <span className="block text-2xl font-semibold">{props.name}</span>
