@@ -18,6 +18,8 @@ function ProductCard(props) {
 
   const toggleFavorite = (e) => {
     setIsFavorite((prev) => !prev);
+
+    props.handleFavorites({});
   };
 
   return (

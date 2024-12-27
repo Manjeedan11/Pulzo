@@ -7,6 +7,7 @@ function ProductCards(props) {
         return (
           <ProductCard
             handleAddToCart={props.handleAddToCart}
+            handleFavorites={handleFavorites}
             key={product._id}
             name={product.name}
             price={product.price}

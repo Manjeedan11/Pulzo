@@ -29,11 +29,16 @@ function HomePage() {
     return count;
   };
 
+  const handleFavorites = () => {};
+
   return (
     <div>
       <NavBar name={name} cartCount={getCartQuantity()} />
       <Hero />
-      <Products handleAddToCart={handleAddToCart} />
+      <Products
+        handleAddToCart={handleAddToCart}
+        handleFavorites={handleFavorites}
+      />
     </div>
   );
 }

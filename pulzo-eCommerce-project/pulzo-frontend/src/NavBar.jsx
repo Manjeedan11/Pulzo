@@ -27,11 +27,11 @@ function NavBar(props) {
           </a>
         </div>
         <div>
-          <a href="/wishlist" className="flex items-center gap-4 relative">
+          <a href="/favorites" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
               <Heart className="cursor-pointer z-10 text-bl" />
               Favorites
-              <p className="text-lg">{wishlistCount}</p>
+              <p className="text-lg">{props.favoritesCount}</p>
             </div>
           </a>
         </div>
