@@ -32,7 +32,7 @@ function HomePage() {
 
   return (
     <div>
-      <NavBar name={name} cartCount={cartCount} />
+      <NavBar name={name} cartCount={getCartQuantity()} />
       <Hero />
       <Products handleAddToCart={handleAddToCart} />
     </div>

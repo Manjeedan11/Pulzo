@@ -1,8 +1,10 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Heart } from "lucide-react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function NavBar(props) {
+  const wishlistCount = 0;
+
   return (
     <nav className="flex items-center justify-between py-8 px-8 xl:px-16">
       <div className="flex gap-x-16">
@@ -22,6 +24,15 @@ function NavBar(props) {
               <ShoppingCart />
               Cart
             </div>
+          </a>
+        </div>
+        <div>
+          <a href="/wishlist" className="flex items-center gap-4 relative">
+            <div className="flex items-center gap-2">
+              <Heart className="cursor-pointer z-10 text-red-500" />
+              Favorites
+            </div>
+            <p className="text-lg">{wishlistCount}</p>
           </a>
         </div>
         {props.name ? (
