@@ -14,7 +14,7 @@ export const getProducts = async () => {
         name: "AirPods Max",
         price: "549.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "Great sound with noise canceling and comfortable fit headphones.",
       },
       {
         categoryId: "3",
@@ -22,8 +22,7 @@ export const getProducts = async () => {
         _id: "2",
         name: "Echo Dot",
         price: "99.00",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+        description: "Small smart speaker with Alexa for easy voice control.",
       },
       {
         categoryId: "2",
@@ -32,7 +31,7 @@ export const getProducts = async () => {
         name: "Galaxy Pixel Buds",
         price: "99.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "Wireless earbuds with good sound and easy device pairing.",
       },
       {
         categoryId: "1",
@@ -40,8 +39,7 @@ export const getProducts = async () => {
         _id: "4",
         name: "Bose QuiteComfort",
         price: "249.00",
-        description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+        description: "Noise-canceling headphones for clear sound in any place.",
       },
       {
         categoryId: "3",
@@ -50,7 +48,7 @@ export const getProducts = async () => {
         name: "Bose SoundLink",
         price: "119.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "Portable speaker with clear sound and Bluetooth connection support.",
       },
       {
         categoryId: "5",
@@ -59,7 +57,7 @@ export const getProducts = async () => {
         name: "Apple Watch 9",
         price: "699.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "Smartwatch with fitness tracking, health tools, and notifications.",
       },
       {
         categoryId: "4",
@@ -68,7 +66,7 @@ export const getProducts = async () => {
         name: "Apple Iphone 15",
         price: "1299.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "New iPhone with better speed and great camera performance.",
       },
       {
         categoryId: "4",
@@ -77,7 +75,7 @@ export const getProducts = async () => {
         name: "Galaxy Pixel 8",
         price: "549.00",
         description:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, sequi?",
+          "Simple smartphone with good photos and smooth everyday performance.",
       },
     ];
     return data;

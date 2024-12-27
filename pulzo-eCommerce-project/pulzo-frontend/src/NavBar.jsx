@@ -29,10 +29,10 @@ function NavBar(props) {
         <div>
           <a href="/wishlist" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
-              <Heart className="cursor-pointer z-10 text-red-500" />
+              <Heart className="cursor-pointer z-10 text-bl" />
               Favorites
+              <p className="text-lg">{wishlistCount}</p>
             </div>
-            <p className="text-lg">{wishlistCount}</p>
           </a>
         </div>
         {props.name ? (
