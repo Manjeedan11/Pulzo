@@ -4,7 +4,7 @@ import Products from "@/Products";
 import { useState } from "react";
 
 function HomePage() {
-  const name = null;
+  const name = "Manjeedan";
   const [cart, setCart] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [favoritesCount, setFavoritesCount] = useState([0]);
@@ -33,14 +33,10 @@ function HomePage() {
 
   const handleFavorites = (product) => {
     setFavorites((prevFavorites) => {
-      const existingIndex = prevFavorites.findIndex(
-        (item) => item._id === product._id
-      );
-      if (existingIndex >= 0) {
-        setFavoritesCount((prev) => prev - 1);
+      const isFavorite = prevFavorites.some((item) => item._id === product._id);
+      if (isFavorite) {
         return prevFavorites.filter((item) => item._id !== product._id);
       } else {
-        setFavoritesCount((prev) => prev + 1);
         return [...prevFavorites, product];
       }
     });
@@ -51,7 +47,7 @@ function HomePage() {
       <NavBar
         name={name}
         cartCount={getCartQuantity()}
-        favoritesCount={favoritesCount}
+        favoritesCount={favorites.length}
       />
       <Hero />
       <Products
