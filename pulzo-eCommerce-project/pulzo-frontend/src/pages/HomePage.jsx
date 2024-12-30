@@ -1,10 +1,10 @@
 import NavBar from "@/NavBar";
 import Hero from "@/Hero";
 import Products from "@/Products";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function HomePage() {
-  const name = "Manjeedan";
+  const name = "";
   const [cart, setCart] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [favoritesCount, setFavoritesCount] = useState([0]);
@@ -42,12 +42,16 @@ function HomePage() {
     });
   };
 
+  useEffect(() => {
+    setFavoritesCount(favorites.length);
+  }, [favorites]);
+
   return (
     <div>
       <NavBar
         name={name}
         cartCount={getCartQuantity()}
-        favoritesCount={favorites.length}
+        favoritesCount={favoritesCount}
       />
       <Hero />
       <Products
