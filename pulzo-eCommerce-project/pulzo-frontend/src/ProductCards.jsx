@@ -6,7 +6,6 @@ function ProductCards(props) {
       {props.products.map((product) => {
         return (
           <ProductCard
-            handleAddToCart={props.handleAddToCart}
             handleFavorites={props.handleFavorites}
             key={product._id}
             name={product.name}

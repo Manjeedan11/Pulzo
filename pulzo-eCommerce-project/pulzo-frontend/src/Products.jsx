@@ -136,7 +136,6 @@ function Products(props) {
         <SortDropDown onSort={handleSort} />
       </div>
       <ProductCards
-        handleAddToCart={props.handleAddToCart}
         handleFavorites={props.handleFavorites}
         products={sortedProducts}
       />

@@ -2,18 +2,23 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "./lib/features/cartSlice";
 
 function ProductCard(props) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = (e) => {
-    props.handleAddToCart({
-      _id: props.id,
-      name: props.name,
-      price: props.price,
-      image: props.image,
-      description: props.description,
-    });
+    dispatch(
+      addToCart({
+        _id: props.id,
+        name: props.name,
+        price: props.price,
+        image: props.image,
+        description: props.description,
+      })
+    );
   };
 
   const toggleFavorite = (e) => {
