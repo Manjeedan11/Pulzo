@@ -7,8 +7,8 @@ import { useSelector } from "react-redux";
 function HomePage() {
   const name = "";
   //const [cart, setCart] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [favoritesCount, setFavoritesCount] = useState([0]);
+  //const [favorites, setFavorites] = useState([]);
+  //const [favoritesCount, setFavoritesCount] = useState([0]);
 
   /*const handleAddToCart = (product) => {
     const foundItem = cart.find((item) => item.product._id === product._id);
@@ -25,6 +25,7 @@ function HomePage() {
   };*/
 
   const cart = useSelector((state) => state.cart.value);
+  const favorite = useSelector((state) => state.favorite.value);
 
   const getCartQuantity = () => {
     let count = 0;
@@ -34,7 +35,7 @@ function HomePage() {
     return count;
   };
 
-  const handleFavorites = (product) => {
+  /*const handleFavorites = (product) => {
     setFavorites((prevFavorites) => {
       const isFavorite = prevFavorites.some((item) => item._id === product._id);
       if (isFavorite) {
@@ -47,17 +48,17 @@ function HomePage() {
 
   useEffect(() => {
     setFavoritesCount(favorites.length);
-  }, [favorites]);
+  }, [favorites]); */
 
   return (
     <div>
       <NavBar
         name={name}
         cartCount={getCartQuantity()}
-        favoritesCount={favoritesCount}
+        favoritesCount={favorite.length}
       />
       <Hero />
-      <Products handleFavorites={handleFavorites} />
+      <Products />
     </div>
   );
 }
