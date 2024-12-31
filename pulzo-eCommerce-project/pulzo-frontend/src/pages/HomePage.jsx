@@ -2,14 +2,15 @@ import NavBar from "@/NavBar";
 import Hero from "@/Hero";
 import Products from "@/Products";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function HomePage() {
   const name = "";
-  const [cart, setCart] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [favoritesCount, setFavoritesCount] = useState([0]);
+  //const [cart, setCart] = useState([]);
+  //const [favorites, setFavorites] = useState([]);
+  //const [favoritesCount, setFavoritesCount] = useState([0]);
 
-  const handleAddToCart = (product) => {
+  /*const handleAddToCart = (product) => {
     const foundItem = cart.find((item) => item.product._id === product._id);
     if (foundItem) {
       setCart(
@@ -21,7 +22,9 @@ function HomePage() {
       );
     }
     setCart([...cart, { product: product, quantity: 1 }]);
-  };
+  };*/
+
+  const cart = useSelector((state) => state.cart.value);
 
   const getCartQuantity = () => {
     let count = 0;
