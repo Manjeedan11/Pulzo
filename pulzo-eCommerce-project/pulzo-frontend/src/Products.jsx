@@ -22,7 +22,9 @@ function Products(props) {
   const filteredProducts =
     selectedCategoryId === "ALL"
       ? products
-      : products.filter((product) => product.categoryId === selectedCategoryId);
+      : products.filter(
+          (product) => product.categoryId._id === selectedCategoryId
+        );
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     const priceA = parseFloat(a.price);
