@@ -1,6 +1,9 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, Heart, Search } from "lucide-react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { Button } from "./components/ui/button";
+import SearchBar from "./SearchBar";
 
 function NavBar(props) {
   return (
@@ -12,6 +15,7 @@ function NavBar(props) {
         <div className="flex items-center gap-4">
           <a href="/">Home</a>
           <a href="/shop">Shop</a>
+          <SearchBar />
         </div>
       </div>
       <div className="flex items-center gap-4">
@@ -21,6 +25,15 @@ function NavBar(props) {
             <div className="flex items-center gap-2">
               <ShoppingCart />
               Cart
+            </div>
+          </a>
+        </div>
+        <div>
+          <a href="/favorites" className="flex items-center gap-4 relative">
+            <div className="flex items-center gap-2">
+              <Heart className="cursor-pointer z-10 text-bl" />
+              Favorites
+              <p className="text-lg">{props.favoritesCount}</p>
             </div>
           </a>
         </div>
