@@ -1,19 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const pokemonApi = createApi({
+export const Api = createApi({
   reducerPath: "Api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://localhost:8000/api/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/" }),
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => `products`,
     }),
-  }),
-  getCategories: builder.query({
-    query: () => `categories`,
+    getCategories: builder.query({
+      query: () => `categories`,
+    }),
   }),
 });
 
-export const { useGetProductQuery, useCategoriesQuery } = Api;
+export const { useGetProductsQuery, useGetCategoriesQuery } = Api;
 
 /*export const getProducts = async () => {
   try {
