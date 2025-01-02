@@ -27,7 +27,7 @@ function Products(props) {
     selectedCategoryId === "ALL"
       ? products || []
       : (products || []).filter(
-          (product) => product.categoryId === selectedCategoryId
+          (product) => product.categoryId._id === selectedCategoryId
         );
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
