@@ -1,4 +1,21 @@
-export const getProducts = async () => {
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const pokemonApi = createApi({
+  reducerPath: "Api",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://localhost:8000/api/" }),
+  endpoints: (builder) => ({
+    getProducts: builder.query({
+      query: () => `products`,
+    }),
+  }),
+  getCategories: builder.query({
+    query: () => `categories`,
+  }),
+});
+
+export const { useGetProductQuery, useCategoriesQuery } = Api;
+
+/*export const getProducts = async () => {
   try {
     const res = await fetch("http://localhost:8000/api/products", {
       method: "GET",
@@ -27,6 +44,7 @@ export const getCategories = async () => {
     throw new Error("Error while loading categories");
   }
 };
+*/
 
 const products = [
   {
