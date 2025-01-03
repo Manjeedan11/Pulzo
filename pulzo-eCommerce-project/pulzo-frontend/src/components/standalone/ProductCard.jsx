@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "./lib/features/cartSlice";
-import { toggleFavorite } from "./lib/features/favoriteSlice";
+import { addToCart } from "@/lib/features/cartSlice";
+import { toggleFavorite } from "@/lib/features/favoriteSlice";
 
 function ProductCard(props) {
   const dispatch = useDispatch();

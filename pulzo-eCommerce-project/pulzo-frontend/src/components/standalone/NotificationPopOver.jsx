@@ -9,7 +9,7 @@ function NotificationPopOver() {
   return (
     <div className="relative">
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger asChild>
           <button className="p-2 rounded-full">
             <Bell className="w-6 h-6 text-gray-800" />
           </button>

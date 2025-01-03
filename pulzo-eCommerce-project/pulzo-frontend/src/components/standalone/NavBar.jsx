@@ -2,7 +2,7 @@ import { ShoppingCart, Heart, Search } from "lucide-react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Button } from "./components/ui/button";
+import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
 

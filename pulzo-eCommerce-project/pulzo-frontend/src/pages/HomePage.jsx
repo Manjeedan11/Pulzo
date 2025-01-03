@@ -1,6 +1,6 @@
-import NavBar from "@/NavBar";
-import Hero from "@/Hero";
-import Products from "@/Products";
+import NavBar from "@/components/standalone/NavBar";
+import Hero from "@/components/standalone/Hero";
+import Products from "@/components/standalone/Products";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 

@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroBanner from "./assets/hero/hero.png";
+import heroBanner from "@/assets/hero/hero.png";
 
 function Hero() {
   return (
