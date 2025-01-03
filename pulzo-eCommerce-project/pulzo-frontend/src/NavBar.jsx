@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "./components/ui/button";
 import SearchBar from "./SearchBar";
+import NotificationPopOver from "./NotificationPopOver";
 
 function NavBar(props) {
   return (
@@ -21,10 +22,9 @@ function NavBar(props) {
       <div className="flex items-center gap-4">
         <div>
           <a href="/cart" className="flex items-center gap-4 relative">
-            <p className="text-lg">{props.cartCount}</p>
             <div className="flex items-center gap-2">
               <ShoppingCart />
-              Cart
+              <p className="text-lg">{props.cartCount}</p>
             </div>
           </a>
         </div>
@@ -32,10 +32,12 @@ function NavBar(props) {
           <a href="/favorites" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
               <Heart className="cursor-pointer z-10 text-bl" />
-              Favorites
               <p className="text-lg">{props.favoritesCount}</p>
             </div>
           </a>
+        </div>
+        <div className="flex items-center gap-2">
+          <NotificationPopOver />
         </div>
         {props.name ? (
           <p>Hi, {props.name}</p>
