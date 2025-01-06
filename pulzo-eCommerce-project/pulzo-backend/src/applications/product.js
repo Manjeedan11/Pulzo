@@ -97,11 +97,11 @@ export const createProduct = async (req, res, next) => {
 export const getProductById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const product = await Product.findById(id).populate("categoryId");
-    if (!product) {
+    const data = await Product.findById(id).populate("categoryId");
+    if (!data) {
       throw new NotFoundError("Product not found");
     }
-    return res.status(200).json(product).send();
+    return res.status(200).json(data).send();
   } catch (error) {
     next(error);
   }
@@ -110,8 +110,8 @@ export const getProductById = async (req, res, next) => {
 export const deleteProductById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const product = await Product.findByIdAndDelete(id);
-    if (!product) {
+    const data = await Product.findByIdAndDelete(id);
+    if (!data) {
       throw new NotFoundError("Product not found");
     }
     return res.status(200).send(`Product info at ${id} deleted successfully`);
@@ -123,9 +123,9 @@ export const deleteProductById = async (req, res, next) => {
 export const updateProductById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const product = await Product.findByIdAndUpdate(id, req.body);
+    const data = await Product.findByIdAndUpdate(id, req.body);
 
-    if (!product) {
+    if (!data) {
       throw new NotFoundError("Product not found");
     }
 

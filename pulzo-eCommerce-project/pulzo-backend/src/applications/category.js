@@ -30,11 +30,11 @@ export const createCategory = async (req, res, next) => {
 export const getCategoriesById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const category = await Category.findById(id);
-    if (!category) {
+    const data = await Category.findById(id);
+    if (!data) {
       throw new NotFoundError("Category not found");
     }
-    return res.status(200).json(category).send();
+    return res.status(200).json(data).send();
   } catch (error) {
     next(error);
   }
@@ -43,8 +43,8 @@ export const getCategoriesById = async (req, res, next) => {
 export const deleteCategoriesById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const category = await Category.findByIdAndDelete(id);
-    if (!category) {
+    const data = await Category.findByIdAndDelete(id);
+    if (!data) {
       throw new NotFoundError("Category is not found");
     }
     return res
@@ -58,8 +58,8 @@ export const deleteCategoriesById = async (req, res, next) => {
 export const updateCategoryById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const category = await Category.findByIdAndUpdate(id, req.body);
-    if (!category) {
+    const data = await Category.findByIdAndUpdate(id, req.body);
+    if (!data) {
       throw new NotFoundError("Category is not found");
     }
     return res

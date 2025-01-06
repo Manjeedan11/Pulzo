@@ -22,11 +22,11 @@ export const createUser = async (req, res, next) => {
 export const getUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const user = await User.findById(id);
-    if (!user) {
+    const data = await User.findById(id);
+    if (!data) {
       throw new NotFoundError("User not found");
     }
-    return res.status(200).json(user).send();
+    return res.status(200).json(data).send();
   } catch (error) {
     next(error);
   }
@@ -35,8 +35,8 @@ export const getUserById = async (req, res, next) => {
 export const deleteUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const user = await User.findByIdAndDelete(id);
-    if (!user) {
+    const data = await User.findByIdAndDelete(id);
+    if (!data) {
       throw new NotFoundError("User not found");
     }
     return res.status(200).send(`User info of id ${id} is removed`);
@@ -48,8 +48,8 @@ export const deleteUserById = async (req, res, next) => {
 export const updateUserById = async (req, res, next) => {
   try {
     const id = req.params.id;
-    const user = await User.findByIdAndUpdate(id, req.body);
-    if (!user) {
+    const data = await User.findByIdAndUpdate(id, req.body);
+    if (!data) {
       throw new NotFoundError("User not found");
     }
     return res.status(200).send(`User info of ${id} is updated`);

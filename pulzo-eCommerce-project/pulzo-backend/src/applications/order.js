@@ -13,7 +13,7 @@ const getOrder = async (req, res, next) => {
 const createOrder = async (req, res, next) => {
   try {
     const data = await Order.create(req.body);
-    return res.status(201).send("Orders added successfully");
+    return res.status(201).send("Order added successfully");
   } catch (error) {
     next(error);
   }
