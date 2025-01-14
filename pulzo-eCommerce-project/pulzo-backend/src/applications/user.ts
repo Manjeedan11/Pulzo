@@ -1,5 +1,5 @@
-import NotFoundError from "../domain/errors/not-found-error.js";
-import User from "../infrastructure/schemas/User.js";
+import NotFoundError from "../domain/errors/not-found-error";
+import User from "../infrastructure/schemas/User";
 
 export const getUser = async (req, res, next) => {
   try {

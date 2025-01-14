@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Backend setup for an eCommerce MERN stack project\"",
   "main": "src/app.js",
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/app.js",
     "start": "ts-node src/app.js"

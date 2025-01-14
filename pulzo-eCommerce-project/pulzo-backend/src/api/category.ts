@@ -5,7 +5,7 @@ import {
   getCategoriesById,
   deleteCategoriesById,
   updateCategoryById,
-} from "../applications/category.js";
+} from "../applications/category";
 
 export const categoriesRouter = express.Router();
 

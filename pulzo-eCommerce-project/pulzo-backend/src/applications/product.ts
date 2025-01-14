@@ -1,5 +1,5 @@
-import NotFoundError from "../domain/errors/not-found-error.js";
-import Product from "../infrastructure/schemas/Product.js";
+import NotFoundError from "../domain/errors/not-found-error";
+import Product from "../infrastructure/schemas/Product";
 
 const products = [
   {

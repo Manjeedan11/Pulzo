@@ -1,10 +1,10 @@
 import express from "express";
 import "dotenv/config";
-import { productRouter } from "./api/product.js";
-import { categoriesRouter } from "./api/category.js";
+import { productRouter } from "./api/product";
+import { categoriesRouter } from "./api/category";
 import { userRouter } from "./api/user.js";
-import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware.js";
-import { connectDB } from "./infrastructure/db.js";
+import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware";
+import { connectDB } from "./infrastructure/db";
 import cors from "cors";
 
 const app = express();

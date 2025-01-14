@@ -1,5 +1,5 @@
-import NotFoundError from "../domain/errors/not-found-error.js";
-import Order from "../infrastructure/schemas/Order.js";
+import NotFoundError from "../domain/errors/not-found-error";
+import Order from "../infrastructure/schemas/Order";
 
 const getOrder = async (req, res, next) => {
   try {

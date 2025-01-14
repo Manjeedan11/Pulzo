@@ -5,7 +5,7 @@ import {
   getUserById,
   deleteUserById,
   updateUserById,
-} from "../applications/user.js";
+} from "../applications/user";
 
 export const userRouter = express.Router();
 

@@ -1,5 +1,5 @@
-import NotFoundError from "../domain/errors/not-found-error.js";
-import Category from "../infrastructure/schemas/Category.js";
+import NotFoundError from "../domain/errors/not-found-error";
+import Category from "../infrastructure/schemas/Category";
 
 const categories = [
   { id: "1", name: "Headphones" },
