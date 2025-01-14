@@ -7,9 +7,16 @@ const globalErrorHandlingMiddleware = (
   next: NextFunction
 ) => {
   console.log(error);
-  if (error.name === "NotfoundError") {
+  if (error.name === "NotFoundError") {
     return res
       .status(404)
+      .json({
+        message: error.message,
+      })
+      .send();
+  } else if (error.name === "ValidationError") {
+    return res
+      .status(400)
       .json({
         message: error.message,
       })
