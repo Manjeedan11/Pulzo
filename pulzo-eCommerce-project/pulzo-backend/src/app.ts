@@ -14,7 +14,7 @@ app.use(cors({ origin: "http://localhost:5173" }));
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/users", userRouter);
-app.use(globalErrorHandlingMiddleware);
+app.use(globalErrorHandlingMiddleware as any);
 
 connectDB();
 app.listen(8000, () => {
