@@ -1,7 +1,12 @@
 import NotFoundError from "../domain/errors/not-found-error";
 import User from "../infrastructure/schemas/User";
+import { Request, Response, NextFunction } from "express";
 
-export const getUser = async (req, res, next) => {
+export const getUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const data = await User.find();
     return res.status(200).json(data).send();
@@ -10,7 +15,11 @@ export const getUser = async (req, res, next) => {
   }
 };
 
-export const createUser = async (req, res, next) => {
+export const createUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     await User.create(req.body);
     return res.status(201).send("User successfully created");
@@ -19,7 +28,11 @@ export const createUser = async (req, res, next) => {
   }
 };
 
-export const getUserById = async (req, res, next) => {
+export const getUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await User.findById(id);
@@ -32,7 +45,11 @@ export const getUserById = async (req, res, next) => {
   }
 };
 
-export const deleteUserById = async (req, res, next) => {
+export const deleteUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await User.findByIdAndDelete(id);
@@ -45,7 +62,11 @@ export const deleteUserById = async (req, res, next) => {
   }
 };
 
-export const updateUserById = async (req, res, next) => {
+export const updateUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await User.findByIdAndUpdate(id, req.body);

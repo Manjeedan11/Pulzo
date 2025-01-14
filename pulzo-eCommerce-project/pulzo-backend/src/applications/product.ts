@@ -1,5 +1,6 @@
 import NotFoundError from "../domain/errors/not-found-error";
 import Product from "../infrastructure/schemas/Product";
+import { Request, Response, NextFunction } from "express";
 
 const products = [
   {
@@ -76,7 +77,11 @@ const products = [
   },
 ];
 
-export const getProducts = async (req, res, next) => {
+export const getProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const data = await Product.find().populate("categoryId");
     return res.status(200).json(data);
@@ -85,7 +90,11 @@ export const getProducts = async (req, res, next) => {
   }
 };
 
-export const createProduct = async (req, res, next) => {
+export const createProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     await Product.create(req.body);
     return res.status(201).send("Product added successfully");
@@ -94,7 +103,11 @@ export const createProduct = async (req, res, next) => {
   }
 };
 
-export const getProductById = async (req, res, next) => {
+export const getProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Product.findById(id).populate("categoryId");
@@ -107,7 +120,11 @@ export const getProductById = async (req, res, next) => {
   }
 };
 
-export const deleteProductById = async (req, res, next) => {
+export const deleteProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Product.findByIdAndDelete(id);
@@ -120,7 +137,11 @@ export const deleteProductById = async (req, res, next) => {
   }
 };
 
-export const updateProductById = async (req, res, next) => {
+export const updateProductById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Product.findByIdAndUpdate(id, req.body);

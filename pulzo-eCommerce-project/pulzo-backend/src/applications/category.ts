@@ -1,5 +1,6 @@
 import NotFoundError from "../domain/errors/not-found-error";
 import Category from "../infrastructure/schemas/Category";
+import { Request, Response, NextFunction } from "express";
 
 const categories = [
   { id: "1", name: "Headphones" },
@@ -9,7 +10,11 @@ const categories = [
   { id: "5", name: "Smart watches" },
 ];
 
-export const getCategories = async (req, res, next) => {
+export const getCategories = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const data = await Category.find();
     return res.status(200).json(data);
@@ -18,7 +23,11 @@ export const getCategories = async (req, res, next) => {
   }
 };
 
-export const createCategory = async (req, res, next) => {
+export const createCategory = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     await Category.create(req.body);
     return res.status(201).send("Category added successfully");
@@ -27,7 +36,11 @@ export const createCategory = async (req, res, next) => {
   }
 };
 
-export const getCategoriesById = async (req, res, next) => {
+export const getCategoriesById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Category.findById(id);
@@ -40,7 +53,11 @@ export const getCategoriesById = async (req, res, next) => {
   }
 };
 
-export const deleteCategoriesById = async (req, res, next) => {
+export const deleteCategoriesById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Category.findByIdAndDelete(id);
@@ -55,7 +72,11 @@ export const deleteCategoriesById = async (req, res, next) => {
   }
 };
 
-export const updateCategoryById = async (req, res, next) => {
+export const updateCategoryById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const data = await Category.findByIdAndUpdate(id, req.body);
