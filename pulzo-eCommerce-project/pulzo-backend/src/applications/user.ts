@@ -9,7 +9,8 @@ export const getUser = async (
 ) => {
   try {
     const data = await User.find();
-    return res.status(200).json(data).send();
+    res.status(200).json(data).send();
+    return;
   } catch (error) {
     next(error);
   }
@@ -22,7 +23,8 @@ export const createUser = async (
 ) => {
   try {
     await User.create(req.body);
-    return res.status(201).send("User successfully created");
+    res.status(201).send("User successfully created");
+    return;
   } catch (error) {
     next(error);
   }
@@ -39,7 +41,8 @@ export const getUserById = async (
     if (!data) {
       throw new NotFoundError("User not found");
     }
-    return res.status(200).json(data).send();
+    res.status(200).json(data).send();
+    return;
   } catch (error) {
     next(error);
   }
@@ -56,7 +59,8 @@ export const deleteUserById = async (
     if (!data) {
       throw new NotFoundError("User not found");
     }
-    return res.status(200).send(`User info of id ${id} is removed`);
+    res.status(200).send(`User info of id ${id} is removed`);
+    return;
   } catch (error) {
     next(error);
   }
@@ -73,7 +77,8 @@ export const updateUserById = async (
     if (!data) {
       throw new NotFoundError("User not found");
     }
-    return res.status(200).send(`User info of ${id} is updated`);
+    res.status(200).send(`User info of ${id} is updated`);
+    return;
   } catch (error) {
     next(error);
   }

@@ -17,7 +17,8 @@ export const getCategories = async (
 ) => {
   try {
     const data = await Category.find();
-    return res.status(200).json(data);
+    res.status(200).json(data);
+    return;
   } catch (error) {
     next(error);
   }
@@ -30,7 +31,8 @@ export const createCategory = async (
 ) => {
   try {
     await Category.create(req.body);
-    return res.status(201).send("Category added successfully");
+    res.status(201).send("Category added successfully");
+    return;
   } catch (error) {
     next(error);
   }
@@ -47,7 +49,8 @@ export const getCategoriesById = async (
     if (!data) {
       throw new NotFoundError("Category not found");
     }
-    return res.status(200).json(data).send();
+    res.status(200).json(data).send();
+    return;
   } catch (error) {
     next(error);
   }
@@ -64,9 +67,10 @@ export const deleteCategoriesById = async (
     if (!data) {
       throw new NotFoundError("Category is not found");
     }
-    return res
+    res
       .status(200)
       .send(`Category field data at ${id} id removed successfully`);
+    return;
   } catch (error) {
     next(error);
   }
@@ -83,9 +87,10 @@ export const updateCategoryById = async (
     if (!data) {
       throw new NotFoundError("Category is not found");
     }
-    return res
+    res
       .status(200)
       .send(`Category field data at ${id} id is updated successfully`);
+    return;
   } catch (error) {
     next(error);
   }

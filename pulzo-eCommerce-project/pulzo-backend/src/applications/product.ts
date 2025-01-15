@@ -86,7 +86,8 @@ export const getProducts = async (
 ) => {
   try {
     const data = await Product.find().populate("categoryId");
-    return res.status(200).json(data);
+    res.status(200).json(data);
+    return;
   } catch (error) {
     next(error);
   }
@@ -99,7 +100,8 @@ export const createProduct = async (
 ) => {
   try {
     await Product.create(req.body);
-    return res.status(201).send("Product added successfully");
+    res.status(201).send("Product added successfully");
+    return;
   } catch (error) {
     next(error);
   }
@@ -116,7 +118,8 @@ export const getProductById = async (
     if (!data) {
       throw new NotFoundError("Product not found");
     }
-    return res.status(200).json(data).send();
+    res.status(200).json(data).send();
+    return;
   } catch (error) {
     next(error);
   }
@@ -133,7 +136,8 @@ export const deleteProductById = async (
     if (!data) {
       throw new NotFoundError("Product not found");
     }
-    return res.status(200).send(`Product info at ${id} deleted successfully`);
+    res.status(200).send(`Product info at ${id} deleted successfully`);
+    return;
   } catch (error) {
     next(error);
   }
@@ -152,7 +156,8 @@ export const updateProductById = async (
       throw new NotFoundError("Product not found");
     }
 
-    return res.status(200).send(`Product info at ${id} updated successfully`);
+    res.status(200).send(`Product info at ${id} updated successfully`);
+    return;
   } catch (error) {
     next(error);
   }
