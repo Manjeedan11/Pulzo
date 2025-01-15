@@ -79,8 +79,6 @@ const products = [
   },
 ];
 
-//TODO: DTO implementation and {asyncHandler -> return the function of business logic}
-
 export const getProducts = async (
   req: Request,
   res: Response,

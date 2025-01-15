@@ -4,8 +4,8 @@
   "description": "Backend setup for an eCommerce MERN stack project\"",
   "main": "src/app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "ts-node src/app.js"
+    "dev": "nodemon src/app.ts",
+    "start": "ts-node src/app.ts"
   },
   "author": "",
   "license": "ISC",

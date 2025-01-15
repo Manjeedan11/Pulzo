@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import { productRouter } from "./api/product";
 import { categoriesRouter } from "./api/category";
-import { userRouter } from "./api/user.js";
+import { userRouter } from "./api/user";
 import globalErrorHandlingMiddleware from "./api/middleware/global-error-handling-middleware";
 import { connectDB } from "./infrastructure/db";
 import cors from "cors";
