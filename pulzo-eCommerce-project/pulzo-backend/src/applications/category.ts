@@ -1,4 +1,6 @@
+import { CategoryDTO } from "../domain/DTO/categories";
 import NotFoundError from "../domain/errors/not-found-error";
+import ValidationError from "../domain/errors/validation-error";
 import Category from "../infrastructure/schemas/Category";
 import { Request, Response, NextFunction } from "express";
 
@@ -30,7 +32,11 @@ export const createCategory = async (
   next: NextFunction
 ) => {
   try {
-    await Category.create(req.body);
+    const result = CategoryDTO.safeParse(req.body);
+    if (!result.success) {
+      throw new ValidationError("Invalid category data field");
+    }
+    await Category.create(result.data);
     res.status(201).send("Category added successfully");
     return;
   } catch (error) {
@@ -83,7 +89,11 @@ export const updateCategoryById = async (
 ) => {
   try {
     const id = req.params.id;
-    const data = await Category.findByIdAndUpdate(id, req.body);
+    const result = CategoryDTO.safeParse(req.body);
+    if (!result.success) {
+      throw new ValidationError("Invalid category data field");
+    }
+    const data = await Category.findByIdAndUpdate(id, result.data);
     if (!data) {
       throw new NotFoundError("Category is not found");
     }

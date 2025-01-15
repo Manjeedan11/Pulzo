@@ -1,4 +1,6 @@
+import { ProductDTO } from "../domain/DTO/product";
 import NotFoundError from "../domain/errors/not-found-error";
+import ValidationError from "../domain/errors/validation-error";
 import Product from "../infrastructure/schemas/Product";
 import { Request, Response, NextFunction } from "express";
 
@@ -99,7 +101,11 @@ export const createProduct = async (
   next: NextFunction
 ) => {
   try {
-    await Product.create(req.body);
+    const result = ProductDTO.safeParse(req.body);
+    if (!result.success) {
+      throw new ValidationError("Products fields is not found");
+    }
+    await Product.create(result.data);
     res.status(201).send("Product added successfully");
     return;
   } catch (error) {
@@ -149,8 +155,12 @@ export const updateProductById = async (
   next: NextFunction
 ) => {
   try {
+    const result = ProductDTO.safeParse(req.body);
+    if (!result.success) {
+      throw new ValidationError("Product fields is not found");
+    }
     const id = req.params.id;
-    const data = await Product.findByIdAndUpdate(id, req.body);
+    const data = await Product.findByIdAndUpdate(id, result.data);
 
     if (!data) {
       throw new NotFoundError("Product not found");

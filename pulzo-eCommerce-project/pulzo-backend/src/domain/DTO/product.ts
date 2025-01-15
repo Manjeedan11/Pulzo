@@ -1,0 +1,15 @@
+import { z } from "zod";
+
+const ObjectIdRegex = /^[a-fA-F0-9]{24}$/;
+
+export const ProductDTO = z.object({
+  categoryId: z
+    .string()
+    .regex(ObjectIdRegex, {
+      message: "Invalid ObjectId format for categoryId",
+    }),
+  image: z.string(),
+  name: z.string(),
+  price: z.string(),
+  description: z.string(),
+});
