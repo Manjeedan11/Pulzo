@@ -12,6 +12,8 @@ import { store } from "@/lib/store.js";
 import { Provider } from "react-redux";
 import { ClerkProvider } from "@clerk/clerk-react";
 
+import RootLayout from "./layouts/root.layout.jsx";
+
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
@@ -24,7 +26,9 @@ createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>

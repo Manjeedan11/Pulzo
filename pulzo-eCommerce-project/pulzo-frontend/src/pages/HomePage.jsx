@@ -41,7 +41,6 @@ function HomePage() {
 
   return (
     <div>
-      <NavBar />
       <Hero />
       <Products />
     </div>

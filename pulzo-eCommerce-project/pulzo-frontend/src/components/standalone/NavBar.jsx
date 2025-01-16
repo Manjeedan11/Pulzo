@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
 import { useSelector } from "react-redux";
-import { SignIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 function NavBar(props) {
   const cart = useSelector((state) => state.cart.value);
@@ -67,9 +67,9 @@ function NavBar(props) {
           </div>
         </SignedOut>
 
-        <SignIn>
+        <SignedIn>
           <UserButton />
-        </SignIn>
+        </SignedIn>
       </div>
     </nav>
   );
