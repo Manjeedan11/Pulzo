@@ -70,7 +70,7 @@ function NavBar(props) {
 
         <SignedIn>
           <UserButton />
-          <Link to={"/account"}>Hi, {user.firstName}</Link>
+          <Link to={"/account"}>{user?.firstName || "Account"}</Link>
         </SignedIn>
       </div>
     </nav>
