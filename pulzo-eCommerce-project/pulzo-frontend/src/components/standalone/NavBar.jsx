@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
 import { useSelector } from "react-redux";
+import { SignIn, SignedOut, UserButton } from "@clerk/clerk-react";
 
 function NavBar(props) {
   const cart = useSelector((state) => state.cart.value);
@@ -33,27 +34,29 @@ function NavBar(props) {
       </div>
       <div className="flex items-center gap-4">
         <div>
-          <a href="/cart" className="flex items-center gap-4 relative">
+          <Link to="/shop/cart" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
               <ShoppingCart />
               <p className="text-lg">{getCartQuantity()}</p>
             </div>
-          </a>
+          </Link>
         </div>
         <div>
-          <a href="/favorites" className="flex items-center gap-4 relative">
+          <Link
+            to="/shop/favorites"
+            className="flex items-center gap-4 relative"
+          >
             <div className="flex items-center gap-2">
               <Heart className="cursor-pointer z-10 text-bl" />
               <p className="text-lg">{favorite.length}</p>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="flex items-center gap-2">
           <NotificationPopOver />
         </div>
-        {props.name ? (
-          <p>Hi, {props.name}</p>
-        ) : (
+
+        <SignedOut>
           <div className="flex items-center gap-4">
             <Link to="/sign-in" className=" text-primary ">
               Sign In
@@ -62,7 +65,11 @@ function NavBar(props) {
               Sign Up
             </Link>
           </div>
-        )}
+        </SignedOut>
+
+        <SignIn>
+          <UserButton />
+        </SignIn>
       </div>
     </nav>
   );
