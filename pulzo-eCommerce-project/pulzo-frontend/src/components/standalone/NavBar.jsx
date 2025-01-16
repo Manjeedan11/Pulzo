@@ -5,8 +5,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
+import { useSelector } from "react-redux";
 
 function NavBar(props) {
+  const cart = useSelector((state) => state.cart.value);
+  const favorite = useSelector((state) => state.favorite.value);
+
+  const getCartQuantity = () => {
+    let count = 0;
+    cart.forEach((item) => {
+      count += item.quantity;
+    });
+    return count;
+  };
+
   return (
     <nav className="flex items-center justify-between py-8 px-8 xl:px-16">
       <div className="flex gap-x-16">
@@ -24,7 +36,7 @@ function NavBar(props) {
           <a href="/cart" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
               <ShoppingCart />
-              <p className="text-lg">{props.cartCount}</p>
+              <p className="text-lg">{getCartQuantity()}</p>
             </div>
           </a>
         </div>
@@ -32,7 +44,7 @@ function NavBar(props) {
           <a href="/favorites" className="flex items-center gap-4 relative">
             <div className="flex items-center gap-2">
               <Heart className="cursor-pointer z-10 text-bl" />
-              <p className="text-lg">{props.favoritesCount}</p>
+              <p className="text-lg">{favorite.length}</p>
             </div>
           </a>
         </div>

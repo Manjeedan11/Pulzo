@@ -24,17 +24,6 @@ function HomePage() {
     setCart([...cart, { product: product, quantity: 1 }]);
   };*/
 
-  const cart = useSelector((state) => state.cart.value);
-  const favorite = useSelector((state) => state.favorite.value);
-
-  const getCartQuantity = () => {
-    let count = 0;
-    cart.forEach((item) => {
-      count += item.quantity;
-    });
-    return count;
-  };
-
   /*const handleFavorites = (product) => {
     setFavorites((prevFavorites) => {
       const isFavorite = prevFavorites.some((item) => item._id === product._id);
@@ -52,11 +41,7 @@ function HomePage() {
 
   return (
     <div>
-      <NavBar
-        name={name}
-        cartCount={getCartQuantity()}
-        favoritesCount={favorite.length}
-      />
+      <NavBar />
       <Hero />
       <Products />
     </div>
