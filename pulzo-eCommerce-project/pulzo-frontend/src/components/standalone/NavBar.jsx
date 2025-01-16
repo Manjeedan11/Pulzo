@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
 import { useSelector } from "react-redux";
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 
 function NavBar(props) {
   const cart = useSelector((state) => state.cart.value);
   const favorite = useSelector((state) => state.favorite.value);
+  const { user } = useUser();
 
   const getCartQuantity = () => {
     let count = 0;
@@ -69,6 +70,7 @@ function NavBar(props) {
 
         <SignedIn>
           <UserButton />
+          <Link to={"/account"}>Hi, {user.firstName}</Link>
         </SignedIn>
       </div>
     </nav>
