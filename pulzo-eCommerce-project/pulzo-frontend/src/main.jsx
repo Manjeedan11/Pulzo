@@ -14,6 +14,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 
 import RootLayout from "./layouts/root.layout.jsx";
 import AccountPage from "./pages/AccountPAge.jsx";
+import CartPage from "./pages/CartPage.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route element={<RootLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/shop/cart" element={<CartPage />} />
             <Route path="/account" element={<AccountPage />} />
           </Route>
           <Route path="/sign-in" element={<SignInPage />} />
