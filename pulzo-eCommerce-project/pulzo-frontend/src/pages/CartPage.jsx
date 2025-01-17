@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 
 function CartPage() {
   const cart = useSelector((state) => state.cart.value);
-  console.log(cart);
 
   return (
     <main className="px-8">
