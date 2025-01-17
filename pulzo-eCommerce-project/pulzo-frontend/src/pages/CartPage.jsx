@@ -1,13 +1,22 @@
 import { useSelector } from "react-redux";
+import CartItem from "@/components/standalone/CartItem";
 
 function CartPage() {
   const cart = useSelector((state) => state.cart.value);
 
   return (
-    <main className="px-8">
-      <h2 className="text-4xl font bold">My Cart</h2>
-      <div>{JSON.stringify(cart)}</div>
-    </main>
+    <div className="container mx-auto px-8 xl:px-16 py-8">
+      <div className="flex gap-x-16 items-center">
+        <h1 className="text-3xl font-semibold mb-6">Your Shopping Cart</h1>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-6">
+        <div className="md:col-span-2">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+            <CartItem />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
