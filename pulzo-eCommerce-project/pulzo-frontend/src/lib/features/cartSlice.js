@@ -19,6 +19,13 @@ export const cartSlice = createSlice({
       }
       state.value.push({ product: action.payload, quantity: 1 });
     },
+
+    removeFromCart: (state, action) => {
+      const productId = action.payload;
+      state.value = state.value.filter(
+        (item) => item.product._id !== productId
+      );
+    },
   },
 });
 

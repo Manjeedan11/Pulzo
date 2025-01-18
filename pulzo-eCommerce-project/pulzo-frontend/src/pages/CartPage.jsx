@@ -3,7 +3,7 @@ import CartItem from "@/components/standalone/CartItem";
 import CartSummary from "@/components/standalone/CartSummary";
 
 function CartPage() {
-  const cart = useSelector((state) => state.cart.value);
+  const cartItems = useSelector((state) => state.cart.value);
 
   return (
     <div className="container mx-auto px-8 xl:px-16 py-8">

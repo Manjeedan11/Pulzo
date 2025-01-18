@@ -6,8 +6,15 @@ function CartItem(props) {
   };
 
   return (
-    <div className="flex items-center justify-between border-b border-gray-200 py-4">
-      <div className="flex items-center">
+    <div className="flex items-center justify-between border-b border-gray-200 py-4"></div>
+  );
+}
+
+export default CartItem;
+
+/*
+
+<div className="flex items-center">
         <img
           src={props.image}
           alt={props.name}
@@ -28,9 +35,4 @@ function CartItem(props) {
         >
           <Trash2 className=" text-red-500" />
         </button>
-      </div>
-    </div>
-  );
-}
-
-export default CartItem;
+      </div> */
