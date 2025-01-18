@@ -6,6 +6,10 @@ function CartItem(props) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.value);
 
+  const handleRemove = (id) => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     <div className="">
       {cartItems.map((item) => (
@@ -28,7 +32,10 @@ function CartItem(props) {
             <span className="px-4 py-1 bg-gray-100 rounded-full">
               {item.quantity}
             </span>
-            <button className="ml-4 text-red-500 hover:text-red-700 rounded-full px-3 py-1 bg-red-100 hover:bg-red-200 transition duration-300">
+            <button
+              className="ml-4 text-red-500 hover:text-red-700 rounded-full px-3 py-1 bg-red-100 hover:bg-red-200 transition duration-300"
+              onClick={() => handleRemove(item.product._id)}
+            >
               <Trash2 className="text-red-500" />
             </button>
           </div>
