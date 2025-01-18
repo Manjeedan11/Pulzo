@@ -11,7 +11,7 @@ function CartItem(props) {
   };
 
   return (
-    <div className="">
+    <div>
       {cartItems.map((item) => (
         <div
           key={item.product._id}
