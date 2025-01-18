@@ -23,7 +23,7 @@ function CartItem(props) {
           {props.quantity}
         </span>
         <button
-          className="ml-4 text-red-500 hover:text-red-700 rounded-full px-3 py-1 bg-red-100 hover:bg-blue-700 transition duration-300"
+          className="ml-4 text-red-500 hover:text-red-700 rounded-full px-3 py-1 bg-red-100 hover:bg-red-200 transition duration-300"
           onClick={handleClick}
         >
           <Trash2 className=" text-red-500" />

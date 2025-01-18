@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import CartItem from "@/components/standalone/CartItem";
+import CartSummary from "@/components/standalone/CartSummary";
 
 function CartPage() {
   const cart = useSelector((state) => state.cart.value);
@@ -14,6 +15,9 @@ function CartPage() {
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
             <CartItem />
           </div>
+        </div>
+        <div>
+          <CartSummary />
         </div>
       </div>
     </div>
