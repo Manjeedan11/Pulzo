@@ -18,12 +18,12 @@ function CartSummary(props) {
         <span>$</span>
       </div>
       <div className="mt-2 text-gray-600">Total items: {props.totalItems}</div>
-      <button className="w-full mt-6 bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition duration-300">
-        <Link to="/shop/cart/checkout">
-          <CheckOutPage />
-        </Link>
+      <Link
+        to="/shop/cart/checkout"
+        className="w-full mt-6 bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition duration-300 block text-center"
+      >
         Proceed to Checkout
-      </button>
+      </Link>
     </div>
   );
 }
