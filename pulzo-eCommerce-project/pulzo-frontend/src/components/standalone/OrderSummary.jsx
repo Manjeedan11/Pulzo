@@ -4,14 +4,14 @@ function OrderSummary() {
   return (
     <div>
       <Card>
-        <CardHeader>
+        <CardHeader className="flex justify-between items-right">
           <CardTitle>Order Summary</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center space-x-4">
-            <img className="rounded-md"></img>
+            <img className="rounded-md w-16 h-16"></img>
             <div>
-              <h3 className="font-semibold">OrderName</h3>
+              <h3 className="font-semibold text-lg">OrderName</h3>
               <p className="text-sm text-gray-500">Order Description</p>
             </div>
           </div>
