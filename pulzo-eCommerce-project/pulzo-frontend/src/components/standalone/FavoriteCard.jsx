@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "@/lib/features/favoriteSlice";
 
 function FavoriteCard() {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ function FavoriteCard() {
         description: item.description,
       })
     );
+  };
+
+  const toggleFavoriteHandler = (item) => {
+    dispatch(toggleFavorite(item));
   };
 
   return (
