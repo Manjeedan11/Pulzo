@@ -1,4 +1,7 @@
-import { Label, Button } from "../ui/label";
+import { Label } from "../ui/label";
+import { Button } from "../ui/button";
+import { useState } from "react";
+import { Input } from "../ui/input";
 
 function ShippingForm() {
   const [formData, setFormData] = useState({
@@ -10,75 +13,97 @@ function ShippingForm() {
     phoneNumber: "",
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data:", formData);
+    // Proceed to payment logic here
+  };
+
   return (
-    <div>
-      <form className="space-y-4">
-        <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label htmlFor="firstName">First Name</Label>
-            <Input
-              id="firstName"
-              name="firstName"
-              placeholder="John"
-              value={formData.firstName}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="lastName">Last Name</Label>
-            <Input
-              id="lastName"
-              name="lastName"
-              placeholder="Doe"
-              value={formData.lastName}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="addressLine1">Address Line 1</Label>
-            <Input
-              id="addressLine1"
-              name="addressLine1"
-              placeholder="123 Main St"
-              value={formData.addressLine1}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="addressLine2">Address Line 2</Label>
-            <Input
-              id="addressLine2"
-              name="addressLine2"
-              placeholder="Apt 48"
-              value={formData.addressLine2}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="city">City</Label>
-            <Input
-              id="city"
-              name="city"
-              placeholder="Colombo"
-              value={formData.city}
-              required
-            />
-          </div>
-          <div>
-            <Label htmlFor="phoneNumber">Last Name</Label>
-            <Input
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="(+94)-771234567"
-              value={formData.lastName}
-              required
-            />
-          </div>
+    <form onSubmit={handleSubmit} className="space-y-4 ml-11">
+      <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <Label htmlFor="firstName">First Name</Label>
+          <Input
+            id="firstName"
+            name="firstName"
+            placeholder="John"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <Button className="w-full">Proceed to Payment</Button>
-      </form>
-    </div>
+        <div>
+          <Label htmlFor="lastName">Last Name</Label>
+          <Input
+            id="lastName"
+            name="lastName"
+            placeholder="Doe"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div>
+      <div>
+        <Label htmlFor="addressLine1">Address Line 1</Label>
+        <Input
+          id="addressLine1"
+          name="addressLine1"
+          placeholder="123 Main St"
+          value={formData.addressLine1}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="addressLine2">Address Line 2</Label>
+        <Input
+          id="addressLine2"
+          name="addressLine2"
+          placeholder="Apt 48"
+          value={formData.addressLine2}
+          onChange={handleChange}
+        />
+      </div>
+      <div>
+        <Label htmlFor="city">City</Label>
+        <Input
+          id="city"
+          name="city"
+          placeholder="Colombo"
+          value={formData.city}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div>
+        <Label htmlFor="phoneNumber">Phone Number</Label>
+        <Input
+          id="phoneNumber"
+          name="phoneNumber"
+          placeholder="(+94)-771234567"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <Button
+        type="submit"
+        className="w-full  bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
+      >
+        Proceed to Payment
+      </Button>
+    </form>
   );
 }
 

@@ -1,3 +1,6 @@
+import CheckOutPage from "./OrderSummary";
+import { Link } from "react-router";
+
 function CartSummary(props) {
   return (
     <div className="bg-gray-100 p-6 rounded-xl">
@@ -16,6 +19,9 @@ function CartSummary(props) {
       </div>
       <div className="mt-2 text-gray-600">Total items: {props.totalItems}</div>
       <button className="w-full mt-6 bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition duration-300">
+        <Link to="/shop/cart/checkout">
+          <CheckOutPage />
+        </Link>
         Proceed to Checkout
       </button>
     </div>
