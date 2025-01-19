@@ -1,4 +1,5 @@
 import ShippingForm from "@/components/standalone/ShippingForm";
+import OrderSummary from "@/components/standalone/OrderSummary";
 
 function CheckOutPage() {
   return (
@@ -7,9 +8,8 @@ function CheckOutPage() {
         <h1 className="text-3xl font-semibold ml-11">Checkout</h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <ShippingForm />
-        </div>
+        <ShippingForm />
+        <OrderSummary />
       </div>
     </div>
   );
