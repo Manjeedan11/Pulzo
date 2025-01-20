@@ -1,13 +1,27 @@
 import { removeFromCart } from "@/lib/features/cartSlice";
-import { Trash2 } from "lucide-react";
+import { Trash2, CircleCheck } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
+import { useToast } from "@/hooks/use-toast";
 
 function CartItem(props) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.value);
+  const { toast } = useToast();
 
   const handleRemove = (id) => {
     dispatch(removeFromCart(id));
+
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-green-800" />
+          <span className="font-medium text-sm">Item removed from cart</span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
+    });
   };
 
   return (
