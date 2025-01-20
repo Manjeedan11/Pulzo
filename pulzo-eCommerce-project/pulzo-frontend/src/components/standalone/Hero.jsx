@@ -16,13 +16,11 @@ function Hero() {
             Your Future of Shopping. Explore, Compare, and Buy the Latest
             Electronics
           </p>
-          <Button className="w-fit" asChild>
-            <a
-              href="/shop"
-              className="px-4 py-2 text-white font-medium bg-black rounded-md"
-            >
-              Shop Now
-            </a>
+          <Button
+            className="w-fit px-4 py-2 text-white font-medium bg-black rounded-md"
+            asChild
+          >
+            <p>Shop now</p>
           </Button>
         </div>
         <div className="relative">
