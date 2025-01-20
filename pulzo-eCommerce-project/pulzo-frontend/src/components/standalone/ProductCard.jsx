@@ -1,15 +1,17 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
+import { Heart, CircleCheck } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/lib/features/cartSlice";
 import { toggleFavorite } from "@/lib/features/favoriteSlice";
+import { useToast } from "@/hooks/use-toast";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorite.value);
   const isFavorites = favorites.some((item) => item._id === props._id);
+  const { toast } = useToast();
 
   const handleClick = (e) => {
     dispatch(
@@ -21,6 +23,18 @@ function ProductCard(props) {
         description: props.description,
       })
     );
+
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-green-800" />
+          <span className="font-medium text-sm">Item added to cart</span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
+    });
   };
 
   const toggleFavoriteHandler = (e) => {
