@@ -26,7 +26,7 @@ function FavoriteCard() {
   };
 
   return (
-    <div className="flex flex-wrap gap-6">
+    <div className="flex flex-wrap gap-12">
       {favoritesCard.length === 0 ? (
         <p className="text-center w-full text-xl font-semibold">
           No favorites added
