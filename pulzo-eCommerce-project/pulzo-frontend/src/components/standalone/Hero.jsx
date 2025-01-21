@@ -47,7 +47,7 @@ function Hero() {
         </div>
       </section>
 
-      <section className="py-20 px-4 xl:px-16">
+      <section className="py-20 px-4 xl:px-16 mt-20">
         <FeaturedDeal />
       </section>
 
