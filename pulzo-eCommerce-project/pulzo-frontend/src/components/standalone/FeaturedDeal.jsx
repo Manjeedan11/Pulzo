@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Circle } from "lucide-react";
+import redBlink from "@/assets/featureDeal/red-blink.gif";
 
 function FeaturedDeal() {
   return (
     <div className="grid grid-cols-2 rounded-md bg-[#f4f8f9] max-w-[80%] h-[450px] mx-auto">
       <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px] ">
-        <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-pink-600 font-semibold">
-          <Circle fill="currentColor" className="w-4 h-4" />
+        <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-red-600 font-semibold">
+          <img src={redBlink} className="w-4 h-4" />
           Don't Miss!!
         </span>
 
