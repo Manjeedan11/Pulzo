@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import heroBanner from "@/assets/hero/hero.png";
 import Products from "./Products";
 import { useRef } from "react";
+import FeaturedDeal from "./FeaturedDeal";
 
 function Hero() {
   const productRef = useRef(null);
@@ -46,7 +47,11 @@ function Hero() {
         </div>
       </section>
 
-      <section className="py-10">
+      <section className="py-20 px-4 xl:px-16">
+        <FeaturedDeal />
+      </section>
+
+      <section className="py-15">
         <div ref={productRef} className="container mx-auto">
           <Products />
         </div>
