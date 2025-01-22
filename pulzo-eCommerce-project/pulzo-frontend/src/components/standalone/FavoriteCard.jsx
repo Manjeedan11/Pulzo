@@ -31,12 +31,30 @@ function FavoriteCard() {
       ),
       duration: 2000,
       className:
-        "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
+        "bg-red-100 text-red-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
     });
   };
 
   const toggleFavoriteHandler = (item) => {
+    const isFavorite = favoritesCard.some(
+      (favorite) => favorite._id === item._id
+    );
+
     dispatch(toggleFavorite(item));
+
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-pink-800" />
+          <span className="font-medium text-sm">
+            {isFavorite ? "Removed from favorites" : "Added to favorites"}
+          </span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-pink-100 text-pink-800 rounded-lg p-4 shadow-md transition-opacity duration-500 ease-in-out transform",
+    });
   };
 
   return (

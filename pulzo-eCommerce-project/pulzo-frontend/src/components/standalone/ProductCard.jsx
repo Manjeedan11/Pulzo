@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 function ProductCard(props) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorite.value);
-  const isFavorites = favorites.some((item) => item._id === props._id);
+  const isFavorite = favorites.some((item) => item._id === props._id);
   const { toast } = useToast();
 
   const handleClick = (e) => {
@@ -47,6 +47,20 @@ function ProductCard(props) {
         description: props.description,
       })
     );
+
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-pink-800" />
+          <span className="font-medium text-sm">
+            {isFavorite ? "Removed from favorites" : "Added to favorites"}
+          </span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-pink-100 text-pink-800 rounded-lg p-4 shadow-md transition-opacity duration-500 ease-in-out transform",
+    });
   };
 
   return (
@@ -57,7 +71,7 @@ function ProductCard(props) {
           className="absolute top-4 right-4 cursor-pointer z-10 text-red-500"
           onClick={toggleFavoriteHandler}
         >
-          <Heart fill={isFavorites ? "red" : "none"} className="w-6 h-6" />
+          <Heart fill={isFavorite ? "red" : "none"} className="w-6 h-6" />
         </div>
       </div>
       <div className="flex items-center justify-between">
