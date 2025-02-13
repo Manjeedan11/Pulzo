@@ -17,6 +17,7 @@ import AccountPage from "./pages/AccountPAge.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import FavoritePage from "./pages/FavoritePage.jsx";
 import CheckOutPage from "./pages/CheckOutPage.jsx";
+import ShopPage from "./pages/ShopPage.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -32,6 +33,7 @@ createRoot(document.getElementById("root")).render(
         <Routes>
           <Route element={<RootLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
             <Route path="/shop/cart" element={<CartPage />} />
             <Route path="/shop/cart/checkout" element={<CheckOutPage />} />
             <Route path="/account" element={<AccountPage />} />

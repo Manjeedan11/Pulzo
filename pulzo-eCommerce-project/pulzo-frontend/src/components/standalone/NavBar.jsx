@@ -31,6 +31,7 @@ function NavBar(props) {
         </a>
         <div className="flex items-center gap-4">
           <a href="/">Home</a>
+          <Link to="/shop"></Link>
           <a href="/shop">Shop</a>
           <SearchBar />
         </div>
