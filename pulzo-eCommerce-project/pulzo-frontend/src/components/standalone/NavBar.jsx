@@ -3,7 +3,6 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import shoppingLogo from "@/assets/navBar/shopping-logo.png";
 import SearchBar from "./SearchBar";
 import NotificationPopOver from "./NotificationPopOver";
 import { useSelector } from "react-redux";
@@ -24,9 +23,8 @@ function NavBar(props) {
 
   return (
     <nav className="bg-white shadow-lg rounded-lg flex items-center justify-between py-8 px-8 xl:px-16">
-      <div className="flex gap-x-16">
+      <div className="flex gap-x-16 m-5">
         <a className="flex items-center font-semibold text-3xl" href="/">
-          <img src={shoppingLogo} className="w-10 h-10 mr-2" />
           ρυℓzσ
         </a>
         <div className="flex items-center gap-4">
