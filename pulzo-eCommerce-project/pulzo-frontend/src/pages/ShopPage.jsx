@@ -119,12 +119,15 @@ function ShopPage() {
 
       {/* Main Content */}
       <div className="flex-1 py-8 px-4 xl:px-16">
-        <div className="mb-8 flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Explore Our Products</h1>
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">Sort By:</span>
-            <SortDropDown onSort={handleSort} />
+        <div className="mb-8">
+          <div className="flex justify-between items-center">
+            <h1 className="text-3xl font-bold">Explore Our Products</h1>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-medium">Sort By:</span>
+              <SortDropDown onSort={handleSort} />
+            </div>
           </div>
+          <Separator className="mt-4" />
         </div>
 
         <Card className="mb-8 bg-[#2D1E1E] text-white">
