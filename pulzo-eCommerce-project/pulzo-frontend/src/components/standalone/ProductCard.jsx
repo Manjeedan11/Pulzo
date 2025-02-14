@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, CircleCheck } from "lucide-react";
+import { Heart, CircleCheck, Eye } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/lib/features/cartSlice";
@@ -67,6 +67,9 @@ function ProductCard(props) {
     <Card className="border-none">
       <div className="bg-gray-50 rounded-lg p-4 flex justify-center items-center relative">
         <img src={props.image} className="w-full h-full object-cover" />
+        <div className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400">
+          <Eye />
+        </div>
         <div
           className="absolute top-4 right-4 cursor-pointer z-10 text-red-500"
           onClick={toggleFavoriteHandler}
