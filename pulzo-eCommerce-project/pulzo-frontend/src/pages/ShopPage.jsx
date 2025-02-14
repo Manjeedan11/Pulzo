@@ -1,4 +1,3 @@
-import { Search, ChevronRight } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -6,26 +5,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Search,
+  ChevronRight,
+  Filter,
+  ArrowUpNarrowWide,
+  ArrowDownNarrowWide,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useGetCategoriesQuery, useGetProductsQuery } from "@/lib/api";
+import { useState } from "react";
+import ProductCards from "@/components/standalone/ProductCards";
+import SortDropDown from "@/components/standalone/SortDropDown";
 
 function ShopPage() {
-  const categories = [
-    "ALL",
-    "Headphones",
-    "Earbuds",
-    "Speakers",
-    "Mobile Phones",
-    "Smart watches",
-  ];
-
   const featuredProduct = {
     name: "Premium Wireless Headphones",
     description:
@@ -34,6 +36,56 @@ function ShopPage() {
     originalPrice: 249,
     image: "/placeholder.svg?height=300&width=300",
   };
+
+  const {
+    data: products,
+    isLoading: isProductsLoading,
+    isError: isProductsError,
+    error: productsError,
+  } = useGetProductsQuery();
+
+  const {
+    data: categories,
+    isLoading: isCategoriesLoading,
+    isError: isCategoriesError,
+    error: categoriesError,
+  } = useGetCategoriesQuery();
+
+  const [selectedCategoryId, setSelectedCategoryId] = useState("ALL");
+  const [sortOrder, setSortOrder] = useState("ASC");
+
+  const filteredProducts =
+    selectedCategoryId === "ALL"
+      ? products || []
+      : (products || []).filter(
+          (product) => product.categoryId._id === selectedCategoryId
+        );
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    const priceA = parseFloat(a.price);
+    const priceB = parseFloat(b.price);
+    return sortOrder === "ASC" ? priceA - priceB : priceB - priceA;
+  });
+
+  const handleTabClick = (_id) => {
+    setSelectedCategoryId(_id);
+  };
+
+  const handleSort = (order) => {
+    setSortOrder(order);
+  };
+
+  if (isProductsLoading || isCategoriesLoading) {
+    return <Skeleton className="h-80" />;
+  }
+
+  if (isProductsError || isCategoriesError) {
+    return (
+      <p className="text-red-500">{`${productsError?.message || ""} ${
+        categoriesError?.message || ""
+      }`}</p>
+    );
+  }
 
   return (
     <div className="flex min-h-screen bg-background py-8 px-8 xl:px-16 mt-5">
@@ -49,15 +101,17 @@ function ShopPage() {
           <h2 className="text-lg font-semibold">Product Categories</h2>
           <Separator className="my-2" />
           <nav className="space-y-2">
-            {categories.map((category) => (
-              <a
-                key={category}
-                href="#"
-                className="flex items-center justify-between text-sm hover:text-primary group"
+            {[...categories, { _id: "ALL", name: "ALL" }].map((category) => (
+              <button
+                key={category._id}
+                onClick={() => handleTabClick(category._id)}
+                className={`flex items-center justify-between text-sm hover:text-primary group ${
+                  selectedCategoryId === category._id ? "font-bold" : ""
+                }`}
               >
-                <span>{category}</span>
+                <span>{category.name}</span>
                 <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-primary" />
-              </a>
+              </button>
             ))}
           </nav>
         </div>
@@ -65,30 +119,14 @@ function ShopPage() {
 
       {/* Main Content */}
       <div className="flex-1 py-8 px-4 xl:px-16">
-        {/* Main Content Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-4">Featured Products</h1>
-          <Separator className="mb-4" />
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold">Top Picks</h2>
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Sort By:</span>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="w-[150px]">
-                    Best Match
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Price: Low to High</DropdownMenuItem>
-                  <DropdownMenuItem>Price: High to Low</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+        <div className="mb-8 flex justify-between items-center">
+          <h1 className="text-3xl font-bold">Explore Our Products</h1>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Sort By:</span>
+            <SortDropDown onSort={handleSort} />
           </div>
         </div>
 
-        {/* Featured Product */}
         <Card className="mb-8 bg-[#2D1E1E] text-white">
           <div className="flex flex-col md:flex-row items-center p-6">
             #TODO: Image component
@@ -109,7 +147,7 @@ function ShopPage() {
           </div>
         </Card>
 
-        <section className="py-8 px-4 xl:px-16"></section>
+        <ProductCards products={sortedProducts} />
       </div>
     </div>
   );

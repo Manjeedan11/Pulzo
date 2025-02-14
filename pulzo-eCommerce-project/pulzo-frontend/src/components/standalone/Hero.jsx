@@ -52,9 +52,7 @@ function Hero() {
       </section>
 
       <section className="py-15">
-        <div ref={productRef} className="container mx-auto">
-          <Products />
-        </div>
+        <div ref={productRef} className="container mx-auto"></div>
       </section>
     </>
   );

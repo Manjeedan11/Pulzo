@@ -12,7 +12,6 @@ function SortDropDown(props) {
       <DropdownMenu>
         <DropdownMenuTrigger className="border border-[#edeef1] px-2 py-1 rounded-md flex items-center gap-2">
           <Filter className="w-4 h-4" />
-          <span>Sort</span>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem onClick={() => props.onSort("ASC")}>
