@@ -18,8 +18,22 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  synopsis: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
+    required: true,
+  },
+  ratings: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true,
+  },
+  keyFeatures: {
+    type: [String],
     required: true,
   },
 });
