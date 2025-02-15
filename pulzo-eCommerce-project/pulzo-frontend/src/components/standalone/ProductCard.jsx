@@ -40,16 +40,16 @@ function ProductCard(props) {
     });
   };
 
-  const handlePreview = () => {
+  const handlePreview = (e) => {
     dispatch(
       setPreview({
         _id: props._id,
         name: props.name,
         price: props.price,
         image: props.image,
-        description: product.description,
-        ratings: product.ratings,
-        keyFeatures: product.keyFeatures,
+        description: props.description,
+        ratings: props.ratings,
+        keyFeatures: props.keyFeatures,
       })
     );
 
