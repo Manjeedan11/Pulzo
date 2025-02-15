@@ -20,7 +20,7 @@ function ProductCard(props) {
         name: props.name,
         price: props.price,
         image: props.image,
-        description: props.description,
+        synopsis: props.synopsis,
       })
     );
 
@@ -82,7 +82,7 @@ function ProductCard(props) {
         <span className="block font-semibold">${props.price}</span>
       </div>
       <div className="text-sm">
-        <p className="text-sm">{props.description}</p>
+        <p className="text-sm">{props.synopsis}</p>
       </div>
       <div className="mt-2">
         <Button

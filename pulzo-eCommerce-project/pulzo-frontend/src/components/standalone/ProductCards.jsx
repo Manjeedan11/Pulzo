@@ -11,6 +11,7 @@ function ProductCards(props) {
             name={product.name}
             price={product.price}
             image={product.image}
+            synopsis={product.synopsis}
             description={product.description}
           />
         );
