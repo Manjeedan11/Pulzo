@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/lib/features/cartSlice";
 import { toggleFavorite } from "@/lib/features/favoriteSlice";
 import { useToast } from "@/hooks/use-toast";
+import { setPreview } from "@/lib/features/previewSlice";
+import { useNavigate } from "react-router";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorite.value);
   const isFavorite = favorites.some((item) => item._id === props._id);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     dispatch(
@@ -35,6 +38,22 @@ function ProductCard(props) {
       className:
         "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
     });
+  };
+
+  const handlePreview = () => {
+    dispatch(
+      setPreview({
+        _id: props._id,
+        name: props.name,
+        price: props.price,
+        image: props.image,
+        description: product.description,
+        ratings: product.ratings,
+        keyFeatures: product.keyFeatures,
+      })
+    );
+
+    navigate("/shop/product/preview");
   };
 
   const toggleFavoriteHandler = (e) => {
@@ -67,7 +86,10 @@ function ProductCard(props) {
     <Card className="border-none">
       <div className="bg-gray-50 rounded-lg p-4 flex justify-center items-center relative">
         <img src={props.image} className="w-full h-full object-cover" />
-        <div className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400">
+        <div
+          className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400"
+          onClick={handlePreview}
+        >
           <Eye />
         </div>
         <div

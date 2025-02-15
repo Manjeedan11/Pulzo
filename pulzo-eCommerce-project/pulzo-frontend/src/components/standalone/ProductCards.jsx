@@ -13,6 +13,8 @@ function ProductCards(props) {
             image={product.image}
             synopsis={product.synopsis}
             description={product.description}
+            ratings={product.ratings}
+            keyFeatures={product.keyFeatures}
           />
         );
       })}
