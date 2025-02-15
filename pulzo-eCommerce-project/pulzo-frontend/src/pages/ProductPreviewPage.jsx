@@ -1,13 +1,34 @@
-import { useSelector } from "react-redux";
-import { Star, ShoppingCart, Heart } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { Star, ShoppingCart, Heart, CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { addToCart } from "@/lib/features/cartSlice";
+import { useToast } from "@/hooks/use-toast";
 
 function ProductPreviewPage() {
   const product = useSelector((state) => state.preview.value);
+  const dispatch = useDispatch();
+  const { toast } = useToast();
 
   if (!product) {
     return <p>No product selected for preview</p>;
   }
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-green-800" />
+          <span className="font-medium text-sm">Item added to cart</span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
+    });
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -47,7 +68,7 @@ function ProductPreviewPage() {
             </ul>
           </div>
           <div className="flex space-x-4">
-            <Button className="flex-1">
+            <Button className="flex-1" onClick={handleAddToCart}>
               <ShoppingCart className="w-5 h-5 mr-2" />
               Add to Cart
             </Button>
