@@ -18,7 +18,7 @@ function FavoriteCard() {
         name: item.name,
         price: item.price,
         image: item.image,
-        description: item.description,
+        synopsis: item.synopsis,
       })
     );
 
@@ -84,7 +84,7 @@ function FavoriteCard() {
                 <span className="block text-lg font-semibold">{item.name}</span>
                 <span className="block font-semibold">${item.price}</span>
               </div>
-              <p className="text-sm mt-2">{item.description}</p>
+              <p className="text-sm mt-2">{item.synopsis}</p>
             </div>
             <div className="mt-4">
               <Button

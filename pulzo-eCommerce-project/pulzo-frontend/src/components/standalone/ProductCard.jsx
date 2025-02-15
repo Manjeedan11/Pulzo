@@ -44,7 +44,7 @@ function ProductCard(props) {
         name: props.name,
         price: props.price,
         image: props.image,
-        description: props.description,
+        synopsis: props.synopsis,
       })
     );
 
