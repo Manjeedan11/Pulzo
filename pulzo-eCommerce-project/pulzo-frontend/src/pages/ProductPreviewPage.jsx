@@ -10,7 +10,7 @@ function ProductPreviewPage() {
   const { toast } = useToast();
 
   if (!product) {
-    return <p>No product selected for preview</p>;
+    return <p>No products available for preview</p>;
   }
 
   const handleAddToCart = () => {
