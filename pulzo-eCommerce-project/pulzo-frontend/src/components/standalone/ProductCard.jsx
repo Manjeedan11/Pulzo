@@ -8,6 +8,7 @@ import { toggleFavorite } from "@/lib/features/favoriteSlice";
 import { useToast } from "@/hooks/use-toast";
 import { setPreview } from "@/lib/features/previewSlice";
 import { useNavigate } from "react-router";
+import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
@@ -107,15 +108,17 @@ function ProductCard(props) {
         <p className="text-sm">{props.synopsis}</p>
       </div>
       <div className="mt-2">
-        <Button
-          className=" bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
-          onClick={handleClick}
-        >
+        <InteractiveHoverButton onClick={handleClick}>
           Add to Cart
-        </Button>
+        </InteractiveHoverButton>
       </div>
     </Card>
   );
 }
 
 export default ProductCard;
+
+/*<Button
+          className=" bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
+          onClick={handleClick}
+        ></Button>*/
