@@ -101,14 +101,16 @@ function ProductCard(props) {
         </div>
       </div>
       <div className="flex items-center justify-between">
-        <span className="block text-2xl font-semibold">{props.name}</span>
-        <span className="block font-semibold">${props.price}</span>
+        <span className="block text-2xl font-semibold font-poppins">
+          {props.name}
+        </span>
+        <span className="block font-semibold font-poppins">${props.price}</span>
       </div>
-      <div className="text-sm">
+      <div className="text-sm font-poppins">
         <p className="text-sm">{props.synopsis}</p>
       </div>
       <div className="mt-2">
-        <InteractiveHoverButton onClick={handleClick}>
+        <InteractiveHoverButton className="font-poppins" onClick={handleClick}>
           Add to Cart
         </InteractiveHoverButton>
       </div>

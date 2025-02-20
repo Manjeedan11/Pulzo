@@ -95,18 +95,23 @@ function ShopPage() {
         {/* Search Bar */}
         <div className="relative mb-6">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search for products" className="pl-8 w-full" />
+          <Input
+            placeholder="Search for products"
+            className="pl-8 w-full font-poppins"
+          />
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold">Product Categories</h2>
+          <h2 className="text-lg font-semibold font-poppins">
+            Product Categories
+          </h2>
           <Separator className="my-2" />
           <nav className="space-y-2">
             {[...categories, { _id: "ALL", name: "ALL" }].map((category) => (
               <button
                 key={category._id}
                 onClick={() => handleTabClick(category._id)}
-                className={`flex items-center justify-between text-sm hover:text-primary group ${
+                className={`flex items-center font-poppins justify-between text-sm hover:text-primary group ${
                   selectedCategoryId === category._id ? "font-bold" : ""
                 }`}
               >
@@ -122,34 +127,39 @@ function ShopPage() {
       <div className="flex-1 py-8 px-4 xl:px-16">
         <div className="mb-8">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Explore Our Products</h1>
+            <h1 className="text-3xl font-bold font-poppins">
+              Explore Our Products
+            </h1>
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Sort By:</span>
+              <span className="text-sm font-medium font-poppins">Sort By:</span>
               <SortDropDown onSort={handleSort} />
             </div>
           </div>
           <Separator className="mt-4" />
         </div>
 
-        <Card className="relative mb-8 bg-white text-black overflow-hidden">
-          <div className="flex flex-col md:flex-row items-center p-6">
+        <Card className="relative mb-8 bg-white overflow-hidden flex justify-center items-center">
+          <div className="flex flex-col items-center p-6 text-center">
             {/* #TODO: Image component */}
             <div className="space-y-4">
               <div>
-                <h2 className="text-2xl font-bold">{featuredProduct.name}</h2>
-                <p className="text-gray-300">{featuredProduct.description}</p>
+                <h2 className="text-6xl font-bold font-poppins text-transparent bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text leading-none tracking-tighter dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
+                  {featuredProduct.name}
+                </h2>
+                <p className="text-transparent font-poppins bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text">
+                  {featuredProduct.description}
+                </p>
               </div>
-              <div className="flex items-center gap-4">
-                <Button className="bg-primary hover:bg-primary/90">
+              <div className="flex flex-row items-center justify-center gap-4">
+                <Button className="font-poppins bg-primary pointer-events-none z-10 transition-all duration-300 hover:bg-gradient-to-br hover:from-[#ff2975] hover:from-35% hover:to-[#00FFF1] hover:text-white">
                   Buy ${featuredProduct.price}
                 </Button>
-                <span className="text-gray-400 line-through">
+                <span className="text-black line-through font-poppins">
                   ${featuredProduct.originalPrice}
                 </span>
               </div>
             </div>
           </div>
-          {/* BorderBeam applied correctly */}
           <BorderBeam duration={8} size={200} className="rounded-lg" />
         </Card>
 

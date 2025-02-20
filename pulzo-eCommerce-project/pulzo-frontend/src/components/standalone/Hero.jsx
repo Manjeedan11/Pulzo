@@ -20,10 +20,10 @@ function Hero() {
       <section className="py-8 px-4 xl:px-16 mt-5">
         <div className="grid grid-cols-2 rounded-lg min-h-[60vh] bg-[#f4f8f9]">
           <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4">
-            <span className="inline-block rounded-full px-2 py-1 text-xs w-fit bg-[#febc26]">
+            <span className="inline-block rounded-full px-2 py-1 text-xs w-fit bg-[#febc26] font-poppins">
               WEEKLY DISCOUNT
             </span>
-            <h1 className="text-[3.75rem] font-semibold leading-none">
+            <h1 className="text-[3.75rem] font-semibold leading-none font-poppins">
               Premium Product Online Shop
             </h1>
             <p>
@@ -35,7 +35,7 @@ function Hero() {
               onClick={scrollToProduct}
               asChild
             >
-              <p>Shop now</p>
+              <p className="font-poppins">Shop now</p>
             </Button>
           </div>
           <div className="relative">
@@ -49,7 +49,7 @@ function Hero() {
       </section>
 
       <section className="py-20 px-4 xl:px-16 mt-10 text-center">
-        <h1 className="text-3xl font-bold mb-10">Our Brands</h1>
+        <h1 className="text-3xl font-bold mb-10 font-poppins">Our Brands</h1>
         <BrandMarquee />
       </section>
 

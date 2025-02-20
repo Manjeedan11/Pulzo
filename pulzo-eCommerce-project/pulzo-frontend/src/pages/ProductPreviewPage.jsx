@@ -10,7 +10,7 @@ function ProductPreviewPage() {
   const { toast } = useToast();
 
   if (!product) {
-    return <p>No products available for preview</p>;
+    return <p className="font-poppins">No products available for preview</p>;
   }
 
   const handleAddToCart = () => {
@@ -20,7 +20,9 @@ function ProductPreviewPage() {
       description: (
         <div className="flex items-center space-x-2">
           <CircleCheck className="w-5 h-5 text-green-800" />
-          <span className="font-medium text-sm">Item added to cart</span>
+          <span className="font-medium text-sm font-poppins">
+            Item added to cart
+          </span>
         </div>
       ),
       duration: 2000,
@@ -36,7 +38,7 @@ function ProductPreviewPage() {
           <img
             src={product.image || "/placeholder.svg"}
             alt={product.name}
-            className="w-full h-auto rounded-lg shadow-md"
+            className="w-full h-auto rounded-lg shadow-md font-poppins"
           />
         </div>
 
@@ -47,7 +49,7 @@ function ProductPreviewPage() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-5 h-5 ${
+                  className={`w-5 h-5 font-poppins ${
                     i < Math.floor(product.ratings)
                       ? "text-yellow-400 fill-current"
                       : "text-gray-300"
@@ -55,13 +57,19 @@ function ProductPreviewPage() {
                 />
               ))}
             </div>
-            <span className="text-gray-600">({product.ratings})</span>
+            <span className="text-gray-600 font-poppins">
+              ({product.ratings})
+            </span>
           </div>
-          <p className="text-2xl font-semibold">${product.price}</p>
-          <p className="text-gray-600">{product.description}</p>
+          <p className="text-2xl font-semibold font-poppins">
+            ${product.price}
+          </p>
+          <p className="text-gray-600 font-poppins">{product.description}</p>
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">Key Features:</h3>
-            <ul className="list-disc list-inside space-y-2">
+            <h3 className="text-lg font-semibold font-poppins">
+              Key Features:
+            </h3>
+            <ul className="list-disc list-inside space-y-2 font-poppins">
               {product.keyFeatures?.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
