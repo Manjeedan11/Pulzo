@@ -48,7 +48,8 @@ function Hero() {
         </div>
       </section>
 
-      <section className="py-20 px-4 xl:px-16 mt-20">
+      <section className="py-20 px-4 xl:px-16 mt-10 text-center">
+        <h1 className="text-3xl font-bold mb-10">Our Brands</h1>
         <BrandMarquee />
       </section>
 

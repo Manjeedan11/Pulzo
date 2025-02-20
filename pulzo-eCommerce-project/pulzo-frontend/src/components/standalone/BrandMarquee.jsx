@@ -1,16 +1,18 @@
 import { Marquee } from "../magicui/marquee";
 
 const brands = [
-  { img: "https://avatar.vercel.sh/jack" },
-  { img: "https://avatar.vercel.sh/jill" },
-  { img: "https://avatar.vercel.sh/john" },
-  { img: "https://avatar.vercel.sh/jane" },
-  { img: "https://avatar.vercel.sh/jenny" },
-  { img: "https://avatar.vercel.sh/james" },
+  { img: import.meta.env.VITE_BRAND_APPLE },
+  { img: import.meta.env.VITE_BRAND_BOSE },
+  { img: import.meta.env.VITE_BRAND_JBL },
+  { img: import.meta.env.VITE_BRAND_MARSHAL },
+  { img: import.meta.env.VITE_BRAND_SAMSUNG },
+  { img: import.meta.env.VITE_BRAND_MI },
+  { img: import.meta.env.VITE_BRAND_GOOGLE },
+  { img: import.meta.env.VITE_BRAND_SONY },
 ];
 
 const ImageCard = ({ img }) => {
-  return <img className="rounded-full w-16 h-16 mx-8" src={img} alt="Avatar" />;
+  return <img className="w-32 h-32 mx-8" src={img} alt="Brand Logo" />;
 };
 
 function BrandMarquee() {
