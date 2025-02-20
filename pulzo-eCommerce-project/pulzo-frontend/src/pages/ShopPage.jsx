@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BorderBeam } from "@/components/magicui/border-beam";
 import {
   Search,
   ChevronRight,
@@ -130,9 +131,9 @@ function ShopPage() {
           <Separator className="mt-4" />
         </div>
 
-        <Card className="mb-8 bg-[#2D1E1E] text-white">
+        <Card className="relative mb-8 bg-white text-black overflow-hidden">
           <div className="flex flex-col md:flex-row items-center p-6">
-            #TODO: Image component
+            {/* #TODO: Image component */}
             <div className="space-y-4">
               <div>
                 <h2 className="text-2xl font-bold">{featuredProduct.name}</h2>
@@ -148,6 +149,8 @@ function ShopPage() {
               </div>
             </div>
           </div>
+          {/* BorderBeam applied correctly */}
+          <BorderBeam duration={8} size={200} className="rounded-lg" />
         </Card>
 
         <ProductCards products={sortedProducts} />
