@@ -3,6 +3,7 @@ import heroBanner from "@/assets/hero/hero.png";
 import Products from "./Products";
 import { useRef } from "react";
 import FeaturedDeal from "./FeaturedDeal";
+import BrandMarquee from "./BrandMarquee";
 
 function Hero() {
   const productRef = useRef(null);
@@ -45,6 +46,10 @@ function Hero() {
             />
           </div>
         </div>
+      </section>
+
+      <section className="py-20 px-4 xl:px-16 mt-20">
+        <BrandMarquee />
       </section>
 
       <section className="py-20 px-4 xl:px-16 mt-20">
