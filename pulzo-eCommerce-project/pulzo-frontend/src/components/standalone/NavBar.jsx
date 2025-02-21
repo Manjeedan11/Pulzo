@@ -23,11 +23,11 @@ function NavBar(props) {
 
   return (
     <nav className="bg-white shadow-lg rounded-lg flex items-center justify-between py-8 px-8 xl:px-16">
-      <div className="flex gap-x-16 m-5">
+      <div className="flex gap-x-16 m-5 mr-16 -ml-1">
         <a className="flex items-center font-semibold text-3xl" href="/">
           ρυℓzσ
         </a>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 font-poppins">
           <a href="/">Home</a>
           <Link to="/shop"></Link>
           <a href="/shop">Shop</a>
@@ -59,7 +59,7 @@ function NavBar(props) {
         </div>
 
         <SignedOut>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 font-poppins">
             <Link to="/sign-in" className=" text-primary ">
               Sign In
             </Link>

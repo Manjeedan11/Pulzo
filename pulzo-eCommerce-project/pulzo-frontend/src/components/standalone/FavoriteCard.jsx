@@ -5,6 +5,7 @@ import { addToCart } from "@/lib/features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "@/lib/features/favoriteSlice";
 import { useToast } from "@/hooks/use-toast";
+import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
 
 function FavoriteCard() {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ function FavoriteCard() {
   };
 
   return (
-    <div className="flex flex-wrap gap-12">
+    <div className="flex flex-wrap gap-12 font-poppins">
       {favoritesCard.length === 0 ? (
         <p className="text-center w-full text-xl font-semibold">
           No favorites added
@@ -79,7 +80,7 @@ function FavoriteCard() {
                 <Heart fill="red" className="w-6 h-6" />
               </div>
             </div>
-            <div className="mt-4">
+            <div className="mt-4 font-poppins">
               <div className="flex items-center justify-between">
                 <span className="block text-lg font-semibold">{item.name}</span>
                 <span className="block font-semibold">${item.price}</span>
@@ -87,12 +88,12 @@ function FavoriteCard() {
               <p className="text-sm mt-2">{item.synopsis}</p>
             </div>
             <div className="mt-4">
-              <Button
-                className="bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg font-medium hover:bg-black hover:text-white transition"
+              <InteractiveHoverButton
+                className="font-poppins"
                 onClick={() => handleClick(item)}
               >
                 Add to Cart
-              </Button>
+              </InteractiveHoverButton>
             </div>
           </Card>
         ))
@@ -102,3 +103,10 @@ function FavoriteCard() {
 }
 
 export default FavoriteCard;
+
+/*<Button
+                className="bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg font-medium hover:bg-black hover:text-white transition"
+                onClick={() => handleClick(item)}
+              >
+                Add to Cart
+              </Button> */

@@ -119,8 +119,3 @@ function ProductCard(props) {
 }
 
 export default ProductCard;
-
-/*<Button
-          className=" bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
-          onClick={handleClick}
-        ></Button>*/
