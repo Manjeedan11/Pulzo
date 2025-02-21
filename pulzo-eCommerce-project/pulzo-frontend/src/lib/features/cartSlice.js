@@ -26,6 +26,22 @@ export const cartSlice = createSlice({
         (item) => item.product._id !== productId
       );
     },
+
+    decreaseQuantity: (state, action) => {
+      const productId = action.payload;
+      const foundItem = state.value.find(
+        (item) => item.product._id === productId
+      );
+      if (foundItem) {
+        if (foundItem.quantity > 1) {
+          foundItem.quantity -= 1;
+        } else {
+          state.value = state.value.filter(
+            (item) => item.product._id !== productId
+          );
+        }
+      }
+    },
   },
 });
 
