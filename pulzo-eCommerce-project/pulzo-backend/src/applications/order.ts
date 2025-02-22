@@ -14,20 +14,19 @@ export const createOrder = async (
 ) => {
   try {
     const result = CreateOrderDTO.safeParse(req.body);
+
     if (!result.success) {
+      console.log("Validation errors:", result.error.issues);
       throw new ValidationError("Invalid order data");
     }
 
     const userId = req.auth.userId;
 
-    const address = await Address.create({
-      ...result.data.shippingAddress,
-    });
-
-    await Order.create({
+    const address = await Address.create(result.data.shippingAddress);
+    const order = await Order.create({
       userId,
+      addressId: address._id.toString(),
       items: result.data.items,
-      addressId: address._id,
     });
 
     res.status(201).send();

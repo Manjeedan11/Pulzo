@@ -6,11 +6,11 @@ export const CreateOrderDTO = z.object({
       product: z.object({
         _id: z.string(),
         name: z.string(),
-        price: z.number(),
+        price: z.string(),
         image: z.string(),
         description: z.string(),
       }),
-      quantity: z.number(),
+      quantity: z.string(),
     })
     .array(),
   shippingAddress: z.object({

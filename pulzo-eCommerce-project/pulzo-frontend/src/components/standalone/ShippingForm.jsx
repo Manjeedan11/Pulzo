@@ -32,20 +32,36 @@ function ShippingForm({ cart }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createOrder({
-      items: cart,
+    const orderData = {
+      items: cart.map((item) => ({
+        product: {
+          _id: item.product._id,
+          name: item.product.name,
+          price: item.product.price.toString(),
+          image: item.product.image,
+          description: item.product.description || "",
+        },
+        quantity: item.quantity.toString(),
+      })),
       shippingAddress: {
         firstName: formData.firstName,
         lastName: formData.lastName,
         addressLine1: formData.addressLine1,
-        addressLine2: formData.addressLine2,
+        addressLine2: formData.addressLine2 || "",
         city: formData.city,
         state: formData.state,
         zipCode: formData.zipCode,
         phoneNumber: formData.phoneNumber,
       },
-    });
-    navigate("/shop/payment");
+    };
+
+    console.log("Submitting Order Data:", orderData);
+    createOrder(orderData)
+      .unwrap()
+      .then(() => {
+        navigate("/shop/payment");
+      })
+      .catch((err) => console.error("Order submission error:", err));
   };
 
   return (
@@ -132,7 +148,9 @@ function ShippingForm({ cart }) {
                 name="zipCode"
                 placeholder="11850"
                 value={formData.zipCode}
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, zipCode: String(e.target.value) })
+                }
                 required
               />
             </div>
