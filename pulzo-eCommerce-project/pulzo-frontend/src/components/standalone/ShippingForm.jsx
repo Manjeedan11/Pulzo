@@ -11,6 +11,8 @@ function ShippingForm() {
     addressLine1: "",
     addressLine2: "",
     city: "",
+    state: "",
+    zipCode: "",
     phoneNumber: "",
   });
 
@@ -80,31 +82,57 @@ function ShippingForm() {
               onChange={handleChange}
             />
           </div>
-          <div>
-            <Label htmlFor="city">City</Label>
-            <Input
-              id="city"
-              name="city"
-              placeholder="Colombo"
-              value={formData.city}
-              onChange={handleChange}
-              required
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="city">City</Label>
+              <Input
+                id="city"
+                name="city"
+                placeholder="Colombo"
+                value={formData.city}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="state">State</Label>
+              <Input
+                id="state"
+                name="state"
+                placeholder="Western Province"
+                value={formData.state}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
-          <div>
-            <Label htmlFor="phoneNumber">Phone Number</Label>
-            <Input
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="(071) 234-5678"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              required
-            />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="zipCode">Zip Code</Label>
+              <Input
+                id="zipCode"
+                name="zipCode"
+                placeholder="10000"
+                value={formData.zipCode}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="phoneNumber">Phone Number</Label>
+              <Input
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="(071) 234-5678"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
           <Button
             type="submit"
-            className="w-full  bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
+            className="w-full bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
           >
             Proceed to Payment
           </Button>
