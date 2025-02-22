@@ -1,21 +1,35 @@
 import mongoose from "mongoose";
 
+const OrderProductSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  image: { type: String, required: true },
+  description: { type: String, required: true },
+});
+
+const ItemSchema = new mongoose.Schema({
+  product: { type: OrderProductSchema, required: true },
+  quantity: { type: Number, required: true },
+});
+
 const OrderSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+  userId: { type: String, required: true },
+  addressId: { type: String, required: true },
+  items: {
+    type: [ItemSchema],
     required: true,
   },
-  totalPrice: {
+  orderStatus: {
     type: String,
+    enum: ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"],
+    default: "PENDING",
     required: true,
   },
-  status: {
+  paymentStatus: {
     type: String,
-    required: true,
-  },
-  orderDate: {
-    type: Date,
+    enum: ["PENDING", "PAID"],
+    default: "PENDING",
     required: true,
   },
 });
