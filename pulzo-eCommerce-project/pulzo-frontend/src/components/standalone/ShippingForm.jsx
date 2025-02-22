@@ -29,7 +29,7 @@ function ShippingForm() {
   };
 
   return (
-    <Card className="rounded-lg ml-11">
+    <Card className="rounded-lg mr-11">
       <CardHeader>
         <CardTitle>Shipping Information</CardTitle>
       </CardHeader>
