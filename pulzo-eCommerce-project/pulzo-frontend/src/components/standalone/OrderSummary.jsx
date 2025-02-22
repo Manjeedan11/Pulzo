@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 
-function OrderSummary() {
-  const cartItems = useSelector((state) => state.cart.value);
-  const total = cartItems.reduce(
+function OrderSummary({ cart }) {
+  const total = cart.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
     0
   );
@@ -15,7 +14,7 @@ function OrderSummary() {
           <CardTitle>Order Summary</CardTitle>
         </CardHeader>
         <CardContent>
-          {cartItems.map((item) => (
+          {cart.map((item) => (
             <div
               key={item.product._id}
               className="flex items-center border-b pb-2 mb-2"

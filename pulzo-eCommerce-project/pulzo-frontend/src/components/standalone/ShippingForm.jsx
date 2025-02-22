@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
-import { useState } from "react";
 import { Input } from "../ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
+import { useNavigate } from "react-router";
+import { useCreateOrderMutation } from "@/lib/api";
 
-function ShippingForm() {
+function ShippingForm({ cart }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,6 +18,9 @@ function ShippingForm() {
     phoneNumber: "",
   });
 
+  const [createOrder] = useCreateOrderMutation();
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -26,8 +31,21 @@ function ShippingForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    // Proceed to payment logic here
+
+    createOrder({
+      items: cart,
+      shippingAddress: {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        addressLine1: formData.addressLine1,
+        addressLine2: formData.addressLine2,
+        city: formData.city,
+        state: formData.state,
+        zipCode: formData.zipCode,
+        phoneNumber: formData.phoneNumber,
+      },
+    });
+    navigate("/shop/payment");
   };
 
   return (
@@ -112,7 +130,7 @@ function ShippingForm() {
               <Input
                 id="zipCode"
                 name="zipCode"
-                placeholder="10000"
+                placeholder="11850"
                 value={formData.zipCode}
                 onChange={handleChange}
                 required
@@ -123,19 +141,16 @@ function ShippingForm() {
               <Input
                 id="phoneNumber"
                 name="phoneNumber"
-                placeholder="(071) 234-5678"
+                placeholder="+94702700100"
                 value={formData.phoneNumber}
                 onChange={handleChange}
                 required
               />
             </div>
           </div>
-          <Button
-            type="submit"
-            className="w-full bg-white border-2 border-black text-black px-4 py-1 text-lg rounded-lg mt-2 font-medium hover:bg-black hover:text-white transition duration-200 ease-in-out"
-          >
-            Proceed to Payment
-          </Button>
+          <div className="mt-4">
+            <Button type="submit">Proceed to Payment</Button>
+          </div>
         </form>
       </CardContent>
     </Card>
