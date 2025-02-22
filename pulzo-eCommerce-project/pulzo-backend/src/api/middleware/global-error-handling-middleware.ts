@@ -21,6 +21,14 @@ const globalErrorHandlingMiddleware = (
         message: error.message,
       })
       .send();
+  } else if (error.name === "UnauthorizedError") {
+    res
+      .status(401)
+      .json({
+        message: error.message,
+      })
+      .send();
+    return;
   } else {
     return res
       .status(500)
