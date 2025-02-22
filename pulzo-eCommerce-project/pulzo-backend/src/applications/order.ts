@@ -22,11 +22,18 @@ export const createOrder = async (
 
     const userId = req.auth.userId;
 
+    const totalPrice = result.data.items.reduce((sum, item) => {
+      const price = parseFloat(item.product.price);
+      const quantity = parseInt(item.quantity);
+      return sum + price * quantity;
+    }, 0);
+
     const address = await Address.create(result.data.shippingAddress);
     const order = await Order.create({
       userId,
       addressId: address._id.toString(),
       items: result.data.items,
+      totalPrice: totalPrice,
     });
 
     res.status(201).send();

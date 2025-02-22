@@ -36,6 +36,11 @@ const OrderSchema = new mongoose.Schema({
     default: "PENDING",
     required: true,
   },
+  totalPrice: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
 });
 
 export default mongoose.model("Order", OrderSchema);
