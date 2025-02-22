@@ -19,8 +19,14 @@ import FavoritePage from "./pages/FavoritePage.jsx";
 import CheckOutPage from "./pages/CheckOutPage.jsx";
 import ShopPage from "./pages/ShopPage.jsx";
 import ProductPreviewPage from "./pages/ProductPreviewPage.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
+import PaymentStatusPage from "./pages/PaymentStatusPage.jsx";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUB_KEY);
 
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key");
@@ -43,7 +49,17 @@ createRoot(document.getElementById("root")).render(
             <Route path="/shop/cart/checkout" element={<CheckOutPage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/shop/favorites" element={<FavoritePage />} />
+            <Route path="/shop/checkout" element={<PaymentPage />} />
+            <Route
+              path="/payment-status"
+              element={
+                <Elements stripe={stripePromise}>
+                  <PaymentStatusPage />
+                </Elements>
+              }
+            />
           </Route>
+
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>

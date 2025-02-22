@@ -59,7 +59,7 @@ function ShippingForm({ cart }) {
     createOrder(orderData)
       .unwrap()
       .then(() => {
-        navigate("/shop/payment");
+        navigate("/shop/checkout");
       })
       .catch((err) => console.error("Order submission error:", err));
   };
