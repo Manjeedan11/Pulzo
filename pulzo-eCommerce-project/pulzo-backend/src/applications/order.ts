@@ -65,3 +65,26 @@ export const getOrder = async (
     next(error);
   }
 };
+
+export const getOrdersByUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userId = req.auth.userId;
+    const orders = await Order.find({ userId })
+      .populate({
+        path: "addressId",
+        model: "Address",
+      })
+      .populate({
+        path: "items.product",
+        model: "Product",
+      });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -1,6 +1,3 @@
-"use client";
-
-import React from "react";
 import { useUser } from "@clerk/clerk-react";
 import { Navigate } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -15,9 +12,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useGetOrdersQuery } from "@/lib/api";
 
 function AccountPage() {
   const { isLoaded, isSignedIn, user } = useUser();
+  const { data: orders } = useGetOrdersQuery();
 
   if (!isLoaded) {
     return (
@@ -89,20 +88,34 @@ function AccountPage() {
                 <TableHead>Order ID</TableHead>
                 <TableHead>Product Name</TableHead>
                 <TableHead>Date</TableHead>
-                <TableHead>Total</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead>Total Price</TableHead>
+                <TableHead>Order Status</TableHead>
+                <TableHead>Payment Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orders.map((order) => (
-                <TableRow key={order.id}>
-                  <TableCell>{order.id}</TableCell>
-                  <TableCell>{order.productName}</TableCell>
-                  <TableCell>{order.date}</TableCell>
-                  <TableCell>{order.total}</TableCell>
-                  <TableCell>{order.status}</TableCell>
+              {Array.isArray(orders) && orders.length > 0 ? (
+                orders.map((order) => (
+                  <TableRow key={order._id}>
+                    <TableCell>{order._id}</TableCell>
+                    <TableCell>
+                      {order.items[0]?.product?.name || "Product Name"}
+                    </TableCell>
+                    <TableCell>
+                      {new Date(order.createdAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>${order.totalPrice.toFixed(2)}</TableCell>
+                    <TableCell>{order.orderStatus}</TableCell>
+                    <TableCell>{order.paymentStatus}</TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan="5" className="text-center">
+                    No orders found
+                  </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
           </Table>
         </TabsContent>
@@ -110,22 +123,5 @@ function AccountPage() {
     </div>
   );
 }
-
-const orders = [
-  {
-    id: "1234",
-    productName: "Wireless Headphones",
-    date: "2023-06-01",
-    total: "$120.00",
-    status: "Delivered",
-  },
-  {
-    id: "1235",
-    productName: "Mechanical Keyboard",
-    date: "2023-05-15",
-    total: "$85.50",
-    status: "Shipped",
-  },
-];
 
 export default AccountPage;
