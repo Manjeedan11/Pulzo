@@ -106,3 +106,28 @@ export const getOrdersByUser = async (
     next(error);
   }
 };
+
+export const updatePaymentStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const { paymentStatus } = req.body;
+
+    // Find and update the payment status of the order
+    const updatedOrder = await Order.findByIdAndUpdate(
+      id,
+      { paymentStatus },
+      { new: true }
+    );
+
+    if (!updatedOrder) {
+      return res.status(404).json({ error: "Order not found" });
+    }
+    res.json(updatedOrder);
+  } catch (error) {
+    next(error);
+  }
+};

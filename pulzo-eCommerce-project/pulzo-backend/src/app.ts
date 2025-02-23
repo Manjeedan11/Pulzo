@@ -9,6 +9,7 @@ import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 import { orderRouter } from "./api/order";
 import Stripe from "stripe";
+import { paymentsRouter } from "./api/payment";
 
 const app = express();
 app.use(express.json());
@@ -18,12 +19,13 @@ app.use(clerkMiddleware());
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/payments", paymentsRouter);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 app.post("/api/create-payment-intent", clerkMiddleware(), async (req, res) => {
   try {
-    const { amount } = req.body;
+    const { amount, orderId } = req.body;
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Convert dollars to cents
       currency: "usd",
