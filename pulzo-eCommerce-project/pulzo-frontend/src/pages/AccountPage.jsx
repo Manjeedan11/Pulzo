@@ -99,7 +99,13 @@ function AccountPage() {
                   <TableRow key={order._id}>
                     <TableCell>{order._id}</TableCell>
                     <TableCell>
-                      {order.items[0]?.product?.name || "Product Name"}
+                      <div className="flex flex-col gap-1">
+                        {order.items.map((item, index) => (
+                          <span key={index} className="block">
+                            {item.product?.name || "No Product Name"}
+                          </span>
+                        ))}
+                      </div>
                     </TableCell>
                     <TableCell>
                       {new Date(order.createdAt).toLocaleDateString()}
