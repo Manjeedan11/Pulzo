@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 
 function ProductPreviewPage() {
   const product = useSelector((state) => state.preview.value);
+  console.log(product);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
@@ -64,6 +65,14 @@ function ProductPreviewPage() {
           <p className="text-2xl font-semibold font-poppins">
             ${product.price}
           </p>
+          <div className="flex items-center space-x-4 text-gray-600 font-poppins">
+            <span className="text-sm">
+              <strong>Stock:</strong> {product.stock ?? 0}
+            </span>
+            <span className="text-sm">
+              <strong>Sold:</strong> {product.sold ?? 0}
+            </span>
+          </div>
           <p className="text-gray-600 font-poppins">{product.description}</p>
           <div className="space-y-4">
             <h3 className="text-lg font-semibold font-poppins">

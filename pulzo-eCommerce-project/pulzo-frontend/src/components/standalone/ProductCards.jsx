@@ -15,6 +15,8 @@ function ProductCards(props) {
             description={product.description}
             ratings={product.ratings}
             keyFeatures={product.keyFeatures}
+            stock={product.stock}
+            sold={product.sold}
           />
         );
       })}

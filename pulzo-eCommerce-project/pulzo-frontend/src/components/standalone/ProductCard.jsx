@@ -51,6 +51,8 @@ function ProductCard(props) {
         description: props.description,
         ratings: props.ratings,
         keyFeatures: props.keyFeatures,
+        stock: props.stock,
+        sold: props.sold,
       })
     );
 
