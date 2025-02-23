@@ -13,4 +13,6 @@ export const ProductDTO = z.object({
   description: z.string(),
   ratings: z.number().min(1).max(5),
   keyFeatures: z.array(z.string()),
+  stock: z.number().min(0).default(0),
+  sold: z.number().min(0).default(0),
 });
