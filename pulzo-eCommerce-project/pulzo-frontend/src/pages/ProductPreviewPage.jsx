@@ -66,13 +66,10 @@ function ProductPreviewPage() {
             ${product.price}
           </p>
           <div className="flex items-center space-x-4 text-gray-600 font-poppins">
-            <span className="text-sm">
-              <strong>Stock:</strong> {product.stock ?? 0}
-            </span>
-            <span className="text-sm">
-              <strong>Sold:</strong> {product.sold ?? 0}
-            </span>
+            <span className="text-sm">{product.sold ?? 0} sold</span>
+            <span className="text-sm">{product.stock ?? 0} in stock</span>
           </div>
+
           <p className="text-gray-600 font-poppins">{product.description}</p>
           <div className="space-y-4">
             <h3 className="text-lg font-semibold font-poppins">

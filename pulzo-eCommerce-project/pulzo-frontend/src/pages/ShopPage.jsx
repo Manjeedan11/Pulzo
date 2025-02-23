@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BorderBeam } from "@/components/magicui/border-beam";
+import { ShineBorder } from "@/components/magicui/shine-border";
 import {
   Search,
   ChevronRight,
@@ -138,8 +138,11 @@ function ShopPage() {
           <Separator className="mt-4" />
         </div>
 
-        <Card className="relative mb-8 bg-white overflow-hidden flex justify-center items-center">
-          <div className="flex flex-col items-center p-6 text-center">
+        <ShineBorder
+          className="rounded-lg relative mb-8 bg-white overflow-hidden flex justify-center items-center py-8 px-4 xl:px-16"
+          color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+        >
+          <div className="flex flex-col items-center text-center">
             {/* #TODO: Image component */}
             <div className="space-y-4">
               <div>
@@ -160,8 +163,7 @@ function ShopPage() {
               </div>
             </div>
           </div>
-          <BorderBeam duration={8} size={200} className="rounded-lg" />
-        </Card>
+        </ShineBorder>
 
         <ProductCards products={sortedProducts} />
       </div>
