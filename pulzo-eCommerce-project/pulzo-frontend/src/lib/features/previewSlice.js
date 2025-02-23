@@ -14,8 +14,16 @@ export const previewSlice = createSlice({
     clearPreview: (state) => {
       state.value = null;
     },
+    updatePreviewProduct: (state, action) => {
+      const { productId, quantity } = action.payload;
+      if (state.value && state.value._id === productId) {
+        state.value.stock -= quantity;
+        state.value.sold += quantity;
+      }
+    },
   },
 });
 
-export const { setPreview, clearPreview } = previewSlice.actions;
+export const { setPreview, clearPreview, updatePreviewProduct } =
+  previewSlice.actions;
 export default previewSlice.reducer;

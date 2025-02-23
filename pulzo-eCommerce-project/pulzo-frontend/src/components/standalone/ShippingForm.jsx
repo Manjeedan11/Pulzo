@@ -5,6 +5,8 @@ import { Input } from "../ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { useNavigate } from "react-router";
 import { useCreateOrderMutation } from "@/lib/api";
+import { updatePreviewProduct } from "@/lib/features/previewSlice";
+import { useDispatch } from "react-redux";
 
 function ShippingForm({ cart }) {
   const [formData, setFormData] = useState({
@@ -20,6 +22,7 @@ function ShippingForm({ cart }) {
 
   const [createOrder] = useCreateOrderMutation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,6 +62,14 @@ function ShippingForm({ cart }) {
     createOrder(orderData)
       .unwrap()
       .then(() => {
+        cart.forEach((item) => {
+          dispatch(
+            updatePreviewProduct({
+              productId: item.product._id,
+              quantity: item.quantity,
+            })
+          );
+        });
         navigate("/shop/checkout");
       })
       .catch((err) => console.error("Order submission error:", err));

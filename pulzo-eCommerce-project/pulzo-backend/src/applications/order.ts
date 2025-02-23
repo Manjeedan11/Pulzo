@@ -6,6 +6,7 @@ import { getAuth } from "@clerk/express";
 import NotFoundError from "../domain/errors/not-found-error";
 import Address from "../infrastructure/schemas/Address";
 import { CreateOrderDTO } from "../domain/DTO/order";
+import Product from "../infrastructure/schemas/Product";
 
 export const createOrder = async (
   req: Request,
@@ -32,9 +33,26 @@ export const createOrder = async (
     const order = await Order.create({
       userId,
       addressId: address._id.toString(),
-      items: result.data.items,
+      items: result.data.items.map((item) => ({
+        product: item.product._id,
+        quantity: parseInt(item.quantity),
+      })),
       totalPrice: totalPrice,
     });
+
+    // Update each product's stock and sold
+    for (const item of order.items) {
+      await Product.findByIdAndUpdate(
+        item.product,
+        {
+          $inc: {
+            stock: -item.quantity,
+            sold: item.quantity,
+          },
+        },
+        { new: true }
+      );
+    }
 
     res.status(201).send();
   } catch (error) {

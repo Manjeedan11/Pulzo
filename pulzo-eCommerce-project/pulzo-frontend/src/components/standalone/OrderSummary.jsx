@@ -27,9 +27,6 @@ function OrderSummary({ cart }) {
               <div className="flex flex-1 justify-between items-center">
                 <div>
                   <h3 className="font-semibold text-lg">{item.product.name}</h3>
-                  <p className="text-sm text-gray-500">
-                    {item.product.description}
-                  </p>
                   <p className="text-sm">Qty: {item.quantity}</p>
                 </div>
                 <span className="font-medium">
