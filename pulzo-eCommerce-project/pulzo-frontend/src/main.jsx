@@ -23,6 +23,7 @@ import PaymentPage from "./pages/PaymentPage.jsx";
 import PaymentStatusPage from "./pages/PaymentStatusPage.jsx";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import AdminDashboardPage from "./pages/AdminDashboardPage.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -50,6 +51,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/account" element={<AccountPage />} />
             <Route path="/shop/favorites" element={<FavoritePage />} />
             <Route path="/shop/checkout" element={<PaymentPage />} />
+            <Route path="/admin" element={<AdminDashboardPage />} />
             <Route
               path="/payment-status"
               element={

@@ -28,7 +28,7 @@ function NavBar(props) {
           ρυℓzσ
         </a>
         <div className="flex items-center gap-4 font-poppins">
-          <a href="/">Home</a>
+          <a href="/admin">Home</a>
           <Link to="/shop"></Link>
           <a href="/shop">Shop</a>
           <SearchBar />
