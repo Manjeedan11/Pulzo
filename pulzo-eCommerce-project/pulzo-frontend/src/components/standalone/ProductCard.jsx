@@ -67,6 +67,11 @@ function ProductCard(props) {
         price: props.price,
         image: props.image,
         synopsis: props.synopsis,
+        description: props.description,
+        ratings: props.ratings,
+        keyFeatures: props.keyFeatures,
+        stock: props.stock,
+        sold: props.sold,
       })
     );
 

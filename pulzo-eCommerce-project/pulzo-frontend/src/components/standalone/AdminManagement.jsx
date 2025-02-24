@@ -12,9 +12,10 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { X } from "lucide-react";
+import { X, CircleCheck } from "lucide-react";
 import { useState } from "react";
 import { useCreateProductMutation, useGetCategoriesQuery } from "@/lib/api";
+import { useToast } from "@/hooks/use-toast";
 
 function AdminManagement() {
   const [formState, setFormState] = useState({
@@ -31,6 +32,7 @@ function AdminManagement() {
   const [currentFeature, setCurrentFeature] = useState("");
   const { data: categories = [] } = useGetCategoriesQuery();
   const [createProduct] = useCreateProductMutation();
+  const { toast } = useToast();
 
   const handleInputChange = (field, value) => {
     setFormState((prev) => ({ ...prev, [field]: value }));
@@ -74,6 +76,19 @@ function AdminManagement() {
     } catch (error) {
       console.error("Failed to add product:", error);
     }
+    toast({
+      description: (
+        <div className="flex items-center space-x-2">
+          <CircleCheck className="w-5 h-5 text-green-800" />
+          <span className="font-medium text-sm">
+            Product added successfully
+          </span>
+        </div>
+      ),
+      duration: 2000,
+      className:
+        "bg-green-100 text-green-800 rounded-lg p-4 shadow-md transition-opacity opacity- duration-500 ease-in-out transform",
+    });
   };
   return (
     <Tabs defaultValue="products" className="space-y-4">

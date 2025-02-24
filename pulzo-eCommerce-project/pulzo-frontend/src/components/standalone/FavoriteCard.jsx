@@ -1,16 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, CircleCheck } from "lucide-react";
+import { Heart, CircleCheck, Eye } from "lucide-react";
 import { addToCart } from "@/lib/features/cartSlice";
+import { setPreview } from "@/lib/features/previewSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavorite } from "@/lib/features/favoriteSlice";
 import { useToast } from "@/hooks/use-toast";
 import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
+import { useNavigate } from "react-router";
 
 function FavoriteCard() {
   const dispatch = useDispatch();
   const favoritesCard = useSelector((state) => state.favorite.value);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleClick = (item) => {
     dispatch(
@@ -58,6 +61,23 @@ function FavoriteCard() {
     });
   };
 
+  const handlePreview = (item) => {
+    dispatch(
+      setPreview({
+        _id: item._id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        description: item.description,
+        ratings: item.ratings,
+        keyFeatures: item.keyFeatures,
+        stock: item.stock,
+        sold: item.sold,
+      })
+    );
+    navigate("/shop/product/preview");
+  };
+
   return (
     <div className="flex flex-wrap gap-12 font-poppins">
       {favoritesCard.length === 0 ? (
@@ -73,6 +93,12 @@ function FavoriteCard() {
                 alt={item.name}
                 className="w-full h-[200px] object-cover rounded-lg"
               />
+              <div
+                className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400"
+                onClick={() => handlePreview(item)}
+              >
+                <Eye />
+              </div>
               <div
                 className="absolute top-4 right-4 cursor-pointer z-10 text-red-500"
                 onClick={() => toggleFavoriteHandler(item)}
