@@ -34,10 +34,10 @@ export const Api = createApi({
       }),
     }),
     createPaymentIntent: builder.mutation({
-      query: ({ amount, orderId }) => ({
+      query: (amount) => ({
         url: "create-payment-intent",
         method: "POST",
-        body: { amount, orderId },
+        body: { amount },
       }),
     }),
 
