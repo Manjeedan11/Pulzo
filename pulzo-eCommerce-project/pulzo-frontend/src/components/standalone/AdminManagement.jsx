@@ -14,11 +14,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useState } from "react";
+import { useCreateProductMutation, useGetCategoriesQuery } from "@/lib/api";
 
 function AdminManagement() {
+  const [formState, setFormState] = useState({
+    name: "",
+    categoryId: "",
+    image: "",
+    price: "",
+    ratings: 0,
+    stock: 0,
+    synopsis: "",
+    description: "",
+  });
   const [keyFeatures, setKeyFeatures] = useState([]);
   const [currentFeature, setCurrentFeature] = useState("");
-  const categories = JSON.parse(import.meta.env.VITE_CATEGORIES || "[]");
+  const { data: categories = [] } = useGetCategoriesQuery();
+  const [createProduct] = useCreateProductMutation();
+
+  const handleInputChange = (field, value) => {
+    setFormState((prev) => ({ ...prev, [field]: value }));
+  };
 
   const addKeyFeature = () => {
     if (currentFeature.trim()) {
@@ -29,6 +45,35 @@ function AdminManagement() {
 
   const removeKeyFeature = (index) => {
     setKeyFeatures(keyFeatures.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const productData = {
+        ...formState,
+        price: formState.price.toString(),
+        ratings: Number(formState.ratings),
+        stock: Number(formState.stock),
+        keyFeatures,
+        sold: 0, // Default value
+      };
+
+      await createProduct(productData).unwrap();
+      // Reset form after successful submission
+      setFormState({
+        name: "",
+        categoryId: "",
+        image: "",
+        price: "",
+        ratings: 0,
+        stock: 0,
+        synopsis: "",
+        description: "",
+      });
+      setKeyFeatures([]);
+    } catch (error) {
+      console.error("Failed to add product:", error);
+    }
   };
   return (
     <Tabs defaultValue="products" className="space-y-4">
@@ -46,34 +91,57 @@ function AdminManagement() {
             <div className="grid grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="productName">Product Name</Label>
-                <Input id="productName" placeholder="Enter product name" />
+                <Input
+                  id="productName"
+                  value={formState.name}
+                  placeholder="Enter product name"
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="category">Product Category</Label>
-                <Select>
+                <Select
+                  value={formState.categoryId}
+                  onValueChange={(value) =>
+                    handleInputChange("categoryId", value)
+                  }
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category._id} value={category._id}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
+                    {categories.length > 0 ? (
+                      categories.map((category) => (
+                        <SelectItem key={category._id} value={category._id}>
+                          {category.name}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <p className="px-2 py-1 text-gray-500">
+                        No categories available
+                      </p>
+                    )}
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="image">Image URL</Label>
-                <Input id="image" placeholder="Enter image URL" />
+                <Input
+                  id="image"
+                  placeholder="Enter image URL"
+                  value={formState.image}
+                  onChange={(e) => handleInputChange("image", e.target.value)}
+                />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="price">Price</Label>
                 <Input
                   id="price"
+                  value={formState.price}
+                  onChange={(e) => handleInputChange("price", e.target.value)}
                   type="number"
                   placeholder="Enter price"
                   min="0"
@@ -85,6 +153,8 @@ function AdminManagement() {
                 <Label htmlFor="ratings">Ratings</Label>
                 <Input
                   id="ratings"
+                  value={formState.ratings}
+                  onChange={(e) => handleInputChange("ratings", e.target.value)}
                   type="number"
                   placeholder="Enter ratings"
                   min="0"
@@ -97,6 +167,8 @@ function AdminManagement() {
                 <Label htmlFor="stock">Stock</Label>
                 <Input
                   id="stock"
+                  value={formState.stock}
+                  onChange={(e) => handleInputChange("stock", e.target.value)}
                   type="number"
                   placeholder="Enter stock quantity"
                   min="0"
@@ -105,13 +177,24 @@ function AdminManagement() {
 
               <div className="col-span-2 space-y-2">
                 <Label htmlFor="synopsis">Synopsis</Label>
-                <Input id="synopsis" placeholder="Enter product synopsis" />
+                <Input
+                  id="synopsis"
+                  placeholder="Enter product synopsis"
+                  value={formState.synopsis}
+                  onChange={(e) =>
+                    handleInputChange("synopsis", e.target.value)
+                  }
+                />
               </div>
 
               <div className="col-span-2 space-y-2">
                 <Label htmlFor="description">Description</Label>
                 <Textarea
                   id="description"
+                  value={formState.description}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   placeholder="Enter detailed product description"
                   className="min-h-[150px]"
                 />
@@ -155,7 +238,9 @@ function AdminManagement() {
             </div>
 
             <div className="flex justify-end pt-4">
-              <Button size="lg">Add Product</Button>
+              <Button size="lg" onClick={handleSubmit}>
+                Add Product
+              </Button>
             </div>
           </CardContent>
         </Card>

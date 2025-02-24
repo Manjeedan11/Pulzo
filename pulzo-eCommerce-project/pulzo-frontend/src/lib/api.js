@@ -33,6 +33,13 @@ export const Api = createApi({
         body,
       }),
     }),
+    createProduct: builder.mutation({
+      query: (product) => ({
+        url: "products",
+        method: "POST",
+        body: product,
+      }),
+    }),
     createPaymentIntent: builder.mutation({
       query: (amount) => ({
         url: "create-payment-intent",
@@ -57,6 +64,7 @@ export const {
   useCreateOrderMutation,
   useGetOrderQuery,
   useGetOrdersQuery,
+  useCreateProductMutation,
   useCreatePaymentIntentMutation,
   useUpdateOrderPaymentStatusMutation,
 } = Api;
