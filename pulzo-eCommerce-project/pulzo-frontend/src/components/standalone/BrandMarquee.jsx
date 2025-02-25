@@ -3,6 +3,7 @@ import { Marquee } from "../magicui/marquee";
 const brands = [
   { img: import.meta.env.VITE_BRAND_APPLE },
   { img: import.meta.env.VITE_BRAND_BOSE },
+  { img: import.meta.env.VITE_BRAND_META },
   { img: import.meta.env.VITE_BRAND_JBL },
   { img: import.meta.env.VITE_BRAND_MARSHAL },
   { img: import.meta.env.VITE_BRAND_SAMSUNG },

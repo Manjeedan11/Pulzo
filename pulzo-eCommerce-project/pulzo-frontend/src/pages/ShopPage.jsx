@@ -27,6 +27,8 @@ import { useGetCategoriesQuery, useGetProductsQuery } from "@/lib/api";
 import { useState } from "react";
 import ProductCards from "@/components/standalone/ProductCards";
 import SortDropDown from "@/components/standalone/SortDropDown";
+import speakerGIF from "@/assets/featureDeal/speaker.gif";
+import { SparklesText } from "@/components/magicui/sparkles-text";
 
 function ShopPage() {
   const featuredProduct = {
@@ -139,26 +141,32 @@ function ShopPage() {
         </div>
 
         <ShineBorder
-          className="rounded-lg relative mb-8 bg-white overflow-hidden flex justify-center items-center py-8 px-4 xl:px-16"
+          className="rounded-[20px] relative mb-8 bg-gradient-to-br from-[#2E0854] to-[#000000] overflow-hidden flex justify-center items-center py-8 px-4 xl:px-16 w-full max-w-full"
           color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
         >
-          <div className="flex flex-col items-center text-center">
-            {/* #TODO: Image component */}
-            <div className="space-y-4">
+          <div className="flex flex-col items-center text-center w-full">
+            <div className="space-y-4 w-full">
               <div>
-                <h2 className="text-6xl font-bold font-poppins text-transparent bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text leading-none tracking-tighter dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">
-                  {featuredProduct.name}
-                </h2>
-                <p className="text-transparent font-poppins bg-gradient-to-br from-[#ff2975] from-35% to-[#00FFF1] bg-clip-text">
-                  {featuredProduct.description}
+                <SparklesText
+                  text="Black Friday Tech Deals"
+                  className="text-6xl font-bold text-white font-poppins bg-gradient-to-br from-[#FF002B] from-35% to-[#8A2BE2] bg-clip-text leading-none tracking-tighter dark:drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]"
+                  style={{
+                    WebkitTextFillColor: "transparent",
+                  }}
+                  sparklesCount={10}
+                  colors={{ first: "#A07CFE", second: "#FE8FB5" }}
+                />
+
+                <p className="text-transparent font-poppins bg-gradient-to-br mt-4 from-[#FFD700] from-35% to-[#DAA520] bg-clip-text text-lg">
+                  Up to 70% OFF on the Latest Gadgets & Accessories!
                 </p>
               </div>
               <div className="flex flex-row items-center justify-center gap-4">
-                <Button className="font-poppins bg-primary pointer-events-none z-10 transition-all duration-300 hover:bg-gradient-to-br hover:from-[#ff2975] hover:from-35% hover:to-[#00FFF1] hover:text-white">
-                  Buy ${featuredProduct.price}
+                <Button className="font-poppins bg-primary pointer-events-none z-10 transition-all duration-300 hover:bg-gradient-to-br hover:from-[#FF002B] hover:from-35% hover:to-[#FFD700] hover:text-white">
+                  Shop Now
                 </Button>
-                <span className="text-black line-through font-poppins">
-                  ${featuredProduct.originalPrice}
+                <span className="text-gray-400 font-poppins uppercase tracking-wide">
+                  Limited-Time Offer
                 </span>
               </div>
             </div>
