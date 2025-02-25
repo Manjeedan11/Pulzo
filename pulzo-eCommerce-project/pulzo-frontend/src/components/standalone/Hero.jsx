@@ -8,9 +8,14 @@ import { BoxReveal } from "../magicui/box-reveal";
 import EnquiryForm from "./EnquiryForm";
 import { ShinyButton } from "../magicui/shiny-button";
 import { Sparkles, BotMessageSquare } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import ChatBotSheet from "./ChatBotSheet";
 
 function Hero() {
   const productRef = useRef(null);
+  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
 
   const scrollToProduct = () => {
     productRef.current?.scrollIntoView({
@@ -53,7 +58,10 @@ function Hero() {
                   <p className="font-poppins">Shop now</p>
                 </Button>
 
-                <ShinyButton className="p-3 rounded-lg border-black transition">
+                <ShinyButton
+                  className="p-3 rounded-lg border-black transition"
+                  onClick={() => setIsChatBotOpen(true)}
+                >
                   <BotMessageSquare className="w-5 h-5 " />
                 </ShinyButton>
               </div>
@@ -88,9 +96,10 @@ function Hero() {
       <section className="py-20 px-4 xl:px-16 mt-20">
         <EnquiryForm />
       </section>
+
+      <ChatBotSheet open={isChatBotOpen} onOpenChange={setIsChatBotOpen} />
     </>
   );
 }
 
 export default Hero;
-//https://fee-storefront.vercel.app/assets/hero/hero.jpg
