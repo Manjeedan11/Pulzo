@@ -1,11 +1,52 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Circle } from "lucide-react";
 import redBlink from "@/assets/featureDeal/red-blink.gif";
+import { ShimmerButton } from "../magicui/shimmer-button";
+import { Link } from "react-router";
 
 function FeaturedDeal() {
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  const deadline = new Date();
+  deadline.setDate(deadline.getDate() + 7);
+
+  const calculateTimeLeft = () => {
+    const now = new Date();
+    const difference = +deadline - +now;
+
+    if (difference > 0) {
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    } else {
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+      };
+    }
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="grid grid-cols-2 rounded-md bg-[#f4f8f9] max-w-[80%] h-[450px] mx-auto">
-      <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px] ">
+      <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px]">
         <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-red-600 font-semibold">
           <img src={redBlink} className="w-4 h-4 font-poppins" />
           Don't Miss!!
@@ -14,24 +55,35 @@ function FeaturedDeal() {
         <h1 className="text-[3rem] font-semibold leading-none font-poppins">
           Enhance Your Music Experience
         </h1>
+
         <div className="flex justify-center items-center gap-8 pr-5 mt-5">
-          {["Day", "Hrs", "Min", "Sec"].map((label, index) => (
+          {Object.entries(timeLeft).map(([label, value], index) => (
             <div
               key={index}
               className="flex flex-col justify-center items-center w-20 h-20 rounded-full bg-white"
             >
-              <span className="text-3xl font-bold text-black">00</span>
-              <span className="text-sm font-medium text-gray-500">{label}</span>
+              <span className="text-3xl font-bold text-black">
+                {value.toString().padStart(2, "0")}
+              </span>
+              <span className="text-sm font-medium text-gray-500">
+                {label.charAt(0).toUpperCase() + label.slice(1)}
+              </span>
             </div>
           ))}
         </div>
 
-        <Button
-          className="w-fit px-4 py-2 mt-5 text-white font-medium bg-blue-600 rounded-md font-poppins"
-          asChild
-        >
-          <p>Check it Out!</p>
-        </Button>
+        <div className="mt-5 w-full ">
+          <Link to="/shop">
+            <ShimmerButton
+              className="w-40 h-10 px-4 py-2 text-white font-poppins flex justify-center items-center"
+              asChild
+            >
+              <button className="w-full h-full text-white font-poppins flex justify-center items-center">
+                Check it Out!
+              </button>
+            </ShimmerButton>
+          </Link>
+        </div>
       </div>
       <div className="relative">
         <img
