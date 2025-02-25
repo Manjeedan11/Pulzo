@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import redBlink from "@/assets/featureDeal/red-blink.gif";
+import featureVR from "@/assets/featureDeal/featureVR.png";
 import { ShimmerButton } from "../magicui/shimmer-button";
 import { Link } from "react-router";
 
@@ -53,7 +54,7 @@ function FeaturedDeal() {
         </span>
 
         <h1 className="text-[3rem] font-semibold leading-none font-poppins">
-          Enhance Your Music Experience
+          Enhance Your VR Experience
         </h1>
 
         <div className="flex justify-center items-center gap-8 pr-5 mt-5">
@@ -87,8 +88,8 @@ function FeaturedDeal() {
       </div>
       <div className="relative">
         <img
-          className="w-[150%] h-[150%] object-cover translate-y-[-250px]"
-          src="/assets/products/airpods-max.png"
+          className="w-[100%] h-[100%] object-cover translate-y-[-338px]"
+          src={featureVR}
           alt="Banner"
         />
       </div>
