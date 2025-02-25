@@ -5,6 +5,9 @@ import { useRef } from "react";
 import FeaturedDeal from "./FeaturedDeal";
 import BrandMarquee from "./BrandMarquee";
 import { BoxReveal } from "../magicui/box-reveal";
+import EnquiryForm from "./EnquiryForm";
+import { ShinyButton } from "../magicui/shiny-button";
+import { Sparkles, BotMessageSquare } from "lucide-react";
 
 function Hero() {
   const productRef = useRef(null);
@@ -41,13 +44,19 @@ function Hero() {
             </BoxReveal>
 
             <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <Button
-                className="w-fit px-4 py-2 text-white font-medium bg-black rounded-md"
-                onClick={scrollToProduct}
-                asChild
-              >
-                <p className="font-poppins">Shop now</p>
-              </Button>
+              <div className="flex items-center gap-3">
+                <Button
+                  className="w-fit px-4 py-2 text-white font-medium bg-black rounded-md hover:bg-[#febc26] hover:text-black"
+                  onClick={scrollToProduct}
+                  asChild
+                >
+                  <p className="font-poppins">Shop now</p>
+                </Button>
+
+                <ShinyButton className="p-3 rounded-lg border-black transition">
+                  <BotMessageSquare className="w-5 h-5 " />
+                </ShinyButton>
+              </div>
             </BoxReveal>
           </div>
 
@@ -74,6 +83,10 @@ function Hero() {
 
       <section className="py-15">
         <div ref={productRef} className="container mx-auto"></div>
+      </section>
+
+      <section className="py-20 px-4 xl:px-16 mt-20">
+        <EnquiryForm />
       </section>
     </>
   );
