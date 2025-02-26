@@ -10,6 +10,7 @@ import { clerkMiddleware } from "@clerk/express";
 import { orderRouter } from "./api/order";
 import Stripe from "stripe";
 import { paymentsRouter } from "./api/payment";
+import { enquiryRouter } from "./api/enquiry";
 
 const app = express();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use("/api/products", productRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/payments", paymentsRouter);
+app.use("/api/enquires", enquiryRouter);
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
