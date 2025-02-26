@@ -6,18 +6,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { CircleCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useGetProductsQuery } from "@/lib/api";
 
 const initialContactState = {
   name: "",
   email: "",
   phoneNumber: "",
-  description: "",
+  issueDetails: "",
 };
 
 function EnquiryForm() {
   const [contactData, setContactData] = useState(initialContactState);
   const [errorMessage, setErrorMessage] = useState("");
   const { toast } = useToast();
+  const { data: products = [] } = useGetProductsQuery();
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
@@ -50,18 +59,18 @@ function EnquiryForm() {
     <section className="flex flex-col items-center justify-center min-h-screen mt-10 py-10 px-4 xl:px-16 mb-100">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4 font-poppins">
-          Got Questions ? Let’s Talk Tech !
+          Have a Question ? We're Here to Help !
         </h1>
         <p className="text-gray-600 font-poppins">
-          Looking for the latest gadgets or need expert advice ? Drop your
-          details, and we’ll connect with you ASAP !
+          Need details on a gadget or expert advice ? Share your inquiry, and
+          our team will get back to you ASAP !
         </p>
       </div>
 
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-center text-xl font-poppins">
-            Quick Gadget Enquiry
+            Get Expert Assistance
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -84,6 +93,29 @@ function EnquiryForm() {
                 required
               />
             </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="category">Product Name</Label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Product" />
+                </SelectTrigger>
+                <SelectContent>
+                  {products.length > 0 ? (
+                    products.map((product) => (
+                      <SelectItem key={product._id} value={product._id}>
+                        {product.name}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <p className="px-2 py-1 text-gray-500">
+                      No products available
+                    </p>
+                  )}
+                </SelectContent>
+              </Select>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="email" className="font-poppins">
                 Email
@@ -121,7 +153,7 @@ function EnquiryForm() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="description" className="font-poppins">
-                Description
+                Issue Details
               </Label>
               <Textarea
                 id="description"
@@ -132,7 +164,7 @@ function EnquiryForm() {
                     description: e.target.value,
                   }))
                 }
-                placeholder="Tell us what you're looking for !"
+                placeholder="Describe the issue or concern briefly"
                 className="min-h-[100px] font-poppins"
                 required
               />
