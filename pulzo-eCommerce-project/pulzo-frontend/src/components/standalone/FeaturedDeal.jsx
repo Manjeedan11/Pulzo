@@ -76,13 +76,8 @@ function FeaturedDeal() {
 
           <div className="mt-5 w-full ">
             <Link to="/shop">
-              <ShimmerButton
-                className="w-40 h-10 px-4 py-2 text-white font-poppins flex justify-center items-center"
-                asChild
-              >
-                <button className="w-full h-full text-white font-poppins flex justify-center items-center">
-                  Check it Out!
-                </button>
+              <ShimmerButton className="w-30 h-10 px-4 py-2 text-white font-poppins flex justify-center items-center">
+                Check it Out !
               </ShimmerButton>
             </Link>
           </div>

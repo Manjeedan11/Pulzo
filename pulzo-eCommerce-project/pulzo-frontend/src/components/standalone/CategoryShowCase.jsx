@@ -45,7 +45,7 @@ function CategoryShowCase() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center mb-8">
           <h1 className="text-center font-poppins mb-10 text-4xl font-bold text-gray-800">
-            Explore Our Categories
+            Shop Our Curated Categories
           </h1>
         </div>
 

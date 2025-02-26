@@ -88,10 +88,10 @@ function Products(props) {
       <div className="mt-10">
         <div className="text-center">
           <h1 className="text-4xl font-bold font-poppins">
-            Best Seller Products
+            Best Selling Products
           </h1>
           <p className="text-gray-600 font-poppins mt-2">
-            Check our best seller products on Pulzo website right now!
+            Check our best selling products on Pulzo website right now!
           </p>
         </div>
         {props.limit && (

@@ -22,15 +22,18 @@ import {
   Sparkles,
   MessageCircle,
   BotMessageSquare,
+  ArrowRight,
 } from "lucide-react";
 import { ShinyButton } from "../magicui/shiny-button";
+import { RainbowButton } from "../magicui/rainbow-button";
 
-function ChatBotSheet({ open, onOpenChange }) {
+function ChatBotSheet() {
+  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       type: "bot",
       content:
-        "👋 Hi there! I'm TechBot, your personal electronics assistant. How can I help you today?",
+        "👋 Hi there! I'm GearBot, your personal electronics assistant. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
@@ -58,20 +61,26 @@ function ChatBotSheet({ open, onOpenChange }) {
   };
 
   return (
-    <div>
-      <Sheet open={open} onOpenChange={onOpenChange}>
+    <div className="">
+      <RainbowButton
+        className="fixed bottom-4 right-4 h-12 px-4 w-fit rounded-[30px] flex items-center gap-2"
+        onClick={() => setIsChatBotOpen(true)}
+      >
+        <Sparkles className="w-4 h-4 text-white fill-white" />
+        <span className="font-poppins text-white">Chat with AI</span>
+      </RainbowButton>
+
+      <Sheet open={isChatBotOpen} onOpenChange={setIsChatBotOpen}>
         <SheetContent className="w-[400px] sm:w-[540px] h-full">
           <SheetHeader className="pb-4">
             <div className="flex items-center gap-2">
               <CircuitBoard className="h-6 w-6 text-blue-500" />
-              <SheetTitle>TechBot Assistant</SheetTitle>
+              <SheetTitle>GearBot Assistant</SheetTitle>
               <Badge variant="secondary" className="ml-2">
                 <Sparkles className="h-3 w-3 mr-1" /> AI Powered
               </Badge>
             </div>
-            <SheetDescription>
-              Your personal electronics assistant
-            </SheetDescription>
+            <SheetDescription>Your personal chat assistant</SheetDescription>
           </SheetHeader>
 
           <div className="flex flex-col h-[600px]">
@@ -126,7 +135,7 @@ function ChatBotSheet({ open, onOpenChange }) {
                 onClick={handleSend}
                 className="bg-blue-500 hover:bg-blue-600"
               >
-                <Sparkles className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
           </div>

@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import heroBanner from "@/assets/hero/hero.png";
+import heroBanner from "@/assets/hero/heroThree.png";
 import Products from "./Products";
 import { useRef } from "react";
 import FeaturedDeal from "./FeaturedDeal";
 import BrandMarquee from "./BrandMarquee";
-import { BoxReveal } from "../magicui/box-reveal";
 import EnquiryForm from "./EnquiryForm";
 import { ShinyButton } from "../magicui/shiny-button";
 import { Sparkles, BotMessageSquare } from "lucide-react";
@@ -13,10 +12,10 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import ChatBotSheet from "./ChatBotSheet";
 import CategoryShowCase from "./CategoryShowCase";
+import { RainbowButton } from "../magicui/rainbow-button";
+import { PulsatingButton } from "../magicui/pulsating-button";
 
 function Hero({ productRef }) {
-  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
-
   const scrollToProduct = () => {
     productRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -27,60 +26,42 @@ function Hero({ productRef }) {
   return (
     <>
       <section className="py-8 px-4 xl:px-16 mt-5">
-        <div className="grid grid-cols-2 rounded-lg min-h-[60vh] bg-[#f4f8f9]">
-          <div className="flex flex-col justify-center items-center text-center p-8 md:p-16 gap-y-4">
-            <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <span className="inline-block rounded-full px-2 py-1 mr-10 text-xs w-fit bg-[#febc26] font-poppins">
+        <div className="grid grid-cols-1 md:grid-cols-2 rounded-[30px] min-h-[10vh] bg-[#f4f8f9] mb-50">
+          <div className="flex flex-col mt-8 justify-center items-center text-center p-8 md:p-16 gap-y-6">
+            <div className="flex flex-col items-center text-center">
+              <span className="inline-block rounded-full px-4 py-2 text-xs font-semibold text-black bg-[#febc26] mb-4">
                 WEEKLY DISCOUNT
               </span>
-            </BoxReveal>
 
-            <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <h1 className="text-[3.75rem] font-semibold leading-none font-poppins">
+              <h1 className="text-[3.75rem] font-semibold leading-none font-poppins mb-4">
                 Premium Product Online Shop
               </h1>
-            </BoxReveal>
 
-            <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <p>
+              <p className="text-lg font-medium text-gray-700 mb-6">
                 Your Future of Shopping. Explore, Compare, and Buy the Latest
                 Electronics
               </p>
-            </BoxReveal>
 
-            <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <div className="flex items-center gap-3">
-                <Button
-                  className="w-fit px-4 py-2 text-white font-medium bg-black rounded-md hover:bg-[#febc26] hover:text-black"
-                  onClick={scrollToProduct}
-                  asChild
-                >
-                  <p className="font-poppins">Shop now</p>
-                </Button>
-
-                <ShinyButton
-                  className="p-3 rounded-lg border-black transition"
-                  onClick={() => setIsChatBotOpen(true)}
-                >
-                  <BotMessageSquare className="w-5 h-5 " />
-                </ShinyButton>
-              </div>
-            </BoxReveal>
+              <PulsatingButton
+                className="flex items-center justify-center mb-6 w-fit px-6 py-3 text-white font-medium rounded-md bg-black hover:bg-[#febc26] hover:text-black"
+                onClick={scrollToProduct}
+              >
+                Shop now
+              </PulsatingButton>
+            </div>
           </div>
 
-          <BoxReveal boxColor={"#febc26"} duration={0.5}>
-            <div className="relative">
-              <img
-                className="w-full h-full object-cover"
-                src={heroBanner}
-                alt="Banner"
-              />
-            </div>
-          </BoxReveal>
+          <div className="relative">
+            <img
+              className="w-full h-full object-cover"
+              src={heroBanner}
+              alt="Banner"
+            />
+          </div>
         </div>
       </section>
 
-      <ChatBotSheet open={isChatBotOpen} onOpenChange={setIsChatBotOpen} />
+      <ChatBotSheet />
     </>
   );
 }
