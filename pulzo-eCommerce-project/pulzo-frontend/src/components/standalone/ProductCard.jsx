@@ -92,7 +92,7 @@ function ProductCard(props) {
 
   return (
     <Card className="border-none">
-      <div className="bg-gray-50 rounded-lg p-4 flex justify-center items-center relative">
+      <div className="bg-gray-50 rounded-[30px] p-4 flex justify-center items-center relative">
         <img src={props.image} className="w-full h-full object-cover" />
         <div
           className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400"

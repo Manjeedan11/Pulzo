@@ -5,6 +5,8 @@ import Tab from "./Tab";
 import SortDropDown from "./SortDropDown";
 import { useEffect, useState } from "react";
 import { useGetProductsQuery, useGetCategoriesQuery } from "@/lib/api";
+import { Button } from "../ui/button";
+import { Link } from "react-router";
 
 function Products(props) {
   const {
@@ -44,6 +46,10 @@ function Products(props) {
     setSortOrder(order);
   };
 
+  const limitedProducts = props.limit
+    ? sortedProducts.slice(0, props.limit)
+    : sortedProducts;
+
   if (isProductsLoading || isCategoriesLoading) {
     return (
       <section className="py-8 px-4 xl:px-16">
@@ -79,21 +85,24 @@ function Products(props) {
 
   return (
     <section className="py-8 px-4 xl:px-16">
-      <h2 className="text-4xl font-bold">Explore our Products</h2>
-      <Separator className="mt-2" />
-      <div className="mt-4 flex items-center gap-4">
-        {[...categories, { _id: "ALL", name: "ALL" }].map((category) => (
-          <Tab
-            key={category._id}
-            _id={category._id}
-            selectedCategoryId={selectedCategoryId}
-            name={category.name}
-            onTabClick={handleTabClick}
-          />
-        ))}
-        <SortDropDown onSort={handleSort} />
+      <div className="mb-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold font-poppins">
+            Best Seller Products
+          </h1>
+          <p className="text-gray-600 font-poppins mt-2">
+            Check our best seller products on Pulzo website right now!
+          </p>
+        </div>
+        {props.limit && (
+          <div className="flex justify-end mt-4">
+            <Button asChild variant="outline" className="font-poppins">
+              <Link to="/shop">View All</Link>
+            </Button>
+          </div>
+        )}
       </div>
-      <ProductCards products={sortedProducts} />
+      <ProductCards products={limitedProducts} />
     </section>
   );
 }

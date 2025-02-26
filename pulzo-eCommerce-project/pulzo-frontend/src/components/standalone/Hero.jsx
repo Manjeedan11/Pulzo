@@ -28,9 +28,9 @@ function Hero() {
     <>
       <section className="py-8 px-4 xl:px-16 mt-5">
         <div className="grid grid-cols-2 rounded-lg min-h-[60vh] bg-[#f4f8f9]">
-          <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4">
+          <div className="flex flex-col justify-center items-center text-center p-8 md:p-16 gap-y-4">
             <BoxReveal boxColor={"#febc26"} duration={0.5}>
-              <span className="inline-block rounded-full px-2 py-1 text-xs w-fit bg-[#febc26] font-poppins">
+              <span className="inline-block rounded-full px-2 py-1 mr-10 text-xs w-fit bg-[#febc26] font-poppins">
                 WEEKLY DISCOUNT
               </span>
             </BoxReveal>
@@ -85,12 +85,14 @@ function Hero() {
         <BrandMarquee />
       </section>
 
-      <section className="py-20 px-4 xl:px-16 mt-20">
-        <FeaturedDeal />
+      <section>
+        <div ref={productRef} className="container mx-auto">
+          <Products gridClassName="grid-cols-3" limit={4} />
+        </div>
       </section>
 
-      <section className="py-15">
-        <div ref={productRef} className="container mx-auto"></div>
+      <section className="py-20 px-4 xl:px-16 mt-20">
+        <FeaturedDeal />
       </section>
 
       <section className="py-20 px-4 xl:px-16 mt-20">

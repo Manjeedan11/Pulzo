@@ -173,7 +173,7 @@ function ShopPage() {
           </div>
         </ShineBorder>
 
-        <ProductCards products={sortedProducts} />
+        <ProductCards products={sortedProducts} gridClassName="grid-cols-3" />
       </div>
     </div>
   );
