@@ -13,27 +13,30 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useGetProductsQuery } from "@/lib/api";
+import { useCreateEnquiryMutation, useGetProductsQuery } from "@/lib/api";
 
-const initialContactState = {
+const initialEnquiryState = {
   name: "",
+  productName: "",
   email: "",
   phoneNumber: "",
   issueDetails: "",
 };
 
 function EnquiryForm() {
-  const [contactData, setContactData] = useState(initialContactState);
+  const [enquiryData, setEnquiryData] = useState(initialEnquiryState);
   const [errorMessage, setErrorMessage] = useState("");
+  const [createEnquiry] = useCreateEnquiryMutation();
   const { toast } = useToast();
   const { data: products = [] } = useGetProductsQuery();
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
-    if (!contactData.name || !contactData.phoneNumber) return;
+    if (!enquiryData.name || !enquiryData.phoneNumber) return;
 
     try {
-      setContactData(initialContactState);
+      const response = await createEnquiry(enquiryData).unwrap();
+      setEnquiryData(initialEnquiryState);
       setErrorMessage("");
 
       toast({
@@ -85,9 +88,9 @@ function EnquiryForm() {
               <Input
                 id="name"
                 className="font-poppins"
-                value={contactData.name}
+                value={enquiryData.name}
                 onChange={(e) =>
-                  setContactData((prev) => ({ ...prev, name: e.target.value }))
+                  setEnquiryData((prev) => ({ ...prev, name: e.target.value }))
                 }
                 placeholder="Enter your name"
                 required
@@ -95,15 +98,22 @@ function EnquiryForm() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="category">Product Name</Label>
-              <Select>
+              <Label htmlFor="productName">Product Name</Label>
+              <Select
+                onValueChange={(value) =>
+                  setEnquiryData((prev) => ({ ...prev, productName: value }))
+                }
+              >
                 <SelectTrigger>
-                  <SelectValue placeholder="Select Product" />
+                  <SelectValue
+                    placeholder="Select Product"
+                    value={enquiryData.productName}
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {products.length > 0 ? (
                     products.map((product) => (
-                      <SelectItem key={product._id} value={product._id}>
+                      <SelectItem key={product._id} value={product.name}>
                         {product.name}
                       </SelectItem>
                     ))
@@ -124,9 +134,9 @@ function EnquiryForm() {
                 id="email"
                 className="font-poppins"
                 type="email"
-                value={contactData.email}
+                value={enquiryData.email}
                 onChange={(e) =>
-                  setContactData((prev) => ({ ...prev, email: e.target.value }))
+                  setEnquiryData((prev) => ({ ...prev, email: e.target.value }))
                 }
                 placeholder="Enter your email"
                 required
@@ -140,9 +150,9 @@ function EnquiryForm() {
                 id="phoneNumber"
                 className="font-poppins"
                 type="tel"
-                value={contactData.phoneNumber}
+                value={enquiryData.phoneNumber}
                 onChange={(e) =>
-                  setContactData((prev) => ({
+                  setEnquiryData((prev) => ({
                     ...prev,
                     phoneNumber: e.target.value,
                   }))
@@ -157,11 +167,11 @@ function EnquiryForm() {
               </Label>
               <Textarea
                 id="description"
-                value={contactData.description}
+                value={enquiryData.issueDetails}
                 onChange={(e) =>
-                  setContactData((prev) => ({
+                  setEnquiryData((prev) => ({
                     ...prev,
-                    description: e.target.value,
+                    issueDetails: e.target.value,
                   }))
                 }
                 placeholder="Describe the issue or concern briefly"
