@@ -96,7 +96,11 @@ function Products(props) {
         </div>
         {props.limit && (
           <div className="flex justify-end mt-4">
-            <Button asChild variant="outline" className="font-poppins">
+            <Button
+              asChild
+              variant="outline"
+              className="font-poppins rounded-[30px] border-[#febc26] text-[#febc26] hover:bg-[#febc26] hover:text-black"
+            >
               <Link to="/shop">View All</Link>
             </Button>
           </div>

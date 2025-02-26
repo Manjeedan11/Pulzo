@@ -85,17 +85,17 @@ function Hero() {
         <BrandMarquee />
       </section>
 
+      <section className="py-20 px-4 xl:px-16 mb-30">
+        <FeaturedDeal />
+      </section>
+
       <section>
         <div ref={productRef} className="container mx-auto">
           <Products gridClassName="grid-cols-3" limit={4} />
         </div>
       </section>
 
-      <section className="py-20 px-4 xl:px-16 mt-20">
-        <FeaturedDeal />
-      </section>
-
-      <section className="py-20 px-4 xl:px-16 mt-20">
+      <section className="py-10 px-4 xl:px-16 mb-50">
         <EnquiryForm />
       </section>
 

@@ -22,7 +22,7 @@ function NavBar(props) {
   };
 
   return (
-    <nav className="bg-white shadow-lg rounded-lg flex items-center justify-between py-8 px-8 xl:px-16">
+    <nav className="bg-transparent shadow-lg rounded-lg flex items-center justify-between py-8 px-8 xl:px-16">
       <div className="flex gap-x-16 m-5 mr-16 -ml-1">
         <a className="flex items-center font-semibold text-3xl" href="/">
           ρυℓzσ
