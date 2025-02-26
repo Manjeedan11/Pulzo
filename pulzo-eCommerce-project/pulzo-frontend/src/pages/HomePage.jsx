@@ -1,47 +1,26 @@
-import NavBar from "@/components/standalone/NavBar";
+import { useRef, useState } from "react";
 import Hero from "@/components/standalone/Hero";
 import Products from "@/components/standalone/Products";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import BrandMarquee from "@/components/standalone/BrandMarquee";
+import CategoryShowCase from "@/components/standalone/CategoryShowCase";
+import EnquiryForm from "@/components/standalone/EnquiryForm";
+import FeaturedDeal from "@/components/standalone/FeaturedDeal";
 
 function HomePage() {
-  const name = "";
-  //const [cart, setCart] = useState([]);
-  //const [favorites, setFavorites] = useState([]);
-  //const [favoritesCount, setFavoritesCount] = useState([0]);
-
-  /*const handleAddToCart = (product) => {
-    const foundItem = cart.find((item) => item.product._id === product._id);
-    if (foundItem) {
-      setCart(
-        cart.map((cartItem) => {
-          cartItem.product._id === product._id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem;
-        })
-      );
-    }
-    setCart([...cart, { product: product, quantity: 1 }]);
-  };*/
-
-  /*const handleFavorites = (product) => {
-    setFavorites((prevFavorites) => {
-      const isFavorite = prevFavorites.some((item) => item._id === product._id);
-      if (isFavorite) {
-        return prevFavorites.filter((item) => item._id !== product._id);
-      } else {
-        return [...prevFavorites, product];
-      }
-    });
-  };
-
-  useEffect(() => {
-    setFavoritesCount(favorites.length);
-  }, [favorites]); */
+  const productRef = useRef(null);
 
   return (
     <div>
-      <Hero />
+      <Hero productRef={productRef} />
+      <BrandMarquee />
+      <FeaturedDeal />
+
+      <section ref={productRef} className="container mx-auto">
+        <Products gridClassName="grid-cols-3" limit={4} />
+      </section>
+
+      <CategoryShowCase />
+      <EnquiryForm />
     </div>
   );
 }

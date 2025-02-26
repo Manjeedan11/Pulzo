@@ -18,13 +18,22 @@ const ImageCard = ({ img }) => {
 
 function BrandMarquee() {
   return (
-    <div className="relative flex w-full items-center justify-center overflow-hidden">
-      <Marquee pauseOnHover className="[--duration:10s] flex gap-16">
-        {brands.map((brand, index) => (
-          <ImageCard key={index} {...brand} />
-        ))}
-      </Marquee>
-    </div>
+    <section className="py-20 px-4 xl:px-16 mt-10 text-center relative">
+      <h1 className="text-4xl font-bold font-poppins mb-10">Our Brands</h1>
+
+      <div className="relative w-full overflow-hidden">
+        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-white to-transparent z-10" />
+        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-white to-transparent z-10" />
+
+        <div className="relative flex w-full items-center justify-center">
+          <Marquee pauseOnHover className="[--duration:10s] flex gap-16">
+            {brands.map((brand, index) => (
+              <ImageCard key={index} {...brand} />
+            ))}
+          </Marquee>
+        </div>
+      </div>
+    </section>
   );
 }
 

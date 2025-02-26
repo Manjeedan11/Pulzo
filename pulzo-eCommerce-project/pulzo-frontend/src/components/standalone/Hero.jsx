@@ -12,9 +12,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import ChatBotSheet from "./ChatBotSheet";
+import CategoryShowCase from "./CategoryShowCase";
 
-function Hero() {
-  const productRef = useRef(null);
+function Hero({ productRef }) {
   const [isChatBotOpen, setIsChatBotOpen] = useState(false);
 
   const scrollToProduct = () => {
@@ -78,25 +78,6 @@ function Hero() {
             </div>
           </BoxReveal>
         </div>
-      </section>
-
-      <section className="py-20 px-4 xl:px-16 mt-10 text-center">
-        <h1 className="text-3xl font-bold mb-10 font-poppins">Our Brands</h1>
-        <BrandMarquee />
-      </section>
-
-      <section className="py-20 px-4 xl:px-16 mb-30">
-        <FeaturedDeal />
-      </section>
-
-      <section>
-        <div ref={productRef} className="container mx-auto">
-          <Products gridClassName="grid-cols-3" limit={4} />
-        </div>
-      </section>
-
-      <section className="py-10 px-4 xl:px-16 mb-50">
-        <EnquiryForm />
       </section>
 
       <ChatBotSheet open={isChatBotOpen} onOpenChange={setIsChatBotOpen} />

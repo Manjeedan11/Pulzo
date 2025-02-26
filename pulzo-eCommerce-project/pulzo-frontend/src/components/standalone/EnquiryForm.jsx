@@ -47,7 +47,7 @@ function EnquiryForm() {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen py-8 mt-10">
+    <section className="flex flex-col items-center justify-center min-h-screen mt-10 py-10 px-4 xl:px-16 mb-100">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4 font-poppins">
           Got Questions ? Let’s Talk Tech !

@@ -85,7 +85,7 @@ function Products(props) {
 
   return (
     <section className="py-8 px-4 xl:px-16">
-      <div className="mb-8">
+      <div className="mt-10">
         <div className="text-center">
           <h1 className="text-4xl font-bold font-poppins">
             Best Seller Products

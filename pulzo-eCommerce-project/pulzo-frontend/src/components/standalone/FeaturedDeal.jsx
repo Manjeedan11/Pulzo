@@ -46,54 +46,56 @@ function FeaturedDeal() {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 rounded-[30px] bg-[#f4f8f9] max-w-[80%] h-[450px] mx-auto">
-      <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px]">
-        <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-red-600 font-semibold">
-          <img src={redBlink} className="w-4 h-4 font-poppins" />
-          Don't Miss!!
-        </span>
+    <section className="py-20 px-4 xl:px-16 mb-30">
+      <div className="grid grid-cols-2 rounded-[30px] bg-[#f4f8f9] max-w-[80%] h-[450px] mx-auto">
+        <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px]">
+          <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-red-600 font-semibold">
+            <img src={redBlink} className="w-4 h-4 font-poppins" />
+            Don't Miss!!
+          </span>
 
-        <h1 className="text-[3rem] font-semibold leading-none font-poppins">
-          Enhance Your VR Experience
-        </h1>
+          <h1 className="text-[3rem] font-semibold leading-none font-poppins">
+            Enhance Your VR Experience
+          </h1>
 
-        <div className="flex justify-center items-center gap-8 pr-5 mt-5">
-          {Object.entries(timeLeft).map(([label, value], index) => (
-            <div
-              key={index}
-              className="flex flex-col justify-center items-center w-20 h-20 rounded-full bg-white"
-            >
-              <span className="text-3xl font-bold text-black">
-                {value.toString().padStart(2, "0")}
-              </span>
-              <span className="text-sm font-medium text-gray-500">
-                {label.charAt(0).toUpperCase() + label.slice(1)}
-              </span>
-            </div>
-          ))}
+          <div className="flex justify-center items-center gap-8 pr-5 mt-5">
+            {Object.entries(timeLeft).map(([label, value], index) => (
+              <div
+                key={index}
+                className="flex flex-col justify-center items-center w-20 h-20 rounded-full bg-white"
+              >
+                <span className="text-3xl font-bold text-black">
+                  {value.toString().padStart(2, "0")}
+                </span>
+                <span className="text-sm font-medium text-gray-500">
+                  {label.charAt(0).toUpperCase() + label.slice(1)}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 w-full ">
+            <Link to="/shop">
+              <ShimmerButton
+                className="w-40 h-10 px-4 py-2 text-white font-poppins flex justify-center items-center"
+                asChild
+              >
+                <button className="w-full h-full text-white font-poppins flex justify-center items-center">
+                  Check it Out!
+                </button>
+              </ShimmerButton>
+            </Link>
+          </div>
         </div>
-
-        <div className="mt-5 w-full ">
-          <Link to="/shop">
-            <ShimmerButton
-              className="w-40 h-10 px-4 py-2 text-white font-poppins flex justify-center items-center"
-              asChild
-            >
-              <button className="w-full h-full text-white font-poppins flex justify-center items-center">
-                Check it Out!
-              </button>
-            </ShimmerButton>
-          </Link>
+        <div className="relative">
+          <img
+            className="w-[100%] h-[100%] object-cover translate-y-[-338px]"
+            src={featureVR}
+            alt="Banner"
+          />
         </div>
       </div>
-      <div className="relative">
-        <img
-          className="w-[100%] h-[100%] object-cover translate-y-[-338px]"
-          src={featureVR}
-          alt="Banner"
-        />
-      </div>
-    </div>
+    </section>
   );
 }
 
