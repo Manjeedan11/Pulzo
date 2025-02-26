@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { setPreview } from "@/lib/features/previewSlice";
 import { useNavigate } from "react-router";
 import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
+import { useUser } from "@clerk/clerk-react";
 
 function ProductCard(props) {
   const dispatch = useDispatch();
@@ -16,8 +17,13 @@ function ProductCard(props) {
   const isFavorite = favorites.some((item) => item._id === props._id);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { isSignedIn } = useUser();
 
   const handleClick = (e) => {
+    if (!isSignedIn) {
+      return navigate("/sign-in");
+    }
+
     dispatch(
       addToCart({
         _id: props._id,

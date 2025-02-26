@@ -3,18 +3,26 @@ import { Star, ShoppingCart, Heart, CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { addToCart } from "@/lib/features/cartSlice";
 import { useToast } from "@/hooks/use-toast";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router";
 
 function ProductPreviewPage() {
   const product = useSelector((state) => state.preview.value);
   console.log(product);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { isSignedIn } = useUser();
 
   if (!product) {
     return <p className="font-poppins">No products available for preview</p>;
   }
 
   const handleAddToCart = () => {
+    if (!isSignedIn) {
+      return navigate("/sign-in");
+    }
+
     dispatch(addToCart(product));
 
     toast({

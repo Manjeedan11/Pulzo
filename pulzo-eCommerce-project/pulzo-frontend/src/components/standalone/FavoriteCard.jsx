@@ -8,14 +8,20 @@ import { toggleFavorite } from "@/lib/features/favoriteSlice";
 import { useToast } from "@/hooks/use-toast";
 import { InteractiveHoverButton } from "../magicui/interactive-hover-button";
 import { useNavigate } from "react-router";
+import { useUser } from "@clerk/clerk-react";
 
 function FavoriteCard() {
   const dispatch = useDispatch();
   const favoritesCard = useSelector((state) => state.favorite.value);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { isSignedIn } = useUser();
 
   const handleClick = (item) => {
+    if (!isSignedIn) {
+      return navigate("/sign-in");
+    }
+
     dispatch(
       addToCart({
         _id: item._id,
