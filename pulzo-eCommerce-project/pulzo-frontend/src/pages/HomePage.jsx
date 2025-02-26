@@ -5,6 +5,7 @@ import BrandMarquee from "@/components/standalone/BrandMarquee";
 import CategoryShowCase from "@/components/standalone/CategoryShowCase";
 import EnquiryForm from "@/components/standalone/EnquiryForm";
 import FeaturedDeal from "@/components/standalone/FeaturedDeal";
+import FooterCard from "@/components/standalone/FooterCard";
 
 function HomePage() {
   const productRef = useRef(null);
@@ -21,6 +22,7 @@ function HomePage() {
 
       <CategoryShowCase />
       <EnquiryForm />
+      <FooterCard />
     </div>
   );
 }
