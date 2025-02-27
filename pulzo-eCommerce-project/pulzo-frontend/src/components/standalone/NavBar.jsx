@@ -1,6 +1,6 @@
 import { ShoppingCart, Heart, Search } from "lucide-react";
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./SearchBar";
@@ -12,6 +12,7 @@ function NavBar(props) {
   const cart = useSelector((state) => state.cart.value);
   const favorite = useSelector((state) => state.favorite.value);
   const { user } = useUser();
+  const navigate = useNavigate();
 
   const getCartQuantity = () => {
     let count = 0;
@@ -19,6 +20,14 @@ function NavBar(props) {
       count += item.quantity;
     });
     return count;
+  };
+
+  const handleAccountClick = () => {
+    if (user?.publicMetadata?.role === "admin") {
+      navigate("/admin");
+    } else {
+      navigate("/account");
+    }
   };
 
   return (
@@ -71,7 +80,9 @@ function NavBar(props) {
 
         <SignedIn>
           <UserButton />
-          <Link to={"/account"}>{user?.firstName || "Account"}</Link>
+          <button onClick={handleAccountClick} className="text-primary">
+            {user?.firstName || "Account"}
+          </button>
         </SignedIn>
       </div>
     </nav>

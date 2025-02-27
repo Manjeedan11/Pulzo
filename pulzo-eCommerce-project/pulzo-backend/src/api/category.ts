@@ -10,12 +10,9 @@ import { isAuthenticated } from "./middleware/authentication-middleware";
 
 export const categoriesRouter = express.Router();
 
-categoriesRouter
-  .route("/")
-  .get(isAuthenticated, getCategories)
-  .post(isAuthenticated, createCategory);
+categoriesRouter.route("/").get(getCategories).post(createCategory);
 categoriesRouter
   .route("/:id")
-  .get(isAuthenticated, getCategoriesById)
-  .delete(isAuthenticated, deleteCategoriesById)
-  .patch(isAuthenticated, updateCategoryById);
+  .get(getCategoriesById)
+  .delete(deleteCategoriesById)
+  .patch(updateCategoryById);

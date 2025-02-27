@@ -6,7 +6,7 @@ function AdminProtected() {
   const { isLoaded, isSignedIn, user } = useUser();
 
   if (user?.publicMetadata?.role !== "admin") {
-    return <Navigate to="/" />;
+    return <Navigate to="/admin" />;
   }
 
   return <Outlet />;

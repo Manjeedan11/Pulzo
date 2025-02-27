@@ -1,21 +1,14 @@
-import { Request } from "express";
+/// <reference types="@clerk/express/env" />
+
 export {};
 
-declare global {
-  namespace Express {
-    interface Request {
-      auth: {
-        userId: string;
-        sessionClaims?: CustomJwtSessionClaims; // Add this line
-      };
-    }
-  }
+// Create a type for the roles
+export type Role = "admin";
 
+declare global {
   interface CustomJwtSessionClaims {
     metadata: {
       role?: Role;
     };
   }
-
-  type Role = "admin";
 }

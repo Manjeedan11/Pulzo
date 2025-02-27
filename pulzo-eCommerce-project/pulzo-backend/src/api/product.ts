@@ -11,12 +11,9 @@ import { isAdmin } from "./middleware/authorization-middleware";
 
 export const productRouter = express.Router();
 
-productRouter
-  .route("/")
-  .get(isAuthenticated, getProducts)
-  .post(isAuthenticated, isAdmin, createProduct);
+productRouter.route("/").get(getProducts).post(isAdmin, createProduct);
 productRouter
   .route("/:id")
-  .get(isAuthenticated, getProductById)
-  .delete(isAuthenticated, isAdmin, deleteProductById)
-  .patch(isAuthenticated, isAdmin, updateProductById);
+  .get(getProductById)
+  .delete(isAdmin, deleteProductById)
+  .patch(isAdmin, updateProductById);
