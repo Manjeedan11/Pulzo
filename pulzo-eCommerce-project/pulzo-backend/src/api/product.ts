@@ -7,15 +7,16 @@ import {
   updateProductById,
 } from "../applications/product";
 import { isAuthenticated } from "./middleware/authentication-middleware";
+import { isAdmin } from "./middleware/authorization-middleware";
 
 export const productRouter = express.Router();
 
 productRouter
   .route("/")
   .get(isAuthenticated, getProducts)
-  .post(isAuthenticated, createProduct);
+  .post(isAuthenticated, isAdmin, createProduct);
 productRouter
   .route("/:id")
   .get(isAuthenticated, getProductById)
-  .delete(isAuthenticated, deleteProductById)
-  .patch(isAuthenticated, updateProductById);
+  .delete(isAuthenticated, isAdmin, deleteProductById)
+  .patch(isAuthenticated, isAdmin, updateProductById);
