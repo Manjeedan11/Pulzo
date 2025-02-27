@@ -6,12 +6,16 @@ import {
   deleteCategoriesById,
   updateCategoryById,
 } from "../applications/category";
+import { isAuthenticated } from "./middleware/authentication-middleware";
 
 export const categoriesRouter = express.Router();
 
-categoriesRouter.route("/").get(getCategories).post(createCategory);
+categoriesRouter
+  .route("/")
+  .get(isAuthenticated, getCategories)
+  .post(isAuthenticated, createCategory);
 categoriesRouter
   .route("/:id")
-  .get(getCategoriesById)
-  .delete(deleteCategoriesById)
-  .patch(updateCategoryById);
+  .get(isAuthenticated, getCategoriesById)
+  .delete(isAuthenticated, deleteCategoriesById)
+  .patch(isAuthenticated, updateCategoryById);

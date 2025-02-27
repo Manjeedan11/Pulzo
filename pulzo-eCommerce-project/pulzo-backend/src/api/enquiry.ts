@@ -6,12 +6,16 @@ import {
   updateEnquiryById,
   deleteEnquiryById,
 } from "../applications/enquiry";
+import { isAuthenticated } from "./middleware/authentication-middleware";
 
 export const enquiryRouter = express.Router();
 
-enquiryRouter.route("/").get(getEnquires).post(createEnquiry);
+enquiryRouter
+  .route("/")
+  .get(isAuthenticated, getEnquires)
+  .post(isAuthenticated, createEnquiry);
 enquiryRouter
   .route("/:id")
-  .get(getEnquiryById)
-  .delete(deleteEnquiryById)
-  .patch(updateEnquiryById);
+  .get(isAuthenticated, getEnquiryById)
+  .delete(isAuthenticated, deleteEnquiryById)
+  .patch(isAuthenticated, updateEnquiryById);
