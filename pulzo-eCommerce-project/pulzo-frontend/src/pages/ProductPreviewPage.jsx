@@ -94,9 +94,6 @@ function ProductPreviewPage() {
               <ShoppingCart className="w-5 h-5 mr-2" />
               Add to Cart
             </Button>
-            <Button variant="outline" size="icon">
-              <Heart className="w-5 h-5" />
-            </Button>
           </div>
         </div>
       </div>
