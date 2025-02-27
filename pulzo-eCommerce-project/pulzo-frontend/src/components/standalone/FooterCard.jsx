@@ -1,6 +1,10 @@
 import { Link } from "react-router";
 
 function FooterCard() {
+  const githubLink = import.meta.env.VITE_GITHUB_LINK;
+  const linkedinLink = import.meta.env.VITE_LINKEDIN_LINK;
+  const instagramLink = import.meta.env.VITE_INSTAGRAM_LINK;
+
   return (
     <footer className="w-full py-12 px-4 md:px-6 bg-[#f4faff]">
       <div className="container mx-auto max-w-7xl">
@@ -15,7 +19,7 @@ function FooterCard() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://github.com/Manjeedan11/Pulzo"
+                href={githubLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground"
@@ -31,7 +35,7 @@ function FooterCard() {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/sri-manjeedan-shakthivel/"
+                href={linkedinLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground"
@@ -47,7 +51,7 @@ function FooterCard() {
               </a>
 
               <a
-                href="https://www.instagram.com/manjeezzz/"
+                href={instagramLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground"

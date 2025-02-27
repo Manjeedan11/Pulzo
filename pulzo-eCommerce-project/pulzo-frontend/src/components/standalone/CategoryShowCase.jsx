@@ -4,38 +4,32 @@ const categories = [
   {
     title: "True Wireless Earbuds",
     items: "1.6K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/earbuds.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_EARBUDS,
   },
   {
     title: "Smart Watches",
     items: "2.7K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/smartwatch.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_SMARTWATCHES,
   },
   {
     title: "Wireless Speakers",
     items: "2.7K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/speaker.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_SPEAKERS,
   },
   {
     title: "Smartphones",
     items: "1.7K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/iphone.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_SMARTPHONES,
   },
   {
     title: "Virtual Reality Gear",
     items: "2.7K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/vrheadset.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_VR,
   },
   {
     title: "Gaming Accessories",
     items: "0.7K+ Items",
-    imgSrc:
-      "https://ik.imagekit.io/f10phwyh5/pulzo-eCommerce-project/joystick.png",
+    imgSrc: import.meta.env.VITE_CATEGORY_GAMING,
   },
 ];
 

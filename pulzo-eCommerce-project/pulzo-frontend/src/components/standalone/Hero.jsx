@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import heroBanner from "@/assets/hero/heroThree.png";
 import Products from "./Products";
 import { useRef } from "react";
 import FeaturedDeal from "./FeaturedDeal";
@@ -22,6 +21,8 @@ function Hero({ productRef }) {
       block: "start",
     });
   };
+
+  const heroBanner = import.meta.env.VITE_HERO_BANNER;
 
   return (
     <>

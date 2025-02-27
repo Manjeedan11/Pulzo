@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import redBlink from "@/assets/featureDeal/red-blink.gif";
-import featureVR from "@/assets/featureDeal/featureVR.png";
 import { ShimmerButton } from "../magicui/shimmer-button";
 import { Link } from "react-router";
 
 function FeaturedDeal() {
+  const featureVR = import.meta.env.VITE_FEATURE_VR;
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
