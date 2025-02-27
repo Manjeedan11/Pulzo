@@ -27,6 +27,7 @@ import AdminDashboardPage from "./pages/AdminDashboardPage.jsx";
 import MainLayout from "./layouts/main.layout.jsx";
 import Protected from "./layouts/Protected.jsx";
 import AdminProtected from "./layouts/AdminProtected.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -55,6 +56,7 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/shop/cart/checkout" element={<CheckOutPage />} />
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/shop/favorites" element={<FavoritePage />} />
+                <Route path="/shop/search" element={<SearchPage />} />
                 <Route path="/shop/checkout" element={<PaymentPage />} />
                 <Route
                   path="/payment-status"

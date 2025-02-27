@@ -1,20 +1,38 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import { useGetProductsQuery } from "@/lib/api";
-import { useLocation } from "react-router";
 
 function SearchBar() {
-  const { search } = useLocation();
-  const queryParams = new URLSearchParams(search);
-  const category = queryParams.get("product") || "";
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
-  const { data: products, isLoading, isError } = useGetProductsQuery();
+  const handleSearch = () => {
+    if (query.trim()) {
+      navigate(`/shop/search?category=${query.trim()}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
 
   return (
-    <div className="relative">
-      <Input className="w-100 pr-12 rounded-full" placeholder="Search" />
-      <Button className="absolute right-0 top-0 h-full bg-gray-400 rounded-full">
+    <div className="relative w-full max-w-sm">
+      <Input
+        className="pr-12 rounded-full"
+        placeholder="Search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <Button
+        className="absolute right-0 top-0 h-full bg-gray-400 rounded-full"
+        onClick={handleSearch}
+      >
         <Search />
       </Button>
     </div>
