@@ -31,6 +31,8 @@ import speakerGIF from "@/assets/featureDeal/speaker.gif";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 
 function ShopPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const featuredProduct = {
     name: "Premium Wireless Headphones",
     description:
@@ -64,7 +66,11 @@ function ShopPage() {
           (product) => product.categoryId._id === selectedCategoryId
         );
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  const searchedProducts = filteredProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const sortedAndSearchedProducts = [...searchedProducts].sort((a, b) => {
     const priceA = parseFloat(a.price);
     const priceB = parseFloat(b.price);
     return sortOrder === "ASC" ? priceA - priceB : priceB - priceA;
@@ -76,6 +82,12 @@ function ShopPage() {
 
   const handleSort = (order) => {
     setSortOrder(order);
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      setSelectedCategoryId("ALL");
+    }
   };
 
   if (isProductsLoading || isCategoriesLoading) {
@@ -100,6 +112,9 @@ function ShopPage() {
           <Input
             placeholder="Search for products"
             className="pl-8 w-full font-poppins"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={handleSearch}
           />
         </div>
 
@@ -173,7 +188,10 @@ function ShopPage() {
           </div>
         </ShineBorder>
 
-        <ProductCards products={sortedProducts} gridClassName="grid-cols-3" />
+        <ProductCards
+          products={sortedAndSearchedProducts}
+          gridClassName="grid-cols-3"
+        />
       </div>
     </div>
   );
