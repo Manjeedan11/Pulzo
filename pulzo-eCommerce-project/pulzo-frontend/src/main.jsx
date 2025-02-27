@@ -24,6 +24,9 @@ import PaymentStatusPage from "./pages/PaymentStatusPage.jsx";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import AdminDashboardPage from "./pages/AdminDashboardPage.jsx";
+import MainLayout from "./layouts/main.layout.jsx";
+import Protected from "./layouts/Protected.jsx";
+import AdminProtected from "./layouts/AdminProtected.jsx";
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -40,28 +43,34 @@ createRoot(document.getElementById("root")).render(
       <BrowserRouter>
         <Routes>
           <Route element={<RootLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route
-              path="/shop/product/preview"
-              element={<ProductPreviewPage />}
-            />
-            <Route path="/shop/cart" element={<CartPage />} />
-            <Route path="/shop/cart/checkout" element={<CheckOutPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/shop/favorites" element={<FavoritePage />} />
-            <Route path="/shop/checkout" element={<PaymentPage />} />
-            <Route path="/admin" element={<AdminDashboardPage />} />
-            <Route
-              path="/payment-status"
-              element={
-                <Elements stripe={stripePromise}>
-                  <PaymentStatusPage />
-                </Elements>
-              }
-            />
-          </Route>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route element={<Protected />}>
+                <Route path="/shop" element={<ShopPage />} />
+                <Route
+                  path="/shop/product/preview"
+                  element={<ProductPreviewPage />}
+                />
+                <Route path="/shop/cart" element={<CartPage />} />
+                <Route path="/shop/cart/checkout" element={<CheckOutPage />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/shop/favorites" element={<FavoritePage />} />
+                <Route path="/shop/checkout" element={<PaymentPage />} />
+                <Route
+                  path="/payment-status"
+                  element={
+                    <Elements stripe={stripePromise}>
+                      <PaymentStatusPage />
+                    </Elements>
+                  }
+                />
 
+                <Route element={<AdminProtected />}>
+                  <Route path="/admin" element={<AdminDashboardPage />} />
+                </Route>
+              </Route>
+            </Route>
+          </Route>
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>
