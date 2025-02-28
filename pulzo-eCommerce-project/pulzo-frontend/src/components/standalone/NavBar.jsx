@@ -40,7 +40,9 @@ function NavBar(props) {
           <a href="/">Home</a>
           <Link to="/shop"></Link>
           <a href="/shop">Shop</a>
-          <SearchBar />
+          <div className="flex-grow">
+            <SearchBar />
+          </div>
         </div>
       </div>
       <div className="flex items-center gap-4">

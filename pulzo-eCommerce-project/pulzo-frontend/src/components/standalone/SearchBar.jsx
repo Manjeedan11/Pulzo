@@ -21,9 +21,9 @@ function SearchBar() {
   };
 
   return (
-    <div className="relative w-full max-w-sm">
+    <div className="relative w-full">
       <Input
-        className="pr-12 rounded-full"
+        className="w-[409px] pr-20 rounded-full"
         placeholder="Search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
