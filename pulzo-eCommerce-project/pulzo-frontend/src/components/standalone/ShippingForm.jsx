@@ -70,7 +70,7 @@ function ShippingForm({ cart }) {
             })
           );
         });
-        navigate("/shop/checkout");
+        navigate("/shop/cart/checkout/paymentPortal");
       })
       .catch((err) => console.error("Order submission error:", err));
   };

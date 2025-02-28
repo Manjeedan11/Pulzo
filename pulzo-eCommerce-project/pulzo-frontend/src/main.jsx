@@ -57,7 +57,10 @@ createRoot(document.getElementById("root")).render(
                 <Route path="/account" element={<AccountPage />} />
                 <Route path="/shop/favorites" element={<FavoritePage />} />
                 <Route path="/shop/search" element={<SearchPage />} />
-                <Route path="/shop/checkout" element={<PaymentPage />} />
+                <Route
+                  path="/shop/cart/checkout/paymentPortal"
+                  element={<PaymentPage />}
+                />
                 <Route
                   path="/payment-status"
                   element={
