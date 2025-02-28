@@ -37,7 +37,7 @@ const PaymentStatusPage = () => {
   }, [stripe]);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 mt-20">
       <div className="bg-white p-6 rounded-2xl shadow-lg w-96 text-center">
         {status === "succeeded" && (
           <>

@@ -28,7 +28,7 @@ function SearchPage() {
   }
 
   return (
-    <section className="py-8 px-4 xl:px-16">
+    <section className="py-8 px-4 xl:px-16 mt-32">
       <h2 className="text-4xl font-bold">Search Results for "{category}"</h2>
       <div className="mt-4">
         {filteredProducts.length > 0 ? (

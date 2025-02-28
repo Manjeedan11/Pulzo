@@ -12,7 +12,7 @@ function CheckoutPage() {
   }
 
   return (
-    <div className="w-full px-8 xl:px-16">
+    <div className="w-full px-8 xl:px-16 pt-32">
       <div className="flex items-center mt-8">
         <h1 className="text-3xl font-semibold mr-11">Checkout</h1>
       </div>

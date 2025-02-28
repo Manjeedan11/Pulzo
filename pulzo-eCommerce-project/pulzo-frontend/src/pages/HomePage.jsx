@@ -11,7 +11,7 @@ function HomePage() {
   const productRef = useRef(null);
 
   return (
-    <div>
+    <div className="pt-20">
       <Hero productRef={productRef} />
       <BrandMarquee />
       <FeaturedDeal />

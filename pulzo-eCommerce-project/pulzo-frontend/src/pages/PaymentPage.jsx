@@ -64,7 +64,7 @@ const PaymentPage = () => {
   }, [createPaymentIntent]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 mt-20">
       <Card className="w-full max-w-md p-6 shadow-lg">
         <CardHeader>
           <h2 className="text-xl font-semibold text-center">Secure Payment</h2>

@@ -4,7 +4,7 @@ import CartSummary from "@/components/standalone/CartSummary";
 
 function CartPage() {
   return (
-    <div className="container mx-auto px-8 xl:px-16 py-8">
+    <div className="container mx-auto px-8 xl:px-16 py-8 mt-32">
       <div className="flex gap-x-16 items-center">
         <h1 className="text-3xl font-semibold mb-6">Your Shopping Cart</h1>
       </div>

@@ -103,7 +103,7 @@ function ShopPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-background py-8 px-8 xl:px-16 mt-5">
+    <div className="flex min-h-screen bg-background py-8 px-8 xl:px-16 mt-32">
       {/* Sidebar */}
       <div className="w-64 border-r p-6 hidden md:block">
         {/* Search Bar */}
