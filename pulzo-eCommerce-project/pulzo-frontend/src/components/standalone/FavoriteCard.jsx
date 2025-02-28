@@ -85,19 +85,19 @@ function FavoriteCard() {
   };
 
   return (
-    <div className="flex flex-wrap gap-12 font-poppins">
+    <div className="grid grid-cols-4 gap-10 mt-4 font-poppins">
       {favoritesCard.length === 0 ? (
-        <p className="text-center w-full text-xl font-semibold">
+        <p className="text-center w-full text-xl font-semibold col-span-4">
           No favorites added
         </p>
       ) : (
         favoritesCard.map((item) => (
-          <Card key={item._id} className="w-[300px] border-none">
-            <div className="bg-gray-50 rounded-lg p-4 flex justify-center items-center relative">
+          <Card key={item._id} className=" border-none">
+            <div className="bg-gray-50 rounded-[30px] p-4 flex justify-center items-center relative h-[300px]">
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-full h-[200px] object-cover rounded-lg"
+                className="w-full h-full object-cover"
               />
               <div
                 className="absolute top-4 left-4 cursor-pointer z-10 text-blue-400"
@@ -113,13 +113,13 @@ function FavoriteCard() {
               </div>
             </div>
             <div className="mt-4 font-poppins">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between mt-4">
                 <span className="block text-lg font-semibold">{item.name}</span>
                 <span className="block font-semibold">${item.price}</span>
               </div>
               <p className="text-sm mt-2">{item.synopsis}</p>
             </div>
-            <div className="mt-4">
+            <div className="mt-2">
               <InteractiveHoverButton
                 className="font-poppins"
                 onClick={() => handleClick(item)}
