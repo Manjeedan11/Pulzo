@@ -34,7 +34,7 @@ function AccountPage() {
   }
 
   return (
-    <div className="grid py-8 px-8 xl:px-16 mt-5 gap-6 max-w-full mx-auto">
+    <div className="grid py-8 px-8 xl:px-16 mt-32 gap-6 max-w-full mx-auto">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold font-poppins">
           Welcome, {user.firstName}
