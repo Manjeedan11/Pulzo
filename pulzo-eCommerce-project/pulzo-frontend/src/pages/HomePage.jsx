@@ -16,7 +16,7 @@ function HomePage() {
       <BrandMarquee />
       <FeaturedDeal />
 
-      <section ref={productRef} className="container mx-auto">
+      <section ref={productRef} className="container mx-auto pt-20">
         <Products gridClassName="grid-cols-3" limit={4} />
       </section>
 
