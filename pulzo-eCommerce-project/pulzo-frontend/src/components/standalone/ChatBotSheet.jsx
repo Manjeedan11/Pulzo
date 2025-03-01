@@ -33,7 +33,7 @@ function ChatBotSheet() {
     {
       type: "bot",
       content:
-        "👋 Hi there! I'm GearBot, your personal electronics assistant. How can I help you today?",
+        "👋 Hi there ! Our GearBot is currently under development. In the meantime, please feel free to reach out to our 24/7 Customer Care for assistance !",
       timestamp: new Date(),
     },
   ]);
