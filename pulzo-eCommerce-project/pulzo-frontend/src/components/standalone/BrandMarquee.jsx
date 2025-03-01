@@ -18,7 +18,7 @@ const ImageCard = ({ img }) => {
 
 function BrandMarquee() {
   return (
-    <section className="py-20 px-4 xl:px-16 mt-10 text-center relative">
+    <section className="py-20 px-4 xl:px-16 mt-32 text-center relative">
       <h1 className="text-4xl font-bold font-poppins mb-10">Our Brands</h1>
 
       <div className="relative w-full overflow-hidden">
