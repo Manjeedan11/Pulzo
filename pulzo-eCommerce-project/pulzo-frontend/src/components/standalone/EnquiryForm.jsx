@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowRightIcon, ArrowLeftIcon } from "lucide-react";
+import { ArrowRightIcon, ArrowLeftIcon, Sparkles } from "lucide-react";
 import { useCreateEnquiryMutation, useGetProductsQuery } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -14,6 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Vapi from "@vapi-ai/web";
+import { isPublicKeyMissingError } from "@/utils/isPublicKeyMissingError";
+import { useRef, useEffect } from "react";
+
+const VAPI_PUBLIC_KEY = import.meta.env.VITE_VAPI_PUBLIC_KEY;
 
 const initialEnquiryState = {
   name: "",
@@ -23,6 +28,51 @@ const initialEnquiryState = {
   issueDetails: "",
 };
 
+const assistantOptions = {
+  name: "Anaya",
+  firstMessage:
+    "Ayubowan! I’m Anaya, your shopping assistant at Pulzo. How can I assist you with your gadget shopping today?",
+  transcriber: {
+    provider: "deepgram",
+    model: "nova-2",
+    language: "en-US",
+  },
+  voice: {
+    provider: "11labs",
+    voiceId: "iWq9tCtTw1SYmVpvsRjY",
+  },
+  model: {
+    provider: "openai",
+    model: "gpt-4",
+    messages: [
+      {
+        role: "system",
+        content: `You are Anaya, a friendly and helpful Sri Lankan voice assistant for Pulzo, an electronic gadgets store. Your job is to assist customers with shopping, troubleshooting, and general inquiries about products from brands like Bose, JBL, Google, Meta, Sony, and Apple.
+        
+      
+        - Guide users in browsing and purchasing gadgets:
+        - Direct them to the "Shop" section in the navbar.
+        - Mention filtering options to find the perfect gadget.
+        - Explain that clicking the eye icon on product cards shows more details.
+        - Inform them that the heart icon adds items to favorites.
+        - Guide them to add items to the cart and proceed to checkout.
+        - Explain the shipping form and payment process.
+      - Assist customers with **product inquiries**:
+        - Ask which product they are interested in.
+        - Provide key specifications, features, and pricing.
+        - Compare similar products if requested.
+        - Offer recommendations based on their needs.
+      - Answer product-related queries and offer troubleshooting tips.
+      - Keep responses conversational, warm, and concise.
+      - If needed, offer to connect them with human support.
+      - Confirm order or inquiry details before ending the conversation.
+
+      Ensure that the customer has a smooth and enjoyable shopping experience on Pulzo.`,
+      },
+    ],
+  },
+};
+
 function EnquiryForm() {
   const [isContactForm, setIsContactForm] = useState(true);
   const [enquiryData, setEnquiryData] = useState(initialEnquiryState);
@@ -30,6 +80,62 @@ function EnquiryForm() {
   const { data: products = [] } = useGetProductsQuery();
   const [errorMessage, setErrorMessage] = useState("");
   const { toast } = useToast();
+
+  // Vapi state
+  const [connecting, setConnecting] = useState(false);
+  const [connected, setConnected] = useState(false);
+  const [assistantIsSpeaking, setAssistantIsSpeaking] = useState(false);
+  const [volumeLevel, setVolumeLevel] = useState(0);
+  const [showKeyError, setShowKeyError] = useState(false);
+  const vapiRef = useRef(null);
+
+  useEffect(() => {
+    const vapi = new Vapi(VAPI_PUBLIC_KEY);
+    vapiRef.current = vapi;
+
+    const handlers = {
+      "call-start": () => {
+        setConnecting(false);
+        setConnected(true);
+        setShowKeyError(false);
+      },
+      "call-end": () => {
+        setConnecting(false);
+        setConnected(false);
+        setShowKeyError(false);
+      },
+      "speech-start": () => setAssistantIsSpeaking(true),
+      "speech-end": () => setAssistantIsSpeaking(false),
+      "volume-level": (level) => setVolumeLevel(level),
+      error: (error) => {
+        console.error(error);
+        setConnecting(false);
+        if (isPublicKeyMissingError({ vapiError: error })) {
+          setShowKeyError(true);
+        }
+      },
+    };
+
+    Object.entries(handlers).forEach(([event, handler]) => {
+      vapi.on(event, handler);
+    });
+
+    return () => {
+      vapi.stop();
+      Object.keys(handlers).forEach((event) => {
+        vapi.off(event, handlers[event]);
+      });
+    };
+  }, []);
+
+  const startCall = () => {
+    setConnecting(true);
+    vapiRef.current.start(assistantOptions);
+  };
+
+  const endCall = () => {
+    vapiRef.current.stop();
+  };
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
@@ -74,7 +180,7 @@ function EnquiryForm() {
       <Card className="w-full max-w-md">
         <CardHeader className="relative">
           <CardTitle className="text-center text-xl font-poppins">
-            {isContactForm ? "Get Expert Assistance" : "Provide Feedback"}
+            {isContactForm ? "Get Expert Assistance" : "AI Assistant"}
           </CardTitle>
           <Button
             variant="ghost"
@@ -82,7 +188,7 @@ function EnquiryForm() {
             className="absolute right-4 top-4"
             onClick={() => setIsContactForm(!isContactForm)}
           >
-            {isContactForm ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+            {isContactForm ? <Sparkles /> : <ArrowLeftIcon />}
           </Button>
         </CardHeader>
         <CardContent>
@@ -203,10 +309,61 @@ function EnquiryForm() {
               </Button>
             </form>
           ) : (
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-center text-gray-500">
-                Feedback form coming soon!
-              </p>
+            <div className="flex flex-col items-center gap-4">
+              {!connected ? (
+                <Button
+                  onClick={startCall}
+                  disabled={connecting}
+                  className="w-full"
+                >
+                  {connecting ? "Connecting..." : "Start Voice Assistant"}
+                </Button>
+              ) : (
+                <div className="w-full space-y-4">
+                  <div className="flex items-center gap-2 p-4 bg-gray-100 rounded-lg">
+                    <div
+                      className={`w-3 h-3 rounded-full ${
+                        assistantIsSpeaking ? "bg-green-500" : "bg-red-500"
+                      }`}
+                    />
+                    <span className="text-sm">
+                      {assistantIsSpeaking ? "Speaking" : "Listening"}
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex gap-1">
+                      {Array.from({ length: 10 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className={`h-2 w-full rounded ${
+                            i / 10 < volumeLevel
+                              ? "bg-green-500"
+                              : "bg-gray-200"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-500 text-center">
+                      Input volume: {volumeLevel.toFixed(2)}
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={endCall}
+                    variant="destructive"
+                    className="w-full"
+                  >
+                    End Call
+                  </Button>
+                </div>
+              )}
+
+              {showKeyError && (
+                <div className="text-red-500 text-sm mt-2">
+                  Invalid API key - please check your configuration
+                </div>
+              )}
             </div>
           )}
         </CardContent>
