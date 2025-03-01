@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowRightIcon, ArrowLeftIcon, Sparkles } from "lucide-react";
+import { ArrowRightIcon, ArrowLeftIcon, Sparkles, Headset } from "lucide-react";
 import { useCreateEnquiryMutation, useGetProductsQuery } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -14,6 +14,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Lottie from "lottie-react";
+import customerCareAnimation from "@/assets/customerCare/customerCare.json";
 import Vapi from "@vapi-ai/web";
 import { isPublicKeyMissingError } from "@/utils/isPublicKeyMissingError";
 import { useRef, useEffect } from "react";
@@ -169,18 +171,18 @@ function EnquiryForm() {
     <section className="flex flex-col items-center justify-center min-h-screen mt-10 py-10 px-4 xl:px-16 mb-100">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4 font-poppins">
-          Have a Question ? We're Here to Help !
+          Have a question ? Our expert team is ready to assist !
         </h1>
         <p className="text-gray-600 font-poppins">
-          Need details on a gadget or expert advice ? Share your inquiry, and
-          our team will get back to you ASAP !
+          Complete our enquiry form for swift support, or tap the headphone icon
+          for immediate 24/7 Customer Care
         </p>
       </div>
 
       <Card className="w-full max-w-md">
         <CardHeader className="relative">
           <CardTitle className="text-center text-xl font-poppins">
-            {isContactForm ? "Get Expert Assistance" : "AI Assistant"}
+            {isContactForm ? "Troubleshoot Your Gadget" : "24/7 Customer Care"}
           </CardTitle>
           <Button
             variant="ghost"
@@ -188,7 +190,16 @@ function EnquiryForm() {
             className="absolute right-4 top-4"
             onClick={() => setIsContactForm(!isContactForm)}
           >
-            {isContactForm ? <Sparkles /> : <ArrowLeftIcon />}
+            {isContactForm ? (
+              <Lottie
+                animationData={customerCareAnimation}
+                className="w-full h-full"
+                loop
+                autoplay
+              />
+            ) : (
+              <ArrowLeftIcon />
+            )}
           </Button>
         </CardHeader>
         <CardContent>
@@ -314,9 +325,9 @@ function EnquiryForm() {
                 <Button
                   onClick={startCall}
                   disabled={connecting}
-                  className="w-full"
+                  className="w-full rounded-[30px] hover:bg-[#febc26] hover:text-black"
                 >
-                  {connecting ? "Connecting..." : "Start Voice Assistant"}
+                  {connecting ? "Connecting..." : "Connect with Agent"}
                 </Button>
               ) : (
                 <div className="w-full space-y-4">
@@ -352,7 +363,7 @@ function EnquiryForm() {
                   <Button
                     onClick={endCall}
                     variant="destructive"
-                    className="w-full"
+                    className="w-full rounded-[30px]"
                   >
                     End Call
                   </Button>

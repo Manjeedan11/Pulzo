@@ -57,8 +57,6 @@ function ShippingForm({ cart }) {
         phoneNumber: formData.phoneNumber,
       },
     };
-
-    console.log("Submitting Order Data:", orderData);
     createOrder(orderData)
       .unwrap()
       .then(() => {
