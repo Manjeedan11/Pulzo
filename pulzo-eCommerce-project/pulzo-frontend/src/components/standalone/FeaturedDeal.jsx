@@ -46,7 +46,7 @@ function FeaturedDeal() {
   }, []);
 
   return (
-    <section className="py-20 px-4 xl:px-16 mb-30">
+    <section className="py-20 px-4 xl:px-16 mt-32">
       <div className="grid grid-cols-2 rounded-[30px] bg-[#f4f8f9] max-w-[80%] h-[450px] mx-auto">
         <div className="flex flex-col justify-center p-8 md:p-16 gap-y-4 h-[450px]">
           <span className="flex items-center gap-2 px-2 py-1 text-1xl w-fit text-red-600 font-semibold">

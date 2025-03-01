@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { CircleCheck } from "lucide-react";
+import { ArrowRightIcon, ArrowLeftIcon } from "lucide-react";
+import { useCreateEnquiryMutation, useGetProductsQuery } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
   Select,
@@ -13,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCreateEnquiryMutation, useGetProductsQuery } from "@/lib/api";
 
 const initialEnquiryState = {
   name: "",
@@ -24,11 +24,12 @@ const initialEnquiryState = {
 };
 
 function EnquiryForm() {
+  const [isContactForm, setIsContactForm] = useState(true);
   const [enquiryData, setEnquiryData] = useState(initialEnquiryState);
-  const [errorMessage, setErrorMessage] = useState("");
   const [createEnquiry] = useCreateEnquiryMutation();
-  const { toast } = useToast();
   const { data: products = [] } = useGetProductsQuery();
+  const [errorMessage, setErrorMessage] = useState("");
+  const { toast } = useToast();
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ function EnquiryForm() {
             <CircleCheck className="w-5 h-5 text-green-800" />
             <span className="font-medium text-sm">
               Your message has been successfully sent. We’ll get back to you
-              soon !
+              soon!
             </span>
           </div>
         ),
@@ -71,121 +72,143 @@ function EnquiryForm() {
       </div>
 
       <Card className="w-full max-w-md">
-        <CardHeader>
+        <CardHeader className="relative">
           <CardTitle className="text-center text-xl font-poppins">
-            Get Expert Assistance
+            {isContactForm ? "Get Expert Assistance" : "Provide Feedback"}
           </CardTitle>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute right-4 top-4"
+            onClick={() => setIsContactForm(!isContactForm)}
+          >
+            {isContactForm ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+          </Button>
         </CardHeader>
         <CardContent>
           {errorMessage && (
             <div className="text-red-500 text-sm mb-2">{errorMessage}</div>
           )}
-          <form onSubmit={handleContactSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name" className="font-poppins">
-                Name
-              </Label>
-              <Input
-                id="name"
-                className="font-poppins"
-                value={enquiryData.name}
-                onChange={(e) =>
-                  setEnquiryData((prev) => ({ ...prev, name: e.target.value }))
-                }
-                placeholder="Enter your name"
-                required
-              />
-            </div>
+          {isContactForm ? (
+            <form onSubmit={handleContactSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="font-poppins">
+                  Name
+                </Label>
+                <Input
+                  id="name"
+                  className="font-poppins"
+                  value={enquiryData.name}
+                  onChange={(e) =>
+                    setEnquiryData((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="productName">Product Name</Label>
-              <Select
-                onValueChange={(value) =>
-                  setEnquiryData((prev) => ({ ...prev, productName: value }))
-                }
+              <div className="space-y-2">
+                <Label htmlFor="productName">Product Name</Label>
+                <Select
+                  onValueChange={(value) =>
+                    setEnquiryData((prev) => ({ ...prev, productName: value }))
+                  }
+                >
+                  <SelectTrigger>
+                    <SelectValue
+                      placeholder="Select Product"
+                      value={enquiryData.productName}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {products.length > 0 ? (
+                      products.map((product) => (
+                        <SelectItem key={product._id} value={product.name}>
+                          {product.name}
+                        </SelectItem>
+                      ))
+                    ) : (
+                      <p className="px-2 py-1 text-gray-500">
+                        No products available
+                      </p>
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="font-poppins">
+                  Email
+                </Label>
+                <Input
+                  id="email"
+                  className="font-poppins"
+                  type="email"
+                  value={enquiryData.email}
+                  onChange={(e) =>
+                    setEnquiryData((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phoneNumber" className="font-poppins">
+                  Phone Number
+                </Label>
+                <Input
+                  id="phoneNumber"
+                  className="font-poppins"
+                  type="tel"
+                  value={enquiryData.phoneNumber}
+                  onChange={(e) =>
+                    setEnquiryData((prev) => ({
+                      ...prev,
+                      phoneNumber: e.target.value,
+                    }))
+                  }
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="description" className="font-poppins">
+                  Issue Details
+                </Label>
+                <Textarea
+                  id="description"
+                  value={enquiryData.issueDetails}
+                  onChange={(e) =>
+                    setEnquiryData((prev) => ({
+                      ...prev,
+                      issueDetails: e.target.value,
+                    }))
+                  }
+                  placeholder="Describe the issue or concern briefly"
+                  className="min-h-[100px] font-poppins"
+                  required
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full font-poppins rounded-[30px] hover:bg-[#febc26] hover:text-black"
               >
-                <SelectTrigger>
-                  <SelectValue
-                    placeholder="Select Product"
-                    value={enquiryData.productName}
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  {products.length > 0 ? (
-                    products.map((product) => (
-                      <SelectItem key={product._id} value={product.name}>
-                        {product.name}
-                      </SelectItem>
-                    ))
-                  ) : (
-                    <p className="px-2 py-1 text-gray-500">
-                      No products available
-                    </p>
-                  )}
-                </SelectContent>
-              </Select>
+                Submit
+              </Button>
+            </form>
+          ) : (
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-center text-gray-500">
+                Feedback form coming soon!
+              </p>
             </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email" className="font-poppins">
-                Email
-              </Label>
-              <Input
-                id="email"
-                className="font-poppins"
-                type="email"
-                value={enquiryData.email}
-                onChange={(e) =>
-                  setEnquiryData((prev) => ({ ...prev, email: e.target.value }))
-                }
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phoneNumber" className="font-poppins">
-                Phone Number
-              </Label>
-              <Input
-                id="phoneNumber"
-                className="font-poppins"
-                type="tel"
-                value={enquiryData.phoneNumber}
-                onChange={(e) =>
-                  setEnquiryData((prev) => ({
-                    ...prev,
-                    phoneNumber: e.target.value,
-                  }))
-                }
-                placeholder="Enter your phone number"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="description" className="font-poppins">
-                Issue Details
-              </Label>
-              <Textarea
-                id="description"
-                value={enquiryData.issueDetails}
-                onChange={(e) =>
-                  setEnquiryData((prev) => ({
-                    ...prev,
-                    issueDetails: e.target.value,
-                  }))
-                }
-                placeholder="Describe the issue or concern briefly"
-                className="min-h-[100px] font-poppins"
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full font-poppins rounded-[30px] hover:bg-[#febc26] hover:text-black"
-            >
-              Submit
-            </Button>
-          </form>
+          )}
         </CardContent>
       </Card>
     </section>
