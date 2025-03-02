@@ -1,6 +1,8 @@
 import NotFoundError from "../domain/errors/not-found-error";
 import { Request, Response, NextFunction } from "express";
 import Enquiry from "../infrastructure/schemas/Enquiry";
+import { EnquiryDTO } from "../domain/DTO/enquiry";
+import ValidationError from "../domain/errors/validation-error";
 
 export const getEnquires = async (
   req: Request,
@@ -22,8 +24,12 @@ export const createEnquiry = async (
   next: NextFunction
 ) => {
   try {
-    await Enquiry.create(req.body);
-    res.status(201).json({ message: "Enquiry added successfully" });
+    const result = EnquiryDTO.safeParse(req.body);
+    if (!result.success) {
+      throw new ValidationError("Enquiry fields is not found");
+    }
+    await Enquiry.create(result.data);
+    res.status(201).send({ message: "Enquiry added successfully" });
     return;
   } catch (error) {
     next(error);
