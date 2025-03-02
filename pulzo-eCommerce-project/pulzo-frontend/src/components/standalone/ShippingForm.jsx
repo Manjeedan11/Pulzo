@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";
 import { useCreateOrderMutation } from "@/lib/api";
 import { updatePreviewProduct } from "@/lib/features/previewSlice";
 import { useDispatch } from "react-redux";
+import { z } from "zod";
+import { CircleX } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 function ShippingForm({ cart }) {
   const [formData, setFormData] = useState({
@@ -20,9 +23,30 @@ function ShippingForm({ cart }) {
     phoneNumber: "",
   });
 
+  const shippingSchema = z.object({
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    addressLine1: z.string().min(1, "Address Line 1 is required"),
+    addressLine2: z.string().optional(),
+    city: z.string().min(1, "City is required"),
+    state: z.string().min(1, "State is required"),
+    zipCode: z.string().min(1, "Zip Code is required"),
+    phoneNumber: z
+      .string()
+      .refine((value) => /^\+?[1-9]\d{1,14}$/.test(value), {
+        message: "Invalid phone number format",
+      }),
+  });
+
+  const validateFormData = (formData) => {
+    const result = shippingSchema.safeParse(formData);
+    return result;
+  };
+
   const [createOrder] = useCreateOrderMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { toast } = useToast();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +58,26 @@ function ShippingForm({ cart }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const validationResult = validateFormData(formData);
+
+    if (!validationResult.success) {
+      console.error("Validation errors:", validationResult.error.format());
+      toast({
+        description: (
+          <div className="flex items-center space-x-2">
+            <CircleX className="w-5 h-5 text-red-800" />
+            <span className="font-medium text-sm">
+              Invalid form data. Please check your inputs.
+            </span>
+          </div>
+        ),
+        duration: 2000,
+        className:
+          "bg-red-100 text-red-800 rounded-lg p-4 shadow-md transition-opacity duration-500 ease-in-out transform",
+      });
+      return;
+    }
 
     const orderData = {
       items: cart.map((item) => ({
@@ -57,6 +101,7 @@ function ShippingForm({ cart }) {
         phoneNumber: formData.phoneNumber,
       },
     };
+
     createOrder(orderData)
       .unwrap()
       .then(() => {
@@ -70,7 +115,22 @@ function ShippingForm({ cart }) {
         });
         navigate("/shop/cart/checkout/paymentPortal");
       })
-      .catch((err) => console.error("Order submission error:", err));
+      .catch((err) => {
+        console.error("Order submission error:", err);
+        toast({
+          description: (
+            <div className="flex items-center space-x-2">
+              <CircleX className="w-5 h-5 text-red-800" />
+              <span className="font-medium text-sm">
+                Failed to place order. Please try again.
+              </span>
+            </div>
+          ),
+          duration: 2000,
+          className:
+            "bg-red-100 text-red-800 rounded-lg p-4 shadow-md transition-opacity duration-500 ease-in-out transform",
+        });
+      });
   };
 
   return (
