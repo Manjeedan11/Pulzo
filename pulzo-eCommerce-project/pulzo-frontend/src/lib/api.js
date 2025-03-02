@@ -48,7 +48,7 @@ export const Api = createApi({
     }),
     createPaymentIntent: builder.mutation({
       query: (amount) => ({
-        url: "create-payment-intent",
+        url: "stripePayments/create-payment-intent",
         method: "POST",
         body: { amount },
       }),

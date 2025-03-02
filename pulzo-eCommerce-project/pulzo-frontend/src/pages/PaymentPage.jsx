@@ -57,7 +57,7 @@ const PaymentPage = () => {
     useCreatePaymentIntentMutation();
 
   React.useEffect(() => {
-    createPaymentIntent(10.99)
+    createPaymentIntent(129.99)
       .unwrap()
       .then((response) => setClientSecret(response.clientSecret))
       .catch(console.error);
