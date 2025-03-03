@@ -26,8 +26,8 @@ function Hero({ productRef }) {
 
   return (
     <>
-      <section className="py-8 px-4 xl:px-16 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 rounded-[30px] min-h-[10vh] bg-[#f4f8f9] mb-50">
+      <section className="py-12 md:py-24 px-4 xl:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 rounded-[30px] min-h-[65vh] bg-[#f4f8f9] mb-50">
           <div className="flex flex-col mt-8 justify-center items-center text-center p-8 md:p-16 gap-y-6">
             <div className="flex flex-col items-center text-center">
               <span className="inline-block rounded-full px-4 py-2 text-xs font-semibold text-black bg-[#febc26] mb-4">

@@ -170,7 +170,7 @@ function EnquiryForm() {
   return (
     <section className="flex flex-col items-center justify-center min-h-screen mt-10 py-10 px-4 xl:px-16 mb-100">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold mb-4 font-poppins">
+        <h1 className="text-4xl md:text-5xl font-semibold mb-4 font-poppins">
           Have a question ? Our expert team is ready to assist !
         </h1>
         <p className="text-gray-600 font-poppins">

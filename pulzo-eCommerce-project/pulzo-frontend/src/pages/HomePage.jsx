@@ -14,16 +14,15 @@ function HomePage() {
   return (
     <div className="pt-20">
       <Hero productRef={productRef} />
-      <BrandMarquee />
+      <CategoryShowCase />
       <FeaturedDeal />
+      <BrandMarquee />
 
-      <section ref={productRef} className="container mx-auto pt-20">
-        <Products gridClassName="grid-cols-3" limit={4} />
+      <section ref={productRef} className="container mx-auto py-24">
+        <Products gridClassName="grid-cols-2 lg:grid-cols-3" limit={4} />
       </section>
 
       <Collection />
-
-      <CategoryShowCase />
       <EnquiryForm />
       <FooterCard />
     </div>

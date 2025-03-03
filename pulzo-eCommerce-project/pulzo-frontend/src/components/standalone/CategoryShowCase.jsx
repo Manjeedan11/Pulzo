@@ -35,10 +35,10 @@ const categories = [
 
 function CategoryShowCase() {
   return (
-    <section className="py-20 px-4 xl:px-16 mb-30">
+    <section className="py-20 px-4 xl:px-16 mb-30 ">
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-center items-center mb-8">
-          <h1 className="text-center font-poppins mb-10 text-4xl font-bold text-gray-800">
+          <h1 className="text-center font-poppins mb-16 text-4xl md:text-5xl font-semibold text-gray-800">
             Shop Our Curated Categories
           </h1>
         </div>
