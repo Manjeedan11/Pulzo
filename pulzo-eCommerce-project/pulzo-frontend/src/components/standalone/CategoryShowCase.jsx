@@ -59,9 +59,6 @@ function CategoryShowCase() {
               <h3 className="font-semibold text-lg font-poppins text-gray-800">
                 {category.title}
               </h3>
-              <p className="text-sm font-poppins text-gray-500">
-                {category.items}
-              </p>
             </div>
           ))}
         </div>
