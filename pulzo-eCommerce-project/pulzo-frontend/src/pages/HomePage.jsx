@@ -6,6 +6,7 @@ import CategoryShowCase from "@/components/standalone/CategoryShowCase";
 import EnquiryForm from "@/components/standalone/EnquiryForm";
 import FeaturedDeal from "@/components/standalone/FeaturedDeal";
 import FooterCard from "@/components/standalone/FooterCard";
+import Collection from "@/components/standalone/Collection";
 
 function HomePage() {
   const productRef = useRef(null);
@@ -19,6 +20,8 @@ function HomePage() {
       <section ref={productRef} className="container mx-auto pt-20">
         <Products gridClassName="grid-cols-3" limit={4} />
       </section>
+
+      <Collection />
 
       <CategoryShowCase />
       <EnquiryForm />
