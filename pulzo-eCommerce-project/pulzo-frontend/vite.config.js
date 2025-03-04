@@ -14,4 +14,11 @@ export default defineConfig({
       "Content-Type": "application/javascript",
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: "assets/[name]-[hash][extname]",
+      },
+    },
+  },
 });
