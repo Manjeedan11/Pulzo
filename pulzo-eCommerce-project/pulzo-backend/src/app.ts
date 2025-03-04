@@ -26,9 +26,9 @@ app.use("/api/stripePayments", stripeRouter);
 app.use(globalErrorHandlingMiddleware as any);
 
 connectDB();
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+const port = process.env.PORT || 10000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 ///api/create-payment-intent
