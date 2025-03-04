@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import { ClerkProvider } from "@clerk/clerk-react";
 
 import RootLayout from "./layouts/root.layout.jsx";
-import AccountPage from "./pages/AccountPAge.jsx";
+import AccountPage from "./pages/AccountPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import FavoritePage from "./pages/FavoritePage.jsx";
 import CheckOutPage from "./pages/CheckOutPage.jsx";
