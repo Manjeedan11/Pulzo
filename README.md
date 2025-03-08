@@ -17,3 +17,6 @@ How to use the application.
 
 ## Contributing
 Guidelines for contributing to the project.
+
+## License
+Specify the license under which the project is distributed.
