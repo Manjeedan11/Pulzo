@@ -11,3 +11,6 @@ Brief description of the project and its purpose
   
 ## Installation
 Steps to set up and run the project locally.
+
+## Usage
+How to use the application.
