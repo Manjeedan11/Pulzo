@@ -1,3 +1,4 @@
-<h1>Pulzo</h1>
+# Pulzo
 
-<p>Documentation coming soon</p>
+## Overview 
+Brief description of the project and its purpose 
