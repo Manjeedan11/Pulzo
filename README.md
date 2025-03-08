@@ -8,3 +8,6 @@ Brief description of the project and its purpose
 
 ## Tech Stack
 - List of technologies and frameworks used.
+  
+## Installation
+Steps to set up and run the project locally.
