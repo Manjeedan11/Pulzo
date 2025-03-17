@@ -6,3 +6,4 @@ An advanced eCommerce platform built using the MERN stack (MongoDB, Express.js, 
 - **User Authentication**: Sign up, login, and secure authentication with Clerk.
 - **Admin Dashboard**: Manage users, products, and orders.
 - **Product Management**: Add, edit, delete products with images and descriptions.
+- **Order Tracking**: Managing stock level.
