@@ -1,4 +1,4 @@
-## Untitled
+## Untitled - AI enhanced Ecommerce platform 
 
 An advanced eCommerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports user authentication, product management, and a seamless shopping experience.
 
