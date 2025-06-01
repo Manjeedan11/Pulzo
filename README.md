@@ -1,4 +1,4 @@
-## Untitled - AI enhanced Ecommerce platform 
+## TechnoCart - AI enhanced Ecommerce platform 
 
 An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports user authentication, product management, and a seamless shopping experience.
 
