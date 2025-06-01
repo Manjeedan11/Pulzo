@@ -1,6 +1,6 @@
 ## Untitled - AI enhanced Ecommerce platform 
 
-An advanced AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports user authentication, product management, and a seamless shopping experience.
+An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports user authentication, product management, and a seamless shopping experience.
 
 ## Features
 - **User Authentication**: Sign up, login, and secure authentication with Clerk.
