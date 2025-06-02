@@ -34,7 +34,7 @@ function NavBar(props) {
     <nav className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-lg rounded-lg flex items-center justify-between py-6 px-8 xl:px-16 z-50">
       <div className="flex gap-x-16 m-5 mr-16 -ml-1">
         <a className="flex items-center font-semibold text-3xl" href="/">
-          ρυℓzσ
+          tECHnOcaRT
         </a>
         <div className="flex items-center gap-4 font-poppins">
           <a href="/">Home</a>
