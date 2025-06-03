@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { CircuitBoard, Sparkles, Bot, User, ArrowRight } from "lucide-react";
 import { RainbowButton } from "../magicui/rainbow-button";
 
-export function ChatBotSheet() {
+export default function ChatBotSheet() {
   const [isChatBotOpen, setIsChatBotOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
