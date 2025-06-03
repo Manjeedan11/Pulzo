@@ -151,7 +151,7 @@ function FooterCard() {
 
         <div className="mt-12 border-t pt-8">
           <p className="text-center text-sm text-muted-foreground text-black font-poppins">
-            © 2025 Pulzo. All rights reserved.
+            © 2025 TechnoCart. All rights reserved.
           </p>
         </div>
       </div>
