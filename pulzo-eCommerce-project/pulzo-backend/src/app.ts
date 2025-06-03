@@ -13,7 +13,9 @@ import { stripeRouter } from "./api/stripePayment";
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "https://fed-pulzo-frontend-manjeedan.netlify.app" }));
+app.use(
+  cors({ origin: "https://fed-technocart-frontend-manjeedan.netlify.app" })
+);
 app.use(clerkMiddleware());
 
 app.use("/api/products", productRouter);
