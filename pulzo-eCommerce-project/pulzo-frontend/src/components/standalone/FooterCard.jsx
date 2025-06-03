@@ -11,9 +11,7 @@ function FooterCard() {
         <div className="grid gap-8 lg:grid-cols-[2fr,1fr,1fr,1fr,1fr]">
           <div className="space-y-4">
             <Link href="/" className="inline-flex items-center space-x-2">
-              <p className=" text-3xl font-poppins font-bold font-">
-                technoCart
-              </p>
+              <p className=" text-3xl font-bold font-">TEᑕᕼᑎOᑕᗩᖇT</p>
             </Link>
             <p className="max-w-sm font-poppins text-black ">
               Discover over 7,000 premium electronic gadgets for all your tech
