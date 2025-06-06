@@ -2,6 +2,10 @@
 
 An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform supports user authentication, product management, and a seamless shopping experience.
 
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+
 ## Features
 - **User Authentication**: Sign up, login, and secure authentication with Clerk.
 - **Admin Dashboard**: Manage users, products, and orders.
@@ -9,6 +13,4 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 - **Order Tracking**: Managing stock level.
 - **AI Voice Assistant**: Helping out users on their product enquiry.
 
-## Table of Contents
-- [Features](#features)
-- [Tech Stack](#tech-stack)
+
