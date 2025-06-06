@@ -13,4 +13,4 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 - **Order Tracking**: Managing stock level.
 - **AI Voice Assistant**: Helping out users on their product enquiry.
 
-
+## Tech Stack
