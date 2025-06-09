@@ -14,3 +14,4 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 - **AI Voice Assistant**: Helping out users on their product enquiry.
 
 ## Tech Stack
+- React 18  
