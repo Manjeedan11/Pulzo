@@ -17,3 +17,6 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 - React 18
 - Tailwind 3.4.17
 - Shadcn UI 
+- NodeJS
+- ExpressJS
+- MongoDB 
