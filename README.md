@@ -5,6 +5,7 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 ## Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
+- [Prerequisites](#prerequesties)
 
 ## Features
 - **User Authentication**: Sign up, login, and secure authentication with Clerk.
