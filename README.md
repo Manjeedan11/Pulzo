@@ -21,3 +21,4 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 - ExpressJS
 - MongoDB  
 
+### Prerequisites
