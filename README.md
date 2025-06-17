@@ -25,3 +25,5 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
 ### Prerequisites
 - Node.js (v18 or higher)  
 - npm (v9 or higher)
+
+### Installation
