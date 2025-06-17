@@ -31,5 +31,5 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
    ```sh
    git clone https://github.com/Manjeedan11/TechnoCart.git
    cd technoCart-frontend
-   cd WorkSolo-backend
+   cd technoCart-backend
    ```
