@@ -33,3 +33,6 @@ An AI enhanced eCommerce platform built using the MERN stack (MongoDB, Express.j
    cd technoCart-frontend
    cd technoCart-backend
    ```
+
+2. **Install dependencies:**
+   
